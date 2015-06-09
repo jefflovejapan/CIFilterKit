@@ -8,110 +8,118 @@
 
 import Foundation
 
-public func BumpDistortion(#inputCenter:XYPosition?, #inputRadius:Double?, #inputScale: Double?) -> Filter {
+public func BumpDistortion(options: BumpDistortionOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputRadiusKey: inputRadius,
-            kCIInputScaleKey: inputScale
-            ])
-        let filter = CIFilter(name:"CIBumpDistortion", withInputParameters:parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputScaleKey: options.inputScale
+        ]
+        let filter = CIFilter(name:FilterName.BumpDistortion.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func BumpDistortionLinear(#inputCenter:XYPosition?, #inputRadius:Double?, #inputAngle: Double?, #inputScale: Double?) -> Filter {
+
+public func BumpDistortionLinear(options: BumpDistortionLinearOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputRadiusKey: inputRadius,
-            kCIInputAngleKey: inputAngle,
-            kCIInputScaleKey: inputScale
-            ])
-        let filter = CIFilter(name:"CIBumpDistortionLinear", withInputParameters:parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputScaleKey: options.inputScale
+        ]
+        let filter = CIFilter(name:FilterName.BumpDistortionLinear.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func CircleSplashDistortion(#inputCenter:XYPosition?, #inputRadius: Double?) -> Filter {
+
+public func CircleSplashDistortion(options: CircleSplashDistortionOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
-            kCIInputCenterKey:inputCenter?.vector(),
-            kCIInputRadiusKey: inputRadius
-            ])
-        let filter = CIFilter(name:"CICircleSplashDistortion", withInputParameters:parameters)
+            kCIInputCenterKey:options.inputCenter.vector(),
+            kCIInputRadiusKey: options.inputRadius
+        ]
+        let filter = CIFilter(name:FilterName.CircleSplashDistortion.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func GlassDistortion(#inputTexture:CIImage?, #inputCenter: XYPosition?, #inputScale: Double?) -> Filter {
+
+public func GlassDistortion(inputTexture:CIImage, #options: GlassDistortionOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
             "inputTexture": inputTexture,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputScaleKey: inputScale
-            ])
-        let filter = CIFilter(name:"CIGlassDistortion", withInputParameters:parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputScaleKey: options.inputScale
+        ]
+        let filter = CIFilter(name:FilterName.GlassDistortion.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func HoleDistortion(#inputCenter:XYPosition?, #inputRadius:Double?) -> Filter {
+
+public func HoleDistortion(options: HoleDistortionOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
-            kCIInputCenterKey:inputCenter?.vector(),
-            kCIInputRadiusKey:inputRadius
-            ])
-        let filter = CIFilter(name:"CIHoleDistortion", withInputParameters:parameters)
+            kCIInputCenterKey:options.inputCenter.vector(),
+            kCIInputRadiusKey:options.inputRadius
+        ]
+        let filter = CIFilter(name:FilterName.HoleDistortion.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func LightTunnel(#inputCenter:XYPosition?, #inputRotation:Double?, #inputRadius:Double?) -> Filter {
+
+public func LightTunnel(options: LightTunnelOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
-            kCIInputCenterKey:inputCenter?.vector(),
-            "inputRotation": inputRotation,
-            kCIInputRadiusKey: inputRadius
-            ])
-        let filter = CIFilter(name:"CILightTunnel", withInputParameters:parameters)
+            kCIInputCenterKey:options.inputCenter.vector(),
+            "inputRotation":options.inputRotation,
+            kCIInputRadiusKey:options.inputRadius
+        ]
+        let filter = CIFilter(name:FilterName.LightTunnel.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func PinchDistortion(#inputCenter:XYPosition?, #inputRadius: Double?, #inputScale: Double?) -> Filter {
+
+public func PinchDistortion(options: PinchDistortionOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputRadiusKey: inputRadius,
-            kCIInputScaleKey: inputScale
-            ])
-        let filter = CIFilter(name:"CIPinchDistortion", withInputParameters:parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputScaleKey: options.inputScale
+        ]
+        let filter = CIFilter(name:FilterName.PinchDistortion.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func TwirlDistortion(#inputCenter:XYPosition?, #inputRadius: Double?, #inputAngle: Double?) -> Filter {
+
+public func TwirlDistortion(options: TwirlDistortionOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputRadiusKey: inputRadius,
-            kCIInputAngleKey: inputAngle
-            ])
-        let filter = CIFilter(name:"CITwirlDistortion", withInputParameters:parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputAngleKey: options.inputAngle
+        ]
+        let filter = CIFilter(name:FilterName.TwirlDistortion.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func VortexDistortion(#inputCenter:XYPosition?, #inputRadius: Double?, #inputAngle: Double?) -> Filter {
+
+public func VortexDistortion(options: VortexDistortionOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey:image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputRadiusKey: inputRadius,
-            kCIInputAngleKey: inputAngle
-            ])
-        let filter = CIFilter(name:"CIVortexDistortion", withInputParameters:parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputAngleKey: options.inputAngle
+        ]
+        let filter = CIFilter(name:FilterName.VortexDistortion.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }

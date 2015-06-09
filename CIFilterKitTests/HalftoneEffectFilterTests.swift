@@ -24,26 +24,29 @@ class HalftoneEffectFilterTests: QuickSpec {
         }
         describe("The CircularScreen filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = CircularScreen(inputCenter:XYPosition(x: 300.0, y: 600.0), inputWidth: 400.0, inputSharpness: 0.75)
+                let options = CircularScreenOptions(inputCenter:XYPosition(x: 300.0, y: 600.0), inputWidth: 400.0, inputSharpness: 0.75)
+                let aFilter = CircularScreen(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The DotScreen filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = DotScreen(inputCenter:XYPosition(x: 300.0, y: 600.0), inputAngle:0.70,  inputWidth: 400.0, inputSharpness: 0.75)
+                let options = DotScreenOptions(inputCenter:XYPosition(x: 300.0, y: 600.0), inputAngle:0.70,  inputWidth: 400.0, inputSharpness: 0.75)
+                let aFilter = DotScreen(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The HatchedScreen filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = HatchedScreen(inputCenter:XYPosition(x: 300.0, y: 600.0), inputAngle:0.70,  inputWidth: 400.0, inputSharpness: 0.75)
+                let options = HatchedScreenOptions(inputCenter:XYPosition(x: 300.0, y: 600.0), inputAngle:0.70,  inputWidth: 400.0, inputSharpness: 0.75)
+                let aFilter = HatchedScreen(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The LineScreen filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = LineScreen(inputCenter:XYPosition(x: 300.0, y: 600.0), inputAngle:0.70,  inputWidth: 400.0, inputSharpness: 0.75)
-                
+                let options = LineScreenOptions(inputCenter:XYPosition(x: 300.0, y: 600.0), inputAngle:0.70,  inputWidth: 400.0, inputSharpness: 0.75)
+                let aFilter = LineScreen(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }

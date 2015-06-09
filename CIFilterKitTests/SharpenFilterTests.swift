@@ -24,13 +24,14 @@ class SharpenFilterTests: QuickSpec {
         }
         describe("The SharpenLuminance filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = SharpenLuminance(inputSharpness:15.0)
+                let aFilter = SharpenLuminance(15.0)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The UnsharpMask filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = UnsharpMask(inputRadius: 50.0, inputIntensity: 75.0)
+                let options = UnsharpMaskOptions(inputRadius: 50.0, inputIntensity: 75.0)
+                let aFilter = UnsharpMask(options)
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }

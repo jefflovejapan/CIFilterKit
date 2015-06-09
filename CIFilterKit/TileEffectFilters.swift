@@ -8,133 +8,136 @@
 
 import Foundation
 
-public func AffineClamp(#inputTransform: CGAffineTransform?) -> Filter {
+public func AffineClamp(#inputTransform: CGAffineTransform) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputTransformKey: inputTransform?.value()
-            ])
-        let aFilter = CIFilter(name: "CIAffineClamp", withInputParameters: parameters)
+            kCIInputTransformKey: inputTransform.value()
+        ]
+        let aFilter = CIFilter(name: FilterName.AffineClamp.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func AffineTile(#inputTransform: CGAffineTransform?) -> Filter {
+public func AffineTile(#inputTransform: CGAffineTransform) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputTransformKey: inputTransform?.value()
-            ])
-        let aFilter = CIFilter(name: "CIAffineTile", withInputParameters: parameters)
+            kCIInputTransformKey: inputTransform.value()
+        ]
+        let aFilter = CIFilter(name: FilterName.AffineTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func EightfoldReflectedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputWidth: Double?) -> Filter {
+
+public func EightfoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CIEightfoldReflectedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.EightfoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func FourfoldReflectedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputAcuteAngle: Double?, #inputWidth: Double?) -> Filter {
+
+public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            "inputAcuteAngle": inputAcuteAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CIFourfoldReflectedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            "inputAcuteAngle": options.inputAcuteAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.FourfoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func FourfoldRotatedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputWidth: Double?) -> Filter {
+public func FourfoldRotatedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CIFourfoldRotatedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.FourfoldRotatedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func FourfoldTranslatedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputAcuteAngle: Double?, #inputWidth: Double?) -> Filter {
+public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            "inputAcuteAngle": inputAcuteAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CIFourfoldTranslatedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            "inputAcuteAngle": options.inputAcuteAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.FourfoldTranslatedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func GlideReflectedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputWidth: Double?) -> Filter {
+public func GlideReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CIGlideReflectedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.GlideReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func SixfoldReflectedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputWidth: Double?) -> Filter {
+public func SixfoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CISixfoldReflectedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.SixfoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func SixfoldRotatedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputWidth: Double?) -> Filter {
+public func SixfoldRotatedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CISixfoldRotatedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.SixfoldRotatedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func TriangleKaleidoscope(#inputPoint: XYPosition?, #inputSize: Double?, #inputRotation: Double?, #inputDecay: Double?) -> Filter {
+
+public func TriangleKaleidoscope(options: TriangleKaleidoscopeOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputSize": inputSize,
-            "inputRotation": inputRotation,
-            "inputDecay": inputDecay
-            ])
-        let aFilter = CIFilter(name: "CITriangleKaleidoscope", withInputParameters: parameters)
+            "inputSize": options.inputSize,
+            "inputRotation": options.inputRotation,
+            "inputDecay": options.inputDecay
+        ]
+        let aFilter = CIFilter(name: FilterName.TriangleKaleidoscope.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }
-public func TwelvefoldReflectedTile(#inputCenter: XYPosition?, #inputAngle: Double?, #inputWidth: Double?) -> Filter {
+public func TwelvefoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth
-            ])
-        let aFilter = CIFilter(name: "CITwelvefoldReflectedTile", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth
+        ]
+        let aFilter = CIFilter(name: FilterName.TwelvefoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter.outputImage
     }
 }

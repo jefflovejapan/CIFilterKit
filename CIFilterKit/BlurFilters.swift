@@ -8,43 +8,42 @@
 
 import Foundation
 
-//TODO: Think about default parameters like image radius in GaussianBlur
-
-public func GaussianBlur(#inputRadius: Float?) -> Filter {
+public func GaussianBlur(inputRadius: Double?) -> Filter {
     return { image in
-        let parameters = unwrapParams([
-            kCIInputRadiusKey: inputRadius,
+        var parameters: Parameters = [
             kCIInputImageKey: image
-        ])
-        let filter = CIFilter(name: "CIGaussianBlur", withInputParameters: parameters)
+            ]
+        if let radius = inputRadius {
+            parameters[kCIInputRadiusKey] = radius
+        }
+        let filter = CIFilter(name: FilterName.GaussianBlur.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
 
-public func MotionBlur(#inputRadius: Float?, #inputAngle: Float?) -> Filter {
+public func MotionBlur(options: MotionBlurOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputRadiusKey: inputRadius,
-            kCIInputAngleKey: inputAngle
-        ])
-        let filter = CIFilter(name: "CIMotionBlur", withInputParameters: parameters)
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputAngleKey: options.inputAngle
+        ]
+        let filter = CIFilter(name: FilterName.MotionBlur.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
 
 //TODO: Figure out why ZoomBlur isn't KVC-compliant for inputAmount https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIZoomBlur
 
-public func ZoomBlur(#inputCenter: XYPosition?, #inputRadius: Float?) -> Filter {
+public func ZoomBlur(options: ZoomBlurOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            "inputRadius": inputRadius
-        ])
-        let filter = CIFilter(name: "CIZoomBlur", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputRadiusKey: options.inputRadius,
+        ]
+        let filter = CIFilter(name: FilterName.ZoomBlur.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-
 

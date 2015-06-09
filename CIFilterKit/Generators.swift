@@ -8,28 +8,88 @@
 
 import Foundation
 
-public func AztecCodeGenerator(#inputMessage: NSData?, #inputCorrectionLevel: Double?, #inputLayers: Double?, #inputCompactStyle: Double?) -> CIImage! {
-    return Generator("CIAztecCodeGenerator")(["inputMessage": inputMessage, "inputCorrectionLevel": inputCorrectionLevel, "inputLayers": inputLayers, "inputCompactStyle": inputCompactStyle])
+public func AztecCodeGenerator(inputMessage: NSData, #options: AztecCodeGeneratorOptions) -> CIImage {
+    let parameters = [
+        "inputMessage": inputMessage,
+        "inputCorrectionLevel": options.inputCorrectionLevel,
+        "inputLayers": options.inputLayers,
+        "inputCompactStyle": options.inputCompactStyle
+    ]
+    let filter = CIFilter(name: FilterName.AztecCodeGenerator.rawValue, withInputParameters:parameters)
+    return filter.outputImage
 }
-public func CheckerboardGenerator(#inputCenter: XYPosition?, #inputColor0: CIColor?, #inputColor1: CIColor?, #inputWidth: Double?, #inputSharpness:Double?) -> CIImage! {
-    return Generator("CICheckerboardGenerator")([kCIInputCenterKey: inputCenter?.vector(), kCIInputWidthKey:inputWidth, kCIInputSharpnessKey: inputSharpness, "inputColor0": inputColor0, "inputColor1": inputColor1])
-}
-public func Code128BarcodeGenerator(#inputMessage:NSData?, #inputQuietSpace:Double?) -> CIImage! {
-    return Generator("CICode128BarcodeGenerator")(["inputMessage":inputMessage, "inputQuietSpace": inputQuietSpace]);
-}
-public func ConstantColorGenerator(#inputColor:CIColor?) -> CIImage! {
-    return Generator("CIConstantColorGenerator")([kCIInputColorKey: inputColor]);
-}
-public func QRCodeGenerator(#inputMessage:NSData?, #inputCorrectionLevel:ErrorCorrectionLevel?) -> CIImage! {
-    return Generator("CIQRCodeGenerator")(["inputMessage": inputMessage, "inputCorrectionLevel": inputCorrectionLevel?.rawValue])
-}
-public func RandomGenerator() -> CIImage! {
-    return Generator("CIRandomGenerator")(OptionalParameters())
 
+public func CheckerboardGenerator(options: CheckerboardGeneratorOptions) -> CIImage {
+    let parameters: Parameters = [
+        kCIInputCenterKey: options.inputCenter.vector(),
+        "inputColor0": options.inputColor0,
+        "inputColor1": options.inputColor1,
+        kCIInputWidthKey: options.inputWidth,
+        kCIInputSharpnessKey: options.inputSharpness
+    ]
+    let filter = CIFilter(name: FilterName.CheckerboardGenerator.rawValue)
+    return filter.outputImage
 }
-public func StarShineGenerator(#inputCenter: XYPosition?, #inputColor:CIColor?, #inputRadius: Double?, #inputCrossScale: Double?, #inputCrossAngle: Double?, #inputCrossOpacity: Double?, #inputCrossWidth: Double?, #inputEpsilon: Double?) -> CIImage! {
-    return Generator("CIStarShineGenerator")([kCIInputCenterKey: inputCenter?.vector(), kCIInputColorKey: inputColor, kCIInputRadiusKey: inputRadius, "inputCrossScale": inputCrossScale, "inputCrossAngle": inputCrossAngle, "inputCrossOpacity": inputCrossOpacity, "inputCrossWidth": inputCrossWidth, "inputEpsilon": inputEpsilon])
+
+
+public func Code128BarcodeGenerator(inputMessage:NSData, #inputQuietSpace:Double?) -> CIImage {
+    var parameters: Parameters = [
+        "inputMessage": inputMessage
+    ]
+    if let quietSpace = inputQuietSpace {
+        parameters["inputQuietSpace"] = quietSpace
+    }
+    let filter = CIFilter(name: FilterName.Code128BarcodeGenerator.rawValue, withInputParameters:parameters)
+    return filter.outputImage
 }
-public func StripesGenerator(#inputCenter: XYPosition?, #inputColor0: CIColor?, #inputColor1: CIColor?, #inputWidth: Double?, #inputSharpness: Double?) -> CIImage! {
-    return Generator("CIStripesGenerator")([kCIInputCenterKey: inputCenter?.vector(), "inputColor0": inputColor0, "inputColor1": inputColor1, kCIInputWidthKey: inputWidth, kCIInputSharpnessKey: inputSharpness])
+
+public func ConstantColorGenerator(inputColor:CIColor) -> CIImage {
+    var parameters: Parameters = [
+        "inputColor": inputColor
+    ]
+    let filter = CIFilter(name: FilterName.ConstantColorGenerator.rawValue, withInputParameters:parameters)
+    return filter.outputImage
+}
+
+public func QRCodeGenerator(inputMessage:NSData, #inputCorrectionLevel:ErrorCorrectionLevel?) -> CIImage {
+    var parameters: Parameters = [
+        "inputMessage": inputMessage,
+    ]
+    if let correctionLevel = inputCorrectionLevel {
+        parameters["inputCorrectionLevel"] = correctionLevel.rawValue
+    }
+    let aFilter = CIFilter(name: FilterName.QRCodeGenerator.rawValue, withInputParameters: parameters)
+    return aFilter.outputImage
+}
+
+public func RandomGenerator() -> CIImage {
+    let aFilter = CIFilter(name: FilterName.RandomGenerator.rawValue)
+    return aFilter.outputImage
+}
+
+public func StarShineGenerator(options: StarShineGeneratorOptions) -> CIImage {
+    let parameters = [
+        kCIInputCenterKey: options.inputCenter.vector(),
+        kCIInputColorKey: options.inputColor,
+        kCIInputRadiusKey: options.inputRadius,
+        "inputCrossScale": options.inputCrossScale,
+        "inputCrossAngle": options.inputCrossAngle,
+        "inputCrossOpacity": options.inputCrossOpacity,
+        "inputCrossWidth": options.inputCrossWidth,
+        "inputEpsilon": options.inputEpsilon
+    ]
+    let aFilter = CIFilter(name: FilterName.StarShineGenerator.rawValue, withInputParameters: parameters)
+    return aFilter.outputImage
+}
+
+public func StripesGenerator(options: StripesGeneratorOptions) -> CIImage {
+    let parameters = [
+        kCIInputCenterKey: options.inputCenter.vector(),
+        "inputColor0": options.inputColor0,
+        "inputColor1": options.inputColor1,
+        kCIInputWidthKey: options.inputWidth,
+        kCIInputSharpnessKey: options.inputSharpness
+    ]
+    let aFilter = CIFilter(name: FilterName.StripesGenerator.rawValue, withInputParameters: parameters)
+    return aFilter.outputImage
 }

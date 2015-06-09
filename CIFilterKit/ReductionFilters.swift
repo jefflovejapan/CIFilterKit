@@ -8,27 +8,28 @@
 
 import Foundation
 
-public func AreaHistogram(#inputExtent:CGRect?, #inputCount: Int?, #inputScale: Double?) -> Filter {
+public func AreaHistogram(options: AreaHistogramOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputExtentKey: inputExtent?.vector(),
-            "inputCount": inputCount,
-            kCIInputScaleKey: inputScale
-            ])
-        let filter = CIFilter(name:"CIAreaHistogram", withInputParameters: parameters)
+            kCIInputExtentKey: options.inputExtent.vector(),
+            "inputCount": options.inputCount,
+            kCIInputScaleKey: options.inputScale
+        ]
+        let filter = CIFilter(name:FilterName.AreaHistogram.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func HistogramDisplayFilter(#inputHeight: Double?, #inputHighLimit: Double?, #inputLowLimit: Double?) -> Filter {
+
+public func HistogramDisplayFilter(options: HistogramDisplayOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputHeight": inputHeight,
-            "inputHighLimit": inputHighLimit,
-            "inputLowLimit": inputLowLimit
-            ])
-        let filter = CIFilter(name:"CIHistogramDisplayFilter", withInputParameters: parameters)
+            "inputHeight": options.inputHeight,
+            "inputHighLimit": options.inputHighLimit,
+            "inputLowLimit": options.inputLowLimit
+        ]
+        let filter = CIFilter(name:FilterName.HistogramDisplayFilter.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }

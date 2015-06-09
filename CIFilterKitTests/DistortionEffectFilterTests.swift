@@ -24,58 +24,65 @@ class DistortionEffectFilterTests: QuickSpec {
         }
         describe("The BumpDistortion filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = BumpDistortion(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius: 300.0, inputScale: 1.0)
+                let options = BumpDistortionOptions(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius: 300.0, inputScale: 1.0)
+                let aFilter = BumpDistortion(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The BumpDistortionLinear filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = BumpDistortionLinear(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius: 500.0, inputAngle: 1.5, inputScale:0.5)
+                let options = BumpDistortionLinearOptions(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius: 500.0, inputAngle: 1.5, inputScale:0.5)
+                let aFilter = BumpDistortionLinear(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The CirlceSplashDistortion filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = CircleSplashDistortion(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius: 500.0)
+                let options = CircleSplashDistortionOptions(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius: 500.0)
+                let aFilter = CircleSplashDistortion(options)
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The GlassDistortion filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = GlassDistortion(inputTexture:kevinBaconCiImage, inputCenter:XYPosition(x: 400.0, y: 600.0), inputScale: 200.0)
+                let options = GlassDistortionOptions(inputCenter:XYPosition(x: 400.0, y: 600.0), inputScale: 200.0)
+                let aFilter = GlassDistortion(kevinBaconCiImage, options:options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The HoleDistortion filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = HoleDistortion(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius:200.0)
+                let options = HoleDistortionOptions(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius:200.0)
+                let aFilter = HoleDistortion(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The LightTunnel filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = LightTunnel(inputCenter:XYPosition(x: 400.0, y: 600.0),inputRotation: 0.75, inputRadius:200.0)
-                let outImg = aFilter(kevinBaconCiImage)
+                let options = LightTunnelOptions(inputCenter:XYPosition(x: 400.0, y: 600.0),inputRotation: 0.75, inputRadius:200.0)
+                let aFilter = LightTunnel(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The PinchDistortion filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = PinchDistortion(inputCenter:XYPosition(x: 400.0, y: 600.0),inputRadius:200.0, inputScale: 0.5)
+                let options = PinchDistortionOptions(inputCenter:XYPosition(x: 400.0, y: 600.0),inputRadius:200.0, inputScale: 0.5)
+                let aFilter = PinchDistortion(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The TwirlDistortion filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = TwirlDistortion(inputCenter:XYPosition(x: 400.0, y: 600.0),inputRadius:200.0, inputAngle: 2.5)
+                let options = TwirlDistortionOptions()
+                let aFilter = TwirlDistortion(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The VortexDistortion filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = VortexDistortion(inputCenter:XYPosition(x: 400.0, y: 600.0),inputRadius:400.0, inputAngle: 56.55)
-                let outImg = aFilter(kevinBaconCiImage)
+                let options = VortexDistortionOptions(inputCenter:XYPosition(x: 400.0, y: 600.0),inputRadius:400.0, inputAngle: 56.55)
+                let aFilter = VortexDistortion(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }

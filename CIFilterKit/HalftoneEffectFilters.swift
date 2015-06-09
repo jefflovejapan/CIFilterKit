@@ -8,54 +8,57 @@
 
 import Foundation
 
-public func CircularScreen(#inputCenter: XYPosition?, #inputWidth: Double?, #inputSharpness: Double?) -> Filter {
+public func CircularScreen(options: CircularScreenOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputWidthKey: inputWidth,
-            kCIInputSharpnessKey: inputSharpness
-            ])
-        let filter = CIFilter(name: "CICircularScreen", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputWidthKey: options.inputWidth,
+            kCIInputSharpnessKey: options.inputSharpness
+        ]
+        let filter = CIFilter(name: FilterName.CircularScreen.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func DotScreen(#inputCenter:XYPosition?, #inputAngle:Double?, #inputWidth:Double?, #inputSharpness:Double?) -> Filter {
+
+public func DotScreen(options: DotScreenOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth,
-            kCIInputSharpnessKey: inputSharpness
-            ])
-        let filter = CIFilter(name: "CIDotScreen", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth,
+            kCIInputSharpnessKey: options.inputSharpness
+        ]
+        let filter = CIFilter(name: FilterName.DotScreen.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func HatchedScreen(#inputCenter:XYPosition?, #inputAngle:Double?, #inputWidth:Double?, #inputSharpness:Double?) -> Filter {
+
+public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth,
-            kCIInputSharpnessKey: inputSharpness
-            ])
-        let filter = CIFilter(name: "CIHatchedScreen", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth,
+            kCIInputSharpnessKey: options.inputSharpness
+        ]
+        let filter = CIFilter(name: FilterName.HatchedScreen.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func LineScreen(#inputCenter:XYPosition?, #inputAngle:Double?, #inputWidth:Double?, #inputSharpness:Double?) -> Filter {
+
+public func LineScreen(options: LineScreenOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputAngleKey: inputAngle,
-            kCIInputWidthKey: inputWidth,
-            kCIInputSharpnessKey: inputSharpness
-            ])
-        let filter = CIFilter(name: "CILineScreen", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputAngleKey: options.inputAngle,
+            kCIInputWidthKey: options.inputWidth,
+            kCIInputSharpnessKey: options.inputSharpness
+        ]
+        let filter = CIFilter(name: FilterName.LineScreen.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }

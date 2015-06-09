@@ -24,17 +24,20 @@ class BlurFilterTests: QuickSpec {
         }
         describe("The GaussianBlur filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                expect(GaussianBlur(inputRadius:10.0)(kevinBaconCiImage)).toNot(beNil())
+                let aFilter = GaussianBlur(0.5)
+                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The MotionBlur filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                expect(MotionBlur(inputRadius:10.0, inputAngle:10.0)(kevinBaconCiImage)).toNot(beNil())
+                let aFilter = MotionBlur(MotionBlurOptions())
+                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ZoomBlur filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                expect(ZoomBlur(inputCenter: XYPosition(x:10.0, y:10.0), inputRadius:2.0)(kevinBaconCiImage)).toNot(beNil())
+                let aFilter = ZoomBlur(ZoomBlurOptions())
+                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
     }

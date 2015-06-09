@@ -8,110 +8,127 @@
 
 import Foundation
 
-public func ColorControls(#inputSaturation: Double?, #inputBrightness: Double?, #inputContrast: Double?) -> Filter {
+public func ColorControls(options: ColorControlsOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputSaturationKey: inputSaturation,
-            kCIInputBrightnessKey: inputBrightness,
-            kCIInputContrastKey: inputContrast
-            ])
-        let filter = CIFilter(name:"CIColorControls", withInputParameters:parameters)
+            kCIInputSaturationKey: options.inputSaturation,
+            kCIInputBrightnessKey: options.inputBrightness,
+            kCIInputContrastKey: options.inputContrast
+            ]
+        let filter = CIFilter(name:FilterName.ColorControls.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func ColorMatrix(#inputRVector:RGBAComponents? , #inputGVector: RGBAComponents?, #inputBVector: RGBAComponents?, #inputAVector: RGBAComponents?, #inputBiasVector: RGBAComponents?) -> Filter {
+
+public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "InputRVector": inputRVector?.vector(),
-            "InputGVector": inputGVector?.vector(),
-            "InputBVector": inputBVector?.vector(),
-            "InputAVector": inputAVector?.vector(),
-            "InputBiasVector": inputBiasVector?.vector()
-            ])
-        let filter = CIFilter(name:"CIColorMatrix", withInputParameters:parameters)
+            "inputRVector": options.inputRVector.vector(),
+            "inputGVector": options.inputGVector.vector(),
+            "inputBVector": options.inputBVector.vector(),
+            "inputAVector": options.inputAVector.vector(),
+            "inputBiasVector": options.inputBiasVector.vector()
+        ]
+        let filter = CIFilter(name:FilterName.ColorMatrix.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func ExposureAdjust(#inputEV:Double?) -> Filter {
+
+public func ExposureAdjust(inputEV: Double?) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        var parameters: Parameters = [
             kCIInputImageKey: image,
-            kCIInputEVKey: inputEV
-            ])
-        let filter = CIFilter(name:"CIExposureAdjust", withInputParameters:parameters)
+        ]
+        if let ev = inputEV {
+            parameters[kCIInputEVKey] = ev
+        }
+        let filter = CIFilter(name:FilterName.ExposureAdjust.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func GammaAdjust(#inputPower: Double?) -> Filter {
+
+public func GammaAdjust(inputPower: Double?) -> Filter {
     return { image in
-        let parameters = unwrapParams([
-            kCIInputImageKey: image,
-            "inputPower": inputPower
-            ])
-        let filter = CIFilter(name:"CIGammaAdjust", withInputParameters:parameters)
+        var parameters: Parameters = [
+            kCIInputImageKey: image
+        ]
+        if let power = inputPower {
+            parameters["inputPower"] = power
+        }
+        let filter = CIFilter(name:FilterName.GammaAdjust.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func HueAdjust(#inputAngle:Double?) -> Filter {
+
+public func HueAdjust(inputAngle: Double?) -> Filter {
     return { image in
-        let parameters = unwrapParams([
-            kCIInputImageKey: image,
-            kCIInputAngleKey: inputAngle
-            ])
-        let filter = CIFilter(name:"CIHueAdjust", withInputParameters:parameters)
+        var parameters: Parameters = [
+            kCIInputImageKey: image
+        ]
+        if let angle = inputAngle {
+            parameters[kCIInputAngleKey] = angle
+        }
+        let filter = CIFilter(name:FilterName.HueAdjust.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
 public func LinearToSRGBToneCurve() -> Filter {
-    return noParamsFilter("CILinearToSRGBToneCurve")
+    return noParamsFilter(FilterName.LinearToSRGBToneCurve.rawValue)
 }
 public func SRGBToneCurveToLinear() -> Filter {
-    return noParamsFilter("CISRGBToneCurveToLinear")
+    return noParamsFilter(FilterName.SRGBToneCurveToLinear.rawValue)
 }
-public func TemperatureAndTint(#inputNeutral: TempAndTint?, #targetInputNeutral: TempAndTint?) -> Filter {
+
+public func TemperatureAndTint(options: TemperatureAndTintOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputNeutral": inputNeutral?.vector(),
-            "inputTargetNeutral": targetInputNeutral?.vector()
-            ])
-        let filter = CIFilter(name:"CITemperatureAndTint", withInputParameters:parameters)
+            "inputNeutral": options.inputNeutral.vector(),
+            "inputTargetNeutral": options.targetInputNeutral.vector()
+        ]
+        let filter = CIFilter(name:FilterName.TemperatureAndTint.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func ToneCurve(#inputPoint0: XYOffset?, #inputPoint1: XYOffset?, #inputPoint2: XYOffset?, #inputPoint3: XYOffset?, #inputPoint4: XYOffset?) -> Filter {
+
+public func ToneCurve(options: ToneCurveOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputPoint0": inputPoint0?.vector(),
-            "inputPoint1": inputPoint1?.vector(),
-            "inputPoint2": inputPoint2?.vector(),
-            "inputPoint3": inputPoint3?.vector(),
-            "inputPoint4": inputPoint4?.vector()
-            ])
-        let filter = CIFilter(name:"CIToneCurve", withInputParameters:parameters)
+            "inputPoint1": options.inputPoint1.vector(),
+            "inputPoint2": options.inputPoint2.vector(),
+            "inputPoint3": options.inputPoint3.vector(),
+            "inputPoint4": options.inputPoint4.vector()
+        ]
+        let filter = CIFilter(name:FilterName.ToneCurve.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func Vibrance(#inputAmount: Double?) -> Filter {
+
+public func Vibrance(inputAmount: Double?) -> Filter {
     return { image in
-        let parameters = unwrapParams([
-            kCIInputImageKey: image,
-            "inputAmount": inputAmount
-            ])
-        let filter = CIFilter(name:"CIVibrance", withInputParameters:parameters)
+        var parameters: Parameters = [
+            kCIInputImageKey: image
+        ]
+        if let amount = inputAmount {
+            parameters["inputAmount"] = amount
+        }
+        let filter = CIFilter(name:FilterName.Vibrance.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }
-public func WhitePointAdjust(#inputColor: CIColor?) -> Filter {
+
+public func WhitePointAdjust(inputColor: CIColor?) -> Filter {
     return { image in
-        let parameters = unwrapParams([
-            kCIInputImageKey: image,
-            kCIInputColorKey: inputColor
-            ])
-        let filter = CIFilter(name:"CIWhitePointAdjust", withInputParameters:parameters)
+        var parameters: Parameters = [
+            kCIInputImageKey: image
+        ]
+        if let color = inputColor {
+            parameters[kCIInputColorKey] = color
+        }
+        let filter = CIFilter(name:FilterName.WhitePointAdjust.rawValue, withInputParameters:parameters)
         return filter.outputImage
     }
 }

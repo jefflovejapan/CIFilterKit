@@ -9,89 +9,89 @@
 import Foundation
 
 public func AdditionCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIAdditionCompositing")(inputBackgroundImage)
+    return Composer(FilterName.AdditionCompositing.rawValue)(inputBackgroundImage)
 }
 public func ColorBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIColorBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.ColorBlendMode.rawValue)(inputBackgroundImage)
 }
 public func ColorBurnBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIColorBurnBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.ColorBurnBlendMode.rawValue)(inputBackgroundImage)
 }
 public func ColorDodgeBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIColorDodgeBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.ColorDodgeBlendMode.rawValue)(inputBackgroundImage)
 }
 public func DarkenBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIDarkenBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.DarkenBlendMode.rawValue)(inputBackgroundImage)
     
 }
 public func DifferenceBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIDifferenceBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.DifferenceBlendMode.rawValue)(inputBackgroundImage)
     
 }
 public func DivideBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIDivideBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.DivideBlendMode.rawValue)(inputBackgroundImage)
 }
 public func ExclusionBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIExclusionBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.ExclusionBlendMode.rawValue)(inputBackgroundImage)
     
 }
 public func HardLightBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIHardLightBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.HardLightBlendMode.rawValue)(inputBackgroundImage)
 }
 public func HueBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIHueBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.HueBlendMode.rawValue)(inputBackgroundImage)
 }
 public func LightenBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CILightenBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.LightenBlendMode.rawValue)(inputBackgroundImage)
 }
 public func LinearBurnBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CILinearBurnBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.LinearBurnBlendMode.rawValue)(inputBackgroundImage)
 }
 public func LinearDodgeBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CILinearDodgeBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.LinearDodgeBlendMode.rawValue)(inputBackgroundImage)
 }
 public func LuminosityBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CILuminosityBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.LuminosityBlendMode.rawValue)(inputBackgroundImage)
 }
 public func MaximumCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIMaximumCompositing")(inputBackgroundImage)
+    return Composer(FilterName.MaximumCompositing.rawValue)(inputBackgroundImage)
 }
 public func MinimumCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIMinimumCompositing")(inputBackgroundImage)
+    return Composer(FilterName.MinimumCompositing.rawValue)(inputBackgroundImage)
 }
 public func MultiplyBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIMultiplyBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.MultiplyBlendMode.rawValue)(inputBackgroundImage)
 }
 public func MultiplyCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIMultiplyCompositing")(inputBackgroundImage)
+    return Composer(FilterName.MultiplyCompositing.rawValue)(inputBackgroundImage)
 }
 public func OverlayBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIOverlayBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.OverlayBlendMode.rawValue)(inputBackgroundImage)
 }
 public func PinLightBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIPinLightBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.PinLightBlendMode.rawValue)(inputBackgroundImage)
 }
 public func SaturationBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CISaturationBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.SaturationBlendMode.rawValue)(inputBackgroundImage)
 }
 public func ScreenBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CIScreenBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.ScreenBlendMode.rawValue)(inputBackgroundImage)
 }
 public func SoftLightBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CISoftLightBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.SoftLightBlendMode.rawValue)(inputBackgroundImage)
 }
 public func SourceAtopCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CISourceAtopCompositing")(inputBackgroundImage)
+    return Composer(FilterName.SourceAtopCompositing.rawValue)(inputBackgroundImage)
 }
 public func SourceInCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CISourceInCompositing")(inputBackgroundImage)
+    return Composer(FilterName.SourceInCompositing.rawValue)(inputBackgroundImage)
 }
 public func SourceOutCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CISourceOutCompositing")(inputBackgroundImage)
+    return Composer(FilterName.SourceOutCompositing.rawValue)(inputBackgroundImage)
 }
 public func SourceOverCompositing(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CISourceOverCompositing")(inputBackgroundImage)
+    return Composer(FilterName.SourceOverCompositing.rawValue)(inputBackgroundImage)
 }
 public func SubtractBlendMode(#inputBackgroundImage: CIImage) -> Filter {
-    return Composer("CISubtractBlendMode")(inputBackgroundImage)
+    return Composer(FilterName.SubtractBlendMode.rawValue)(inputBackgroundImage)
 }

@@ -8,16 +8,47 @@
 
 import Foundation
 
-//TODO: restore inputColor1 when Apple fixes bug
-public func GaussianGradient(#inputCenter: XYPosition?, #inputColor0: CIColor?, #inputColor1: CIColor?, #inputRadius: Double?) -> CIImage! {
-    return Generator("CIGaussianGradient")([kCIInputCenterKey: inputCenter?.vector(), "inputColor0": inputColor0, "inputRadius": inputRadius])
+public func GaussianGradient(options: GaussianGradientOptions) -> CIImage {
+    let parameters: Parameters = [
+        kCIInputCenterKey: options.inputCenter.vector(),
+        "inputColor0": options.inputColor0,
+        "inputColor1": options.inputColor1,
+        kCIInputRadiusKey: options.inputRadius
+    ]
+    let filter = CIFilter(name:FilterName.GaussianGradient.rawValue, withInputParameters:parameters)
+    return filter.outputImage
 }
-public func LinearGradient(#inputPoint0: XYPosition?, #inputPoint1: XYPosition?, #inputColor0: CIColor?, #inputColor1: CIColor?) -> CIImage! {
-    return Generator("CILinearGradient")(["inputPoint0": inputPoint0?.vector(), "inputPoint1": inputPoint1?.vector(), "inputColor0": inputColor0, "inputColor1": inputColor1])
+
+public func LinearGradient(options: LinearGradientOptions) -> CIImage! {
+    let parameters: Parameters = [
+        "inputPoint0": options.inputPoint0.vector(),
+        "inputPoint1": options.inputPoint1.vector(),
+        "inputColor0": options.inputColor0,
+        "inputColor1": options.inputColor1
+    ]
+    let filter = CIFilter(name:FilterName.LinearGradient.rawValue, withInputParameters:parameters)
+    return filter.outputImage
 }
-public func RadialGradient(#inputCenter: XYPosition?, #inputRadius0: Double?, #inputRadius1: Double?, #inputColor0: CIColor?, #inputColor1: CIColor?) -> CIImage! {
-    return Generator("CIRadialGradient")(["inputCenter": inputCenter?.vector(), "inputRadius0": inputRadius0, "inputRadius1": inputRadius1, "inputColor0": inputColor0, "inputColor1": inputColor1])
+
+public func RadialGradient(options: RadialGradientOptions) -> CIImage! {
+    let parameters = [
+        kCIInputCenterKey: options.inputCenter.vector(),
+        "inputRadius0": options.inputRadius0,
+        "inputRadius1": options.inputRadius1,
+        "inputColor0": options.inputColor0,
+        "inputColor1": options.inputColor1
+    ]
+    let aFilter = CIFilter(name:FilterName.RadialGradient.rawValue, withInputParameters: parameters)
+    return aFilter.outputImage
 }
-public func SmoothLinearGradient(#inputPoint0: XYPosition?, #inputPoint1: XYPosition?, #inputColor0: CIColor?, #inputColor1: CIColor?) -> CIImage! {
-    return Generator("CISmoothLinearGradient")(["inputPoint0": inputPoint0?.vector(), "inputPoint1": inputPoint1?.vector(), "inputColor0": inputColor0, "inputColor1": inputColor1])
+
+public func SmoothLinearGradient(options: SmoothLinearGradientOptions) -> CIImage {
+    let parameters = [
+        "inputPoint0": options.inputPoint0.vector(),
+        "inputPoint1": options.inputPoint1.vector(),
+        "inputColor0": options.inputColor0,
+        "inputColor1": options.inputColor1
+    ]
+    let aFilter = CIFilter(name: FilterName.SmoothLinearGradient.rawValue, withInputParameters: parameters)
+    return aFilter.outputImage
 }

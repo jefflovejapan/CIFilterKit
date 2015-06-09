@@ -8,113 +8,120 @@
 
 import Foundation
 
-public func BlendWithAlphaMask(#inputBackgroundImage:CIImage?, #inputMaskImage: CIImage?) -> Filter {
+public func BlendWithAlphaMask(#inputBackgroundImage:CIImage, #inputMaskImage: CIImage) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputBackgroundImageKey: inputBackgroundImage,
             kCIInputMaskImageKey: inputMaskImage
-            ])
-        let filter = CIFilter(name:"CIBlendWithAlphaMask", withInputParameters: parameters)
+        ]
+        let filter = CIFilter(name:FilterName.BlendWithAlphaMask.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func BlendWithMask(#inputBackgroundImage:CIImage?, #inputMaskImage: CIImage?) -> Filter {
+public func BlendWithMask(#inputBackgroundImage:CIImage, #inputMaskImage: CIImage) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
             kCIInputBackgroundImageKey: inputBackgroundImage,
             kCIInputMaskImageKey: inputMaskImage
-            ])
-        let filter = CIFilter(name:"CIBlendWithMask", withInputParameters: parameters)
+        ]
+        let filter = CIFilter(name:FilterName.BlendWithMask.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func Bloom(#inputRadius: Double?, #inputIntensity: Double?) -> Filter {
+
+public func Bloom(options: BloomOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputRadiusKey: inputRadius,
-            kCIInputIntensityKey: inputIntensity
-            ])
-        let filter = CIFilter(name:"CIBloom", withInputParameters: parameters)
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputIntensityKey: options.inputIntensity
+        ]
+        let filter = CIFilter(name:FilterName.Bloom.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func Convolution3x3(#inputWeights: ConvolutionMatrix3x3?, #inputBias: Double?) -> Filter {
+
+public func Convolution3X3(options: Convolution3X3Options) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputWeights": inputWeights?.vector(),
-            "inputBias": inputBias
-            ])
-        let filter = CIFilter(name:"CIConvolution3X3", withInputParameters: parameters)
+            "inputWeights": options.inputWeights.vector(),
+            "inputBias": options.inputBias
+        ]
+        let filter = CIFilter(name:FilterName.Convolution3X3.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func Convolution5x5(#inputWeights:ConvolutionMatrix5x5?, #inputBias: Double?) -> Filter {
+
+public func Convolution5x5(options: Convolution5X5Options) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputWeights": inputWeights?.vector(),
-            "inputBias": inputBias
-            ])
-        let filter = CIFilter(name:"CIConvolution5X5", withInputParameters: parameters)
+            "inputWeights": options.inputWeights.vector(),
+            "inputBias": options.inputBias
+        ]
+        let filter = CIFilter(name:FilterName.Convolution5X5.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func Convolution9Horizontal(#inputWeights:ConvolutionVector9?, #inputBias: Double?) -> Filter {
+
+public func Convolution9Horizontal(options: Convolution9Options) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputWeights": inputWeights?.vector(),
-            "inputBias": inputBias
-            ])
-        let filter = CIFilter(name:"CIConvolution9Horizontal", withInputParameters: parameters)
+            "inputWeights": options.inputWeights.vector(),
+            "inputBias": options.inputBias
+        ]
+        let filter = CIFilter(name:FilterName.Convolution9Horizontal.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func Convolution9Vertical(#inputWeights:ConvolutionVector9?, #inputBias: Double?) -> Filter {
+public func Convolution9Vertical(options: Convolution9Options) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputWeights": inputWeights?.vector(),
-            "inputBias": inputBias
-            ])
-        let filter = CIFilter(name:"CIConvolution9Vertical", withInputParameters: parameters)
+            "inputWeights": options.inputWeights.vector(),
+            "inputBias": options.inputBias
+        ]
+        let filter = CIFilter(name:FilterName.Convolution9Vertical.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func Gloom(#inputRadius: Double?, #inputIntensity: Double?) -> Filter {
+public func Gloom(options: BloomOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputRadiusKey: inputRadius,
-            kCIInputIntensityKey: inputIntensity
-            ])
-        let filter = CIFilter(name:"CIGloom", withInputParameters: parameters)
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputIntensityKey: options.inputIntensity
+        ]
+        let filter = CIFilter(name:FilterName.Gloom.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func HighlightShadowAdjust(#inputHighlightAmount: Double?, #inputShadowAmount: Double?) -> Filter {
+
+public func HighlightShadowAdjust(options: HighlightShadowOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            "inputHighlightAmount": inputHighlightAmount,
-            "inputShadowAmount": inputShadowAmount
-            ])
-        let filter = CIFilter(name:"CIHighlightShadowAdjust", withInputParameters: parameters)
+            "inputHighlightAmount": options.inputHighlightAmount,
+            "inputShadowAmount": options.inputShadowAmount,
+            kCIInputRadiusKey: options.inputRadius
+        ]
+        let filter = CIFilter(name:FilterName.HighlightShadowAdjust.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func Pixellate(#inputCenter: XYPosition?, #inputScale: Double?) -> Filter {
+
+public func Pixellate(options: PixellateOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputCenterKey: inputCenter?.vector(),
-            kCIInputScaleKey: inputScale
-            ])
-        let filter = CIFilter(name:"CIPixellate", withInputParameters: parameters)
+            kCIInputCenterKey: options.inputCenter.vector(),
+            kCIInputScaleKey: options.inputScale
+        ]
+        let filter = CIFilter(name:FilterName.Pixellate.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }

@@ -24,38 +24,59 @@ class GeometryAdjustmentFilterTests: QuickSpec {
         }
         describe("The AffineTransform filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = AffineTransform(inputTransform: CGAffineTransformMakeRotation(1.9))
+                let aFilter = AffineTransform( CGAffineTransformMakeRotation(1.9))
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The Crop filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = Crop(inputRectangle:CGRect(x: 100.0, y: 100.0, width: 400.0, height: 400.0))
+                let aFilter = Crop(CGRect(x: 100.0, y: 100.0, width: 400.0, height: 400.0))
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The LanczosScaleTransform filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = LanczosScaleTransform(inputScale: 0.7, inputAspectRatio:1.0)
+                let options = LanczosScaleTransformOptions(inputScale: 0.7, inputAspectRatio:1.0)
+                let aFilter = LanczosScaleTransform(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The PerspectiveCorrection filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = PerspectiveCorrection(inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
+                let options = PerspectiveCorrectionOptions(inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
+                let aFilter = PerspectiveCorrection(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The PerspectiveTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = PerspectiveTile(inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
+                let options = PerspectiveCorrectionOptions(inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
+                let aFilter = PerspectiveTile(options)
                 
+                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+            }
+        }
+        describe("The PerspectiveTile filter") {
+            it("should be able to filter a picture of Kevin Bacon") {
+                let options = PerspectiveCorrectionOptions(inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
+                let aFilter = PerspectiveTile(options)
+                
+                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+            }
+        }
+        describe("The PerspectiveTransform filter") {
+            it("should be able to filter a picture of Kevin Bacon") {
+                let options = PerspectiveCorrectionOptions(inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
+                let aFilter = PerspectiveTransform(options)
+                let outImg = aFilter(kevinBaconCiImage)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The PerspectiveTransformWithExtent filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = PerspectiveTransformWithExtent(inputExtent:kevinBaconCiImage.extent(), inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
+                let options = PerspectiveCorrectionOptions()
+                let extent = CGRect(x: 0.0, y: 0.0, width: 600.0, height: 600.0)
+                let aFilter = PerspectiveTransformWithExtent(options, inputExtent:extent)
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
@@ -66,7 +87,5 @@ class GeometryAdjustmentFilterTests: QuickSpec {
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
-        
-        
     }
 }

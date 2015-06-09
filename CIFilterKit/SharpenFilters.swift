@@ -8,24 +8,27 @@
 
 import Foundation
 
-public func SharpenLuminance(#inputSharpness:Double?) -> Filter {
+public func SharpenLuminance(inputSharpness:Double?) -> Filter {
     return { image in
-        let parameters = unwrapParams([
-            kCIInputImageKey: image,
-            kCIInputSharpnessKey: inputSharpness
-            ])
-        let filter = CIFilter(name: "CISharpenLuminance", withInputParameters: parameters)
+        var parameters: Parameters = [
+            kCIInputImageKey: image
+        ]
+        if let sharpness = inputSharpness {
+            parameters[kCIInputSharpnessKey] = sharpness
+        }
+        let filter = CIFilter(name: FilterName.SharpenLuminance.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }
-public func UnsharpMask(#inputRadius: Double?, #inputIntensity: Double?) -> Filter {
+
+public func UnsharpMask(options: UnsharpMaskOptions) -> Filter {
     return { image in
-        let parameters = unwrapParams([
+        let parameters = [
             kCIInputImageKey: image,
-            kCIInputRadiusKey: inputRadius,
-            kCIInputIntensityKey: inputIntensity
-            ])
-        let filter = CIFilter(name: "CIUnsharpMask", withInputParameters: parameters)
+            kCIInputRadiusKey: options.inputRadius,
+            kCIInputIntensityKey: options.inputIntensity
+        ]
+        let filter = CIFilter(name: FilterName.UnsharpMask.rawValue, withInputParameters: parameters)
         return filter.outputImage
     }
 }

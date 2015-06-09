@@ -8,12 +8,181 @@
 
 import Foundation
 
+
+//MARK: typealias
+
 public typealias Filter = CIImage -> CIImage
 public typealias Parameters = [String: AnyObject]
 public typealias OptionalParameters = [String: AnyObject?]
+public typealias FilterAttributes = [NSObject: AnyObject]
 public typealias ImageComposer = CIImage -> Filter
 public typealias ImageGenerator = OptionalParameters -> CIImage!
+public typealias ColorCubeData = Array<RGBAComponents>
 
+
+//MARK: enum
+
+public enum FilterName: String {
+    
+    // Blur
+    case GaussianBlur = "CIGaussianBlur"
+    case MotionBlur = "CIMotionBlur"
+    case ZoomBlur = "CIZoomBlur"
+    
+    // ColorAdjustment
+    case ColorControls = "CIColorControls"
+    case ColorMatrix = "CIColorMatrix"
+    case ExposureAdjust = "CIExposureAdjust"
+    case GammaAdjust = "CIGammaAdjust"
+    case HueAdjust = "CIHueAdjust"
+    case LinearToSRGBToneCurve = "CILinearToSRGBToneCurve"
+    case SRGBToneCurveToLinear = "CISRGBToneCurveToLinear"
+    case TemperatureAndTint = "CITemperatureAndTint"
+    case ToneCurve = "CIToneCurve"
+    case Vibrance = "CIVibrance"
+    case WhitePointAdjust = "CIWhitePointAdjust"
+    
+    //ColorEffect
+    case ColorClamp = "CIColorClamp"
+    case ColorCrossPolynomial = "CIColorCrossPolynomial"
+    case ColorCube = "CIColorCube"
+    case ColorCubeWithColorSpace = "CIColorCubeWithColorSpace"
+    case ColorInvert = "CIColorInvert"
+    case ColorMap = "CIColorMap"
+    case ColorMonochrome = "CIColorMonochrome"
+    case ColorPolynomial = "CIColorPolynomial"
+    case ColorPosterize = "CIColorPosterize"
+    case FalseColor = "CIFalseColor"
+    case MaskToAlpha = "CIMaskToAlpha"
+    case MaximumComponent = "CIMaximumComponent"
+    case MinimumComponent = "CIMinimumComponent"
+    case PhotoEffectChrome = "CIPhotoEffectChrome"
+    case PhotoEffectFade = "CIPhotoEffectFade"
+    case PhotoEffectInstant = "CIPhotoEffectInstant"
+    case PhotoEffectMono = "CIPhotoEffectMono"
+    case PhotoEffectNoir = "CIPhotoEffectNoir"
+    case PhotoEffectProcess = "CIPhotoEffectProcess"
+    case PhotoEffectTonal = "CIPhotoEffectTonal"
+    case PhotoEffectTransfer = "CIPhotoEffectTransfer"
+    case SepiaTone = "CISepiaTone"
+    case Vignette = "CIVignette"
+    case VignetteEffect = "CIVignetteEffect"
+    
+    //CompositeOperation
+    case AdditionCompositing = "CIAdditionCompositing"
+    case ColorBlendMode = "CIColorBlendMode"
+    case ColorBurnBlendMode = "CIColorBurnBlendMode"
+    case ColorDodgeBlendMode = "CIColorDodgeBlendMode"
+    case DarkenBlendMode = "CIDarkenBlendMode"
+    case DifferenceBlendMode = "CIDifferenceBlendMode"
+    case DivideBlendMode = "CIDivideBlendMode"
+    case ExclusionBlendMode = "CIExclusionBlendMode"
+    case HardLightBlendMode = "CIHardLightBlendMode"
+    case HueBlendMode = "CIHueBlendMode"
+    case LightenBlendMode = "CILightenBlendMode"
+    case LinearBurnBlendMode = "CILinearBurnBlendMode"
+    case LinearDodgeBlendMode = "CILinearDodgeBlendMode"
+    case LuminosityBlendMode = "CILuminosityBlendMode"
+    case MaximumCompositing = "CIMaximumCompositing"
+    case MinimumCompositing = "CIMinimumCompositing"
+    case MultiplyBlendMode = "CIMultiplyBlendMode"
+    case MultiplyCompositing = "CIMultiplyCompositing"
+    case OverlayBlendMode = "CIOverlayBlendMode"
+    case PinLightBlendMode = "CIPinLightBlendMode"
+    case SaturationBlendMode = "CISaturationBlendMode"
+    case ScreenBlendMode = "CIScreenBlendMode"
+    case SoftLightBlendMode = "CISoftLightBlendMode"
+    case SourceAtopCompositing = "CISourceAtopCompositing"
+    case SourceInCompositing = "CISourceInCompositing"
+    case SourceOutCompositing = "CISourceOutCompositing"
+    case SourceOverCompositing = "CISourceOverCompositing"
+    case SubtractBlendMode = "CISubtractBlendMode"
+    
+    //DistortionEffect
+    case BumpDistortion = "CIBumpDistortion"
+    case BumpDistortionLinear = "CIBumpDistortionLinear"
+    case CircleSplashDistortion = "CICircleSplashDistortion"
+    case GlassDistortion = "CIGlassDistortion"
+    case HoleDistortion = "CIHoleDistortion"
+    case LightTunnel = "CILightTunnel"
+    case PinchDistortion = "CIPinchDistortion"
+    case TwirlDistortion = "CITwirlDistortion"
+    case VortexDistortion  = "CIVortexDistortion"
+    
+    //Generators
+    case AztecCodeGenerator = "CIAztecCodeGenerator"
+    case CheckerboardGenerator = "CICheckerboardGenerator"
+    case Code128BarcodeGenerator = "CICode128BarcodeGenerator"
+    case ConstantColorGenerator = "CIConstantColorGenerator"
+    case QRCodeGenerator = "CIQRCodeGenerator"
+    case RandomGenerator = "CIRandomGenerator"
+    case StarShineGenerator = "CIStarShineGenerator"
+    case StripesGenerator = "CIStripesGenerator"
+    
+    //GeometryAdjustment
+    case AffineTransform = "CIAffineTransform"
+    case Crop = "CICrop"
+    case LanczosScaleTransform = "CILanczosScaleTransform"
+    case PerspectiveCorrection = "CIPerspectiveCorrection"
+    case PerspectiveTile = "CIPerspectiveTile"
+    case PerspectiveTransform = "CIPerspectiveTransform"
+    case PerspectiveTransformWithExtent = "CIPerspectiveTransformWithExtent"
+    case StraightenFilter = "CIStraightenFilter"
+    
+    //Gradients
+    case GaussianGradient = "CIGaussianGradient"
+    case LinearGradient = "CILinearGradient"
+    case RadialGradient = "CIRadialGradient"
+    case SmoothLinearGradient = "CISmoothLinearGradient"
+    
+    //HalftoneEffect
+    case CircularScreen = "CICircularScreen"
+    case DotScreen = "CIDotScreen"
+    case HatchedScreen = "CIHatchedScreen"
+    case LineScreen = "CILineScreen"
+    
+    //Reduction
+    case AreaHistogram = "CIAreaHistogram"
+    case HistogramDisplayFilter = "CIHistogramDisplayFilter"
+    
+    //Sharpen
+    case SharpenLuminance = "CISharpenLuminance"
+    case UnsharpMask = "CIUnsharpMask"
+    
+    //Stylize
+    case BlendWithAlphaMask = "CIBlendWithAlphaMask"
+    case BlendWithMask = "CIBlendWithMask"
+    case Bloom = "CIBloom"
+    case Convolution3X3 = "CIConvolution3X3"
+    case Convolution5X5 = "CIConvolution5X5"
+    case Convolution9Horizontal = "CIConvolution9Horizontal"
+    case Convolution9Vertical = "CIConvolution9Vertical"
+    case Gloom = "CIGloom"
+    case HighlightShadowAdjust = "CIHighlightShadowAdjust"
+    case Pixellate = "CIPixellate"
+    
+    //TileEffect
+    case AffineClamp = "CIAffineClamp"
+    case AffineTile = "CIAffineTile"
+    case EightfoldReflectedTile = "CIEightfoldReflectedTile"
+    case FourfoldReflectedTile = "CIFourfoldReflectedTile"
+    case FourfoldRotatedTile = "CIFourfoldRotatedTile"
+    case FourfoldTranslatedTile = "CIFourfoldTranslatedTile"
+    case GlideReflectedTile = "CIGlideReflectedTile"
+    case SixfoldReflectedTile = "CISixfoldReflectedTile"
+    case SixfoldRotatedTile = "CISixfoldRotatedTile"
+    case TriangleKaleidoscope = "CITriangleKaleidoscope"
+    case TwelvefoldReflectedTile = "CITwelvefoldReflectedTile"
+}
+
+public enum ErrorCorrectionLevel: String {
+    case L = "L"
+    case M = "M"
+    case Q = "Q"
+    case H = "H"
+}
+
+//MARK: struct
 
 public struct XYPosition {
     var x: Double
@@ -24,12 +193,6 @@ public struct XYPosition {
     }
     func vector() -> CIVector {
         return CIVector(x: CGFloat(x), y: CGFloat(y))
-    }
-}
-
-public extension CGRect {
-    func vector() -> CIVector {
-        return CIVector(CGRect: self)
     }
 }
 
@@ -119,7 +282,7 @@ public struct XYOffset {
     }
 }
 
-public struct ConvolutionMatrix3x3 {
+public struct ConvolutionMatrix3X3 {
     var w00: Double
     var w01: Double
     var w02: Double
@@ -145,7 +308,7 @@ public struct ConvolutionMatrix3x3 {
     }
 }
 
-public struct ConvolutionMatrix5x5 {
+public struct ConvolutionMatrix5X5 {
     var w00: Double
     var w01: Double
     var w02: Double
@@ -230,11 +393,12 @@ public struct ConvolutionVector9 {
 
 }
 
-public enum ErrorCorrectionLevel: String {
-    case L = "L"
-    case M = "M"
-    case Q = "Q"
-    case H = "H"
+//MARK: extension
+
+public extension CGRect {
+    func vector() -> CIVector {
+        return CIVector(CGRect: self)
+    }
 }
 
 public extension CGAffineTransform {
@@ -243,10 +407,18 @@ public extension CGAffineTransform {
     }
 }
 
+//MARK: operator
+
 infix operator |>> { associativity left }
 
 public func |>> (filter1: Filter, filter2: Filter) -> Filter {
     return { img in filter2(filter1(img)) }
+}
+
+//MARK: function
+
+public func attributesForFilter(filterName: FilterName) -> FilterAttributes {
+    return CIFilter(name: filterName.rawValue).attributes()
 }
 
 public func noParamsFilter(name:String) -> Filter {
@@ -270,25 +442,6 @@ public func Composer(name: String) -> ImageComposer {
             return filter.outputImage
         }
     }
-}
-
-public func Generator(name: String) -> ImageGenerator {
-    return { optionalParams in
-        let parameters = unwrapParams(optionalParams)
-        let filter = CIFilter(name: name, withInputParameters:parameters)
-        return filter.outputImage
-    }
-}
-
-
-public func unwrapParams(optionalParams:OptionalParameters) -> Parameters{
-    let keysAndPosibleValues = Array(zip(optionalParams.keys, optionalParams.values))
-    let keysAndValues = keysAndPosibleValues.filter { $0.1 != nil }.map { ($0.0, $0.1!) }
-    var params: Parameters = Parameters()
-    for (key, value) in keysAndValues {
-        params[key] = value
-    }
-    return params
 }
 
 public func countIsCube(dividend: Int) -> Bool {

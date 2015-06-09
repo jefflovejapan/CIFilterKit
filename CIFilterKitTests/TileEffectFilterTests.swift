@@ -37,60 +37,69 @@ class TileEffectFilterTests: QuickSpec {
         }
         describe("The EightfoldReflectedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = EightfoldReflectedTile(inputCenter:XYPosition(x: 400.0, y: 400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let options = TileOptions(inputCenter:XYPosition(x: 400.0, y: 400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let aFilter = EightfoldReflectedTile(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The FourfoldReflectedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = FourfoldReflectedTile(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputAcuteAngle: 0.96, inputWidth: 150.0)
+                let options = TileOptionsWithAcuteAngle(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputAcuteAngle: 0.96, inputWidth: 150.0)
+                let aFilter = FourfoldReflectedTile(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The FourfoldRotatedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = FourfoldRotatedTile(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let options = TileOptions(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let aFilter = FourfoldRotatedTile(options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The FourfoldTranslatedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = FourfoldTranslatedTile(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputAcuteAngle: 0.96, inputWidth: 150.0)
+                let options = TileOptionsWithAcuteAngle(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputAcuteAngle: 0.96, inputWidth: 150.0)
+                let aFilter = FourfoldTranslatedTile(options)
 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The GlideReflectedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = GlideReflectedTile(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let options = TileOptions(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let aFilter = GlideReflectedTile(options)
 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SixfoldReflectedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = SixfoldReflectedTile(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let options = TileOptions(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let aFilter = SixfoldReflectedTile(options)
                 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SixfoldRotatedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = SixfoldRotatedTile(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let options = TileOptions(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let aFilter = SixfoldRotatedTile(options)
                 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The TriangleKaleidoscope filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = TriangleKaleidoscope(inputPoint: XYPosition(x: 400.0, y: 400.0), inputSize: 150.0, inputRotation: 0.40, inputDecay: 1.65)
+                let options = TriangleKaleidoscopeOptions(inputPoint: XYPosition(x: 400.0, y: 400.0), inputSize: 150.0, inputRotation: 0.40, inputDecay: 1.65)
+                let aFilter = TriangleKaleidoscope(options)
                 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The TwelvefoldReflectedTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = TwelvefoldReflectedTile(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let options = TileOptions(inputCenter: XYPosition(x:400.0, y:400.0), inputAngle: 0.81, inputWidth: 150.0)
+                let aFilter = TwelvefoldReflectedTile(options)
                 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }

@@ -25,32 +25,32 @@ class ColorAdjustmentFilterTests: QuickSpec {
         }
         describe("The ColorControls filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorControls(inputSaturation:0.9, inputBrightness:0.1, inputContrast: 0.9)
+                let aFilter = ColorControls(ColorControlsOptions())
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ColorMatrix filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorMatrix(inputRVector: RGBAComponents(r: 0.7, g: 0.5, b: 0.2, a: 1.0), inputGVector: RGBAComponents(r: 0.7, g: 0.5, b: 0.2, a: 1.0), inputBVector: RGBAComponents(r: 0.7, g: 0.5, b: 0.2, a: 1.0), inputAVector: RGBAComponents(r: 0.7, g: 0.5, b: 0.2, a: 1.0), inputBiasVector: RGBAComponents(r: 0.7, g: 0.5, b: 0.2, a: 1.0))
+                let aFilter = ColorMatrix(ColorMatrixOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ExposureAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ExposureAdjust(inputEV:0.7)
+                let aFilter = ExposureAdjust(-0.2)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The GammaAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = GammaAdjust(inputPower:0.7)
+                let aFilter = GammaAdjust(0.5)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The HueAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = HueAdjust(inputAngle:0.7)
+                let aFilter = HueAdjust(-0.5)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -68,28 +68,25 @@ class ColorAdjustmentFilterTests: QuickSpec {
         }
         describe("The TemperatureAndTint filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = TemperatureAndTint(inputNeutral:TempAndTint(temp:6500.0, tint: 0.0), targetInputNeutral:TempAndTint(temp: 9500.0, tint: 35.0))
+                let aFilter = TemperatureAndTint(TemperatureAndTintOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ToneCurve filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let point0 = XYOffset(x: 0.6, y: 0.2)
-                let point1 = XYOffset(x: 0.3, y: 0.4)
-                let point4 = XYOffset(x: 0.9, y: 0.1)
-                let aFilter = ToneCurve(inputPoint0: point0, inputPoint1: point1, inputPoint2: nil, inputPoint3: nil, inputPoint4: point4)
+                let aFilter = ToneCurve(ToneCurveOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The Vibrance filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = Vibrance(inputAmount:500.0)
+                let aFilter = Vibrance(0.5)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The WhitePointAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = WhitePointAdjust(inputColor:CIColor(red:0.6, green:0.1, blue: 0.9, alpha:1.0))
+                let aFilter = WhitePointAdjust(nil)
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
