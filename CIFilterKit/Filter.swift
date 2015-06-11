@@ -18,6 +18,7 @@ public typealias FilterAttributes = [NSObject: AnyObject]
 public typealias ImageComposer = CIImage -> Filter
 public typealias ImageGenerator = OptionalParameters -> CIImage!
 public typealias ColorCubeData = Array<RGBAComponents>
+public typealias FilterStack = Array<Filter>
 
 
 //MARK: enum
@@ -183,6 +184,7 @@ public enum ErrorCorrectionLevel: String {
 }
 
 //MARK: struct
+
 
 public struct XYPosition {
     var x: Double
@@ -406,6 +408,7 @@ public extension CGAffineTransform {
         return NSValue(CGAffineTransform: self)
     }
 }
+
 
 //MARK: operator
 

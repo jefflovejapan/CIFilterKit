@@ -19,7 +19,7 @@ public func GaussianGradient(options: GaussianGradientOptions) -> CIImage {
     return filter.outputImage
 }
 
-public func LinearGradient(options: LinearGradientOptions) -> CIImage! {
+public func LinearGradient(options: LinearGradientOptions) -> CIImage {
     let parameters: Parameters = [
         "inputPoint0": options.inputPoint0.vector(),
         "inputPoint1": options.inputPoint1.vector(),
@@ -30,7 +30,7 @@ public func LinearGradient(options: LinearGradientOptions) -> CIImage! {
     return filter.outputImage
 }
 
-public func RadialGradient(options: RadialGradientOptions) -> CIImage! {
+public func RadialGradient(options: RadialGradientOptions) -> CIImage {
     let parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputRadius0": options.inputRadius0,
