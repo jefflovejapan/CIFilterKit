@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
 
   s.author             = { "Jeffrey Blagdon" => "jeffblagdon@gmail.com" }
-  s.social_media_url   = "http://twitter.com/jefflovejapan"
+  s.social_media_url   = "http://twitter.com/blagdon"
   s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/jefflovejapan/CIFilterKit.git", :tag => "0.0.1" }
