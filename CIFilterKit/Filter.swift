@@ -23,6 +23,10 @@ public typealias FilterStack = Array<Filter>
 
 //MARK: enum
 
+/**
+    The names of the available Core Image filters.
+*/
+
 public enum FilterName: String {
     
     // Blur
@@ -176,6 +180,10 @@ public enum FilterName: String {
     case TwelvefoldReflectedTile = "CITwelvefoldReflectedTile"
 }
 
+/**
+    Degree of error correction. Used by QRCodeGenerator.
+*/
+
 public enum ErrorCorrectionLevel: String {
     case L = "L"
     case M = "M"
@@ -185,6 +193,9 @@ public enum ErrorCorrectionLevel: String {
 
 //MARK: struct
 
+/**
+    A point in 2D space, convertible to a CIVector.
+*/
 
 public struct XYPosition {
     var x: Double
@@ -197,6 +208,10 @@ public struct XYPosition {
         return CIVector(x: CGFloat(x), y: CGFloat(y))
     }
 }
+
+/**
+    A point in 4D space, convertible to a CIVector.
+*/
 
 public struct RGBAComponents {
     var r: Double
@@ -214,6 +229,10 @@ public struct RGBAComponents {
     }
 }
 
+/**
+    The coefficients of a cubic polynomial equation of the type `y = a0*x^3 + a1*x^2 + a2*x + a3`. Used in ColorPolynomialOptions.
+*/
+
 public struct PolynomialCoefficients {
     var a0: Double
     var a1: Double
@@ -229,6 +248,10 @@ public struct PolynomialCoefficients {
         return CIVector(x: CGFloat(a0), y: CGFloat(a1), z: CGFloat(a2), w: CGFloat(a3))
     }
 }
+
+/**
+    Used to construct ColorCrossPolynomialOptions.
+*/
 
 public struct CrossPolynomialCoefficients {
     var a0: Double
@@ -259,6 +282,10 @@ public struct CrossPolynomialCoefficients {
     }
 }
 
+/**
+    Used to construct TemperatureAndTintOptions.
+*/
+
 public struct TempAndTint {
     var temp: Double
     var tint: Double
@@ -270,6 +297,10 @@ public struct TempAndTint {
         return CIVector(x:CGFloat(temp), y: CGFloat(tint))
     }
 }
+
+/**
+    A 2D vector.
+*/
 
 public struct XYOffset {
     var x: Double
@@ -283,6 +314,10 @@ public struct XYOffset {
         return CIVector(x:CGFloat(x), y: CGFloat(y))
     }
 }
+
+/**
+    A 3x3 convolution matrix. @See [CIConvolution3X3](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIConvolution3X3).
+*/
 
 public struct ConvolutionMatrix3X3 {
     var w00: Double
@@ -309,6 +344,10 @@ public struct ConvolutionMatrix3X3 {
         return CIVector(string: "[\(w00) \(w01) \(w02) \(w10) \(w11) \(w12) \(w20) \(w21) \(w22)]")
     }
 }
+
+/**
+    A 5x5 convolution matrix. @See [CIConvolution5X5](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIConvolution5X5).
+*/
 
 public struct ConvolutionMatrix5X5 {
     var w00: Double
@@ -367,6 +406,10 @@ public struct ConvolutionMatrix5X5 {
         return CIVector(string: "[\(w00) \(w01) \(w02) \(w03) \(w04) \(w10) \(w11) \(w12) \(w13) \(w14) \(w20) \(w21) \(w22) \(w23) \(w24) \(w30) \(w31) \(w32) \(w33) \(w34) \(w40) \(w41) \(w42) \(w43) \(w44)]")
     }
 }
+
+/**
+    A 1x9 convolution vector. @See [CIConvolution9Horizontal](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIConvolution9Horizontal), [CIConvolution9Vertical](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIConvolution9Vertical).
+*/
 
 public struct ConvolutionVector9 {
     var w0: Double
