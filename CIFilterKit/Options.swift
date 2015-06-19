@@ -10,8 +10,14 @@ import Foundation
 
 //MARK: Blur options
 
+/** 
+    Options for `MotionBlur`
+*/
+
 public struct MotionBlurOptions {
+    /** */
     public var inputRadius: Double
+    /** */
     public var inputAngle: Double
     public init(inputRadius: Double, inputAngle: Double) {
         self.inputRadius = inputRadius
@@ -23,8 +29,14 @@ public struct MotionBlurOptions {
     }
 }
 
+/** 
+    Options for `ZoomBlur`
+*/
+
 public struct ZoomBlurOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputRadius: Double
     public init(inputCenter: XYPosition, inputRadius: Double, inputAmount: Double) {
         self.inputCenter = inputCenter
@@ -39,9 +51,17 @@ public struct ZoomBlurOptions {
 
 //MARK: ColorAdjustment options
 
+/**
+Options for `ColorControls`
+*/
+
 public struct ColorControlsOptions {
+    
+    /** */
     public var inputSaturation: Double
+    /** */
     public var inputBrightness: Double
+    /** */
     public var inputContrast: Double
     public init(inputSaturation: Double , inputBrightness: Double , inputContrast: Double) {
         self.inputSaturation = inputSaturation
@@ -55,11 +75,20 @@ public struct ColorControlsOptions {
     }
 }
 
+/**
+Options for `ColorMatrix`
+*/
+
 public struct ColorMatrixOptions {
+    /** */
     public var inputRVector: RGBAComponents
+    /** */
     public var inputGVector: RGBAComponents
+    /** */
     public var inputBVector: RGBAComponents
+    /** */
     public var inputAVector: RGBAComponents
+    /** */
     public var inputBiasVector: RGBAComponents
     public init(inputRVector: RGBAComponents, inputGVector: RGBAComponents, inputBVector: RGBAComponents,  inputAVector: RGBAComponents, inputBiasVector: RGBAComponents) {
         self.inputRVector = inputRVector
@@ -77,8 +106,14 @@ public struct ColorMatrixOptions {
     }
 }
 
+/**
+Options for `TemperatureAndTint`
+*/
+
 public struct TemperatureAndTintOptions {
+    /** */
     public var inputNeutral: TempAndTint
+    /** */
     public var targetInputNeutral: TempAndTint
     public init(inputNeutral: TempAndTint, targetInputNeutral: TempAndTint) {
         self.inputNeutral = inputNeutral
@@ -90,10 +125,18 @@ public struct TemperatureAndTintOptions {
     }
 }
 
+/**
+Options for `ToneCurve`
+*/
+
 public struct ToneCurveOptions {
+    /** */
     public var inputPoint1: XYOffset
+    /** */
     public var inputPoint2: XYOffset
+    /** */
     public var inputPoint3: XYOffset
+    /** */
     public var inputPoint4: XYOffset
     public init(inputPoint1: XYOffset, inputPoint2: XYOffset, inputPoint3: XYOffset, inputPoint4: XYOffset){
         self.inputPoint1 = inputPoint1
@@ -111,8 +154,14 @@ public struct ToneCurveOptions {
 
 //MARK: ColorEffect options
 
+/**
+Options for `ColorClamp`
+*/
+
 public struct ColorClampOptions {
+    /** */
     public var inputMinComponents: RGBAComponents
+    /** */
     public var inputMaxComponents: RGBAComponents
     public init(inputMinComponents: RGBAComponents, inputMaxComponents: RGBAComponents){
         self.inputMinComponents = inputMinComponents
@@ -124,9 +173,16 @@ public struct ColorClampOptions {
     }
 }
 
+/**
+Options for `ColorCrossPolynomial`
+*/
+
 public struct ColorCrossPolynomialOptions {
+    /** */
     public var inputRedCoefficients: CrossPolynomialCoefficients
+    /** */
     public var inputGreenCoefficients: CrossPolynomialCoefficients
+    /** */
     public var inputBlueCoefficients: CrossPolynomialCoefficients
     public init(inputRedCoefficients: CrossPolynomialCoefficients, inputGreenCoefficients: CrossPolynomialCoefficients, inputBlueCoefficients: CrossPolynomialCoefficients) {
         self.inputRedCoefficients = inputRedCoefficients
@@ -140,8 +196,14 @@ public struct ColorCrossPolynomialOptions {
     }
 }
 
+/**
+Options for `ColorMonochrome`
+*/
+
 public struct ColorMonochromeOptions {
+    /** */
     public var inputColor: CIColor
+    /** */
     public var inputIntensity: Double
     public init(inputColor: CIColor, inputIntensity: Double) {
         self.inputColor = inputColor
@@ -153,10 +215,18 @@ public struct ColorMonochromeOptions {
     }
 }
 
+/**
+Options for `ColorPolynomial`
+*/
+
 public struct ColorPolynomialOptions {
+    /** */
     public var inputRedCoefficients:PolynomialCoefficients
+    /** */
     public var inputGreenCoefficients:PolynomialCoefficients
+    /** */
     public var inputBlueCoefficients:PolynomialCoefficients
+    /** */
     public var inputAlphaCoefficients: PolynomialCoefficients
     public init(inputRedCoefficients:PolynomialCoefficients, inputGreenCoefficients:PolynomialCoefficients, inputBlueCoefficients:PolynomialCoefficients, inputAlphaCoefficients:PolynomialCoefficients) {
         self.inputRedCoefficients = inputRedCoefficients
@@ -173,8 +243,14 @@ public struct ColorPolynomialOptions {
     }
 }
 
+/**
+Options for `FalseColor`
+*/
+
 public struct FalseColorOptions {
+    /** */
     public var inputColor0: CIColor
+    /** */
     public var inputColor1: CIColor
     public init(inputColor0:CIColor, inputColor1: CIColor) {
         self.inputColor0 = inputColor0
@@ -186,8 +262,14 @@ public struct FalseColorOptions {
     }
 }
 
+/**
+Options for `Vignette`
+*/
+
 public struct VignetteOptions {
+    /** */
     public var inputRadius:Double
+    /** */
     public var inputIntensity:Double
     public init(inputRadius:Double, inputIntensity:Double){
         self.inputRadius = inputRadius
@@ -199,10 +281,18 @@ public struct VignetteOptions {
     }
 }
 
+/**
+Options for `VignetteEffect`
+*/
+
 public struct VignetteEffectOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputIntensity: Double
+    /** */
     public var inputRadius: Double
+    /** */
     public var inputFalloff: Double
     public init(inputCenter:XYPosition, inputIntensity: Double, inputRadius: Double, inputFalloff: Double) {
         self.inputCenter = inputCenter
@@ -221,9 +311,16 @@ public struct VignetteEffectOptions {
 
 //MARK: DistortionEffect options
 
+/**
+Options for `BumpDistortion`
+*/
+
 public struct BumpDistortionOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputRadius: Double
+    /** */
     public var inputScale: Double
     public init(inputCenter:XYPosition, inputRadius:Double, inputScale: Double) {
         self.inputCenter = inputCenter
@@ -237,10 +334,18 @@ public struct BumpDistortionOptions {
     }
 }
 
+/**
+Options for `BumpDistortionLinear`
+*/
+
 public struct BumpDistortionLinearOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputRadius:Double
+    /** */
     public var inputAngle:Double
+    /** */
     public var inputScale:Double
     public init(inputCenter:XYPosition, inputRadius:Double, inputAngle:Double, inputScale:Double) {
         self.inputCenter = inputCenter
@@ -256,8 +361,14 @@ public struct BumpDistortionLinearOptions {
     }
 }
 
+/**
+Options for `CircleSplashDistortion`
+*/
+
 public struct CircleSplashDistortionOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputRadius:Double
     public init(inputCenter:XYPosition, inputRadius:Double) {
         self.inputCenter = inputCenter
@@ -269,8 +380,14 @@ public struct CircleSplashDistortionOptions {
     }
 }
 
+/**
+Options for `GlassDistortion`
+*/
+
 public struct GlassDistortionOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputScale: Double
     public init(inputCenter: XYPosition, inputScale: Double) {
         self.inputCenter = inputCenter
@@ -282,8 +399,14 @@ public struct GlassDistortionOptions {
     }
 }
 
+/**
+Options for `HoleDistortion`
+*/
+
 public struct HoleDistortionOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputRadius: Double
     public init(inputCenter: XYPosition, inputRadius: Double) {
         self.inputCenter = inputCenter
@@ -295,9 +418,16 @@ public struct HoleDistortionOptions {
     }
 }
 
+/**
+Options for `LightTunnel`
+*/
+
 public struct LightTunnelOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputRotation:Double
+    /** */
     public var inputRadius:Double
     public init(inputCenter:XYPosition, inputRotation:Double, inputRadius:Double){
         self.inputCenter = inputCenter
@@ -311,9 +441,16 @@ public struct LightTunnelOptions {
     }
 }
 
+/**
+Options for `PinchDistortion`
+*/
+
 public struct PinchDistortionOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputRadius:Double
+    /** */
     public var inputScale:Double
     public init(inputCenter:XYPosition, inputRadius:Double, inputScale:Double) {
         self.inputCenter = inputCenter
@@ -327,9 +464,16 @@ public struct PinchDistortionOptions {
     }
 }
 
+/**
+Options for `TwirlDistortion`
+*/
+
 public struct TwirlDistortionOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputRadius:Double
+    /** */
     public var inputAngle:Double
     public init(inputCenter:XYPosition, inputRadius:Double, inputAngle:Double){
         self.inputCenter = inputCenter
@@ -343,9 +487,16 @@ public struct TwirlDistortionOptions {
     }
 }
 
+/**
+Options for `VortexDistortion`
+*/
+
 public struct VortexDistortionOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputRadius: Double
+    /** */
     public var inputAngle: Double
     public init(inputCenter:XYPosition, inputRadius: Double, inputAngle: Double) {
         self.inputCenter = inputCenter
@@ -362,9 +513,16 @@ public struct VortexDistortionOptions {
 
 //MARK: Generator options
 
+/**
+Options for `AztecCodeGenerator`
+*/
+
 public struct AztecCodeGeneratorOptions {
+    /** */
     public var inputCorrectionLevel: Double
+    /** */
     public var inputLayers: Double
+    /** */
     public var inputCompactStyle: Bool
     public init(inputCorrectionLevel: Double, inputLayers: Double, inputCompactStyle: Bool){
         self.inputCorrectionLevel = inputCorrectionLevel
@@ -378,11 +536,20 @@ public struct AztecCodeGeneratorOptions {
     }
 }
 
+/**
+Options for `CheckerboardGenerator`
+*/
+
 public struct CheckerboardGeneratorOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputColor0: CIColor
+    /** */
     public var inputColor1: CIColor
+    /** */
     public var inputWidth: Double
+    /** */
     public var inputSharpness: Double
     public init(inputCenter: XYPosition, inputColor0: CIColor, inputColor1: CIColor, inputWidth: Double, inputSharpness:Double){
         self.inputCenter = inputCenter
@@ -400,14 +567,26 @@ public struct CheckerboardGeneratorOptions {
     }
 }
 
+/**
+Options for `StarShineGenerator`
+*/
+
 public struct StarShineGeneratorOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputColor:CIColor
+    /** */
     public var inputRadius: Double
+    /** */
     public var inputCrossScale: Double
+    /** */
     public var inputCrossAngle: Double
+    /** */
     public var inputCrossOpacity: Double
+    /** */
     public var inputCrossWidth: Double
+    /** */
     public var inputEpsilon: Double
     public init(inputCenter: XYPosition, inputColor:CIColor, inputRadius: Double, inputCrossScale: Double, inputCrossAngle: Double, inputCrossOpacity: Double, inputCrossWidth: Double, inputEpsilon: Double) {
         self.inputCenter = inputCenter
@@ -431,11 +610,20 @@ public struct StarShineGeneratorOptions {
     }
 }
 
+/**
+Options for `StripesGenerator`
+*/
+
 public struct StripesGeneratorOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputColor0: CIColor
+    /** */
     public var inputColor1: CIColor
+    /** */
     public var inputWidth: Double
+    /** */
     public var inputSharpness: Double
     public init(inputCenter: XYPosition, inputColor0: CIColor, inputColor1: CIColor, inputWidth: Double, inputSharpness: Double) {
         self.inputCenter = inputCenter
@@ -455,8 +643,14 @@ public struct StripesGeneratorOptions {
 
 //MARK: GeometryAdjustment options
 
+/**
+Options for `LanczosScaleTransform`
+*/
+
 public struct LanczosScaleTransformOptions {
+    /** */
     public var inputScale:Double
+    /** */
     public var inputAspectRatio:Double
     public init(inputScale:Double, inputAspectRatio:Double) {
         self.inputScale = inputScale
@@ -468,10 +662,18 @@ public struct LanczosScaleTransformOptions {
     }
 }
 
+/**
+Options for `PerspectiveCorrection`
+*/
+
 public struct PerspectiveCorrectionOptions {
+    /** */
     public var inputTopLeft: XYPosition
+    /** */
     public var inputTopRight: XYPosition
+    /** */
     public var inputBottomLeft: XYPosition
+    /** */
     public var inputBottomRight:XYPosition
     public init(inputTopLeft: XYPosition, inputTopRight: XYPosition, inputBottomLeft: XYPosition, inputBottomRight:XYPosition) {
         self.inputTopLeft = inputTopLeft
@@ -490,10 +692,18 @@ public struct PerspectiveCorrectionOptions {
 
 //MARK: Gradient options
 
+/**
+Options for `GaussianGradient`
+*/
+
 public struct GaussianGradientOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputColor0: CIColor
+    /** */
     public var inputColor1: CIColor
+    /** */
     public var inputRadius: Double
     public init(inputCenter: XYPosition, inputColor0: CIColor, inputColor1: CIColor, inputRadius: Double) {
         self.inputCenter = inputCenter
@@ -509,10 +719,18 @@ public struct GaussianGradientOptions {
     }
 }
 
+/**
+Options for `LinearGradient`
+*/
+
 public struct LinearGradientOptions {
+    /** */
     public var inputPoint0: XYPosition
+    /** */
     public var inputPoint1: XYPosition
+    /** */
     public var inputColor0: CIColor
+    /** */
     public var inputColor1: CIColor
     public init(inputPoint0: XYPosition, inputPoint1: XYPosition, inputColor0: CIColor, inputColor1: CIColor) {
         self.inputPoint0 = inputPoint0
@@ -528,11 +746,20 @@ public struct LinearGradientOptions {
     }
 }
 
+/**
+Options for `RadialGradient`
+*/
+
 public struct RadialGradientOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputRadius0: Double
+    /** */
     public var inputRadius1: Double
+    /** */
     public var inputColor0: CIColor
+    /** */
     public var inputColor1: CIColor
     public init(inputCenter: XYPosition, inputRadius0: Double, inputRadius1: Double, inputColor0: CIColor, inputColor1: CIColor) {
         self.inputCenter = inputCenter
@@ -550,10 +777,18 @@ public struct RadialGradientOptions {
     }
 }
 
+/**
+Options for `SmoothLinearGradient`
+*/
+
 public struct SmoothLinearGradientOptions {
+    /** */
     public var inputPoint0: XYPosition
+    /** */
     public var inputPoint1: XYPosition
+    /** */
     public var inputColor0: CIColor
+    /** */
     public var inputColor1: CIColor
     public init(inputPoint0: XYPosition, inputPoint1: XYPosition, inputColor0: CIColor, inputColor1: CIColor) {
         self.inputPoint0 = inputPoint0
@@ -572,9 +807,16 @@ public struct SmoothLinearGradientOptions {
 
 //MARK: HalftoneEffect options
 
+/**
+Options for `CircularScreen`
+*/
+
 public struct CircularScreenOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputWidth: Double
+    /** */
     public var inputSharpness: Double
     public init(inputCenter: XYPosition, inputWidth: Double, inputSharpness: Double) {
         self.inputCenter = inputCenter
@@ -588,10 +830,18 @@ public struct CircularScreenOptions {
     }
 }
 
+/**
+Options for `DotScreen`
+*/
+
 public struct DotScreenOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputAngle:Double
+    /** */
     public var inputWidth:Double
+    /** */
     public var inputSharpness:Double
     public init(inputCenter:XYPosition, inputAngle:Double, inputWidth:Double, inputSharpness:Double) {
         self.inputCenter = inputCenter
@@ -607,10 +857,18 @@ public struct DotScreenOptions {
     }
 }
 
+/**
+Options for `HatchedScreen`
+*/
+
 public struct HatchedScreenOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputAngle:Double
+    /** */
     public var inputWidth:Double
+    /** */
     public var inputSharpness:Double
     public init(inputCenter:XYPosition, inputAngle:Double, inputWidth:Double, inputSharpness:Double) {
         self.inputCenter = inputCenter
@@ -626,10 +884,18 @@ public struct HatchedScreenOptions {
     }
 }
 
+/**
+Options for `LineScreen`
+*/
+
 public struct LineScreenOptions {
+    /** */
     public var inputCenter:XYPosition
+    /** */
     public var inputAngle:Double
+    /** */
     public var inputWidth:Double
+    /** */
     public var inputSharpness:Double
     public init(inputCenter:XYPosition, inputAngle:Double, inputWidth:Double, inputSharpness:Double) {
         self.inputCenter = inputCenter
@@ -647,15 +913,24 @@ public struct LineScreenOptions {
 
 //MARK: Reduction options
 
+/**
+Options for `AreaHistogram`
+*/
+
 public struct AreaHistogramOptions {
+    /** */
     public var inputExtent:CGRect
+    /** */
     public var inputCount: Int
+    /** */
     public var inputScale: Double
+    /** */
     public init(inputExtent:CGRect, inputCount: Int, inputScale: Double) {
         self.inputExtent = inputExtent
         self.inputCount = inputCount
         self.inputScale = inputScale
     }
+    /** */
     public init() {
         self.inputExtent = CGRect(x: 0.0, y: 0.0, width: 300.0, height: 300.0)
         self.inputCount = 64
@@ -663,9 +938,16 @@ public struct AreaHistogramOptions {
     }
 }
 
+/**
+Options for `HistogramDisplay`
+*/
+
 public struct HistogramDisplayOptions {
+    /** */
     public var inputHeight: Double
+    /** */
     public var inputHighLimit: Double
+    /** */
     public var inputLowLimit: Double
     public init(inputHeight: Double, inputHighLimit: Double, inputLowLimit: Double) {
         self.inputHeight = inputHeight
@@ -681,8 +963,14 @@ public struct HistogramDisplayOptions {
 
 //MARK: Sharpen options
 
+/**
+Options for `UnsharpMask`
+*/
+
 public struct UnsharpMaskOptions {
+    /** */
     public var inputRadius: Double
+    /** */
     public var inputIntensity: Double
     public init(inputRadius: Double, inputIntensity: Double) {
         self.inputRadius = inputRadius
@@ -696,8 +984,14 @@ public struct UnsharpMaskOptions {
 
 //MARK: Stylize options
 
+/**
+Options for `Bloom`
+*/
+
 public struct BloomOptions {
+    /** */
     public var inputRadius: Double
+    /** */
     public var inputIntensity: Double
     public init(inputRadius: Double, inputIntensity: Double) {
         self.inputRadius = inputRadius
@@ -709,8 +1003,14 @@ public struct BloomOptions {
     }
 }
 
+/**
+Options for `Convolution3X3`
+*/
+
 public struct Convolution3X3Options {
+    /** */
     public var inputWeights: ConvolutionMatrix3X3
+    /** */
     public var inputBias: Double
     public init(inputWeights: ConvolutionMatrix3X3, inputBias: Double) {
         self.inputWeights = inputWeights
@@ -722,8 +1022,14 @@ public struct Convolution3X3Options {
     }
 }
 
+/**
+Options for `Convolution5X5`
+*/
+
 public struct Convolution5X5Options {
+    /** */
     public var inputWeights:ConvolutionMatrix5X5
+    /** */
     public var inputBias: Double
     public init(inputWeights:ConvolutionMatrix5X5, inputBias: Double) {
         self.inputWeights = inputWeights
@@ -735,8 +1041,14 @@ public struct Convolution5X5Options {
     }
 }
 
+/**
+Options for `Convolution9Vertical` and `Convolution9Horizontal`
+*/
+
 public struct Convolution9Options {
+    /** */
     public var inputWeights:ConvolutionVector9
+    /** */
     public var inputBias: Double
     public init(inputWeights:ConvolutionVector9, inputBias: Double) {
         self.inputWeights = inputWeights
@@ -748,9 +1060,16 @@ public struct Convolution9Options {
     }
 }
 
+/**
+Options for `HighlightShadow`
+*/
+
 public struct HighlightShadowOptions {
+    /** */
     public var inputHighlightAmount: Double
+    /** */
     public var inputShadowAmount: Double
+    /** */
     public var inputRadius: Double
     public init(inputHighlightAmount: Double, inputShadowAmount: Double, inputRadius: Double) {
         self.inputHighlightAmount = inputHighlightAmount
@@ -764,8 +1083,14 @@ public struct HighlightShadowOptions {
     }
 }
 
+/**
+Options for `Pixellate`
+*/
+
 public struct PixellateOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputScale: Double
     public init(inputCenter: XYPosition, inputScale: Double) {
         self.inputCenter = inputCenter
@@ -779,9 +1104,16 @@ public struct PixellateOptions {
 
 //MARK: Tile options
 
+/**
+Options for `EightfoldReflectedTile`, `FourfoldRotatedTile`, `GlideReflectedTile`, `SixfoldReflectedTile`, `SixfoldRotatedTile`, and `TwelvefoldReflectedTile`
+*/
+
 public struct TileOptions {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputAngle: Double
+    /** */
     public var inputWidth: Double
     public init(inputCenter: XYPosition, inputAngle: Double, inputWidth: Double){
         self.inputCenter = inputCenter
@@ -795,10 +1127,18 @@ public struct TileOptions {
     }
 }
 
+/**
+Options for `FourfoldReflectedTile` and `FourfoldTranslatedTile`
+*/
+
 public struct TileOptionsWithAcuteAngle {
+    /** */
     public var inputCenter: XYPosition
+    /** */
     public var inputAngle: Double
+    /** */
     public var inputAcuteAngle: Double
+    /** */
     public var inputWidth: Double
     public init(inputCenter: XYPosition, inputAngle: Double, inputAcuteAngle: Double, inputWidth: Double){
         self.inputCenter = inputCenter
@@ -814,10 +1154,18 @@ public struct TileOptionsWithAcuteAngle {
     }
 }
 
+/**
+Options for `TriangleKaleidoscope`
+*/
+
 public struct TriangleKaleidoscopeOptions {
+    /** */
     public var inputPoint: XYPosition
+    /** */
     public var inputSize: Double
+    /** */
     public var inputRotation: Double
+    /** */
     public var inputDecay: Double
     public init(inputPoint: XYPosition, inputSize: Double, inputRotation: Double, inputDecay: Double) {
         self.inputPoint = inputPoint

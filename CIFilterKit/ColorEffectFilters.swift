@@ -8,6 +8,11 @@
 
 import Foundation
 
+
+/**
+:param: options An instance of `ColorClampOptions`
+:returns: A closure of type `Filter`
+*/
 public func ColorClamp(options: ColorClampOptions) -> Filter {
     return { image in
         let parameters = [
@@ -19,6 +24,11 @@ public func ColorClamp(options: ColorClampOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `ColorCrossPolynomialOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func ColorCrossPolynomial(options: ColorCrossPolynomialOptions) -> Filter {
     return { image in
@@ -32,6 +42,13 @@ public func ColorCrossPolynomial(options: ColorCrossPolynomialOptions) -> Filter
         return filter.outputImage
     }
 }
+
+/**
+`ColorCube` is used to produce a 3D lookup table for transforming pixel data. See [GPU Gems 2](http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter24.html).
+
+:param: inputCube An instance of `ColorCubeData`. The size of `inputCube` must be a cube (i.e., contain 8, 27, etc. elements).
+:returns: A closure of type `Filter`
+*/
 
 public func ColorCube(inputCube:ColorCubeData) -> Filter {
     return { image in
@@ -54,7 +71,14 @@ public func ColorCube(inputCube:ColorCubeData) -> Filter {
     }
 }
 
-//TODO: Need to make sure that the inputColorSpace cast provides expected behavior
+/**
+The same as `ColorCube`, but with the ability to set an input color space.
+
+:param: inputCube An instance of `ColorCubeData`.
+:param: inputColorSpace A `CGColorSpaceRef`
+:returns: A closure of type `Filter`
+*/
+
 public func ColorCubeWithColorSpace(inputCube:ColorCubeData, #inputColorSpace:CGColorSpaceRef) -> Filter {
     return { image in
         var optionalInputCubeDimension: Int? = nil
@@ -77,10 +101,18 @@ public func ColorCubeWithColorSpace(inputCube:ColorCubeData, #inputColorSpace:CG
     }
 }
 
+/**
+:returns: A closure of type `Filter`
+*/
 
 public func ColorInvert() -> Filter {
     return noParamsFilter(FilterName.ColorInvert.rawValue)
 }
+
+/**
+:param: inputGradientImage A gradient image to serve as a mapping between colors in input and output images.
+:returns: A closure of type `Filter`
+*/
 
 public func ColorMap(inputGradientImage:CIImage) -> Filter {
     return { image in
@@ -93,6 +125,11 @@ public func ColorMap(inputGradientImage:CIImage) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `ColorMonochromeOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func ColorMonochrome(options: ColorMonochromeOptions) -> Filter {
     return { image in
         let parameters = [
@@ -104,6 +141,11 @@ public func ColorMonochrome(options: ColorMonochromeOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `ColorPolynomialOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func ColorPolynomial(options: ColorPolynomialOptions) -> Filter {
     return { image in
@@ -118,6 +160,13 @@ public func ColorPolynomial(options: ColorPolynomialOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+Limit the number of tones in an image, making changes from one tone to another more pronounced. See [Wikipedia](https://en.wikipedia.org/wiki/Posterization)
+:param: inputLevels How strong the effect should be
+:returns: A closure of type `Filter`
+*/
+
 public func ColorPosterize(inputLevels:Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
@@ -130,6 +179,11 @@ public func ColorPosterize(inputLevels:Double?) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `FalseColorOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func FalseColor(options: FalseColorOptions) -> Filter {
     return { image in
@@ -190,6 +244,11 @@ public func SepiaTone(inputIntensity:Double?) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `VignetteOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func Vignette(options: VignetteOptions) -> Filter {
     return { image in
         let parameters = [
@@ -201,6 +260,11 @@ public func Vignette(options: VignetteOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `VignetteEffectOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func VignetteEffect(options: VignetteEffectOptions) -> Filter {
     return { image in

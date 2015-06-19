@@ -11,12 +11,29 @@ import Foundation
 
 //MARK: typealias
 
+/**
+    A function that applies a CIFilter. Chainable with the `|>>` operator.
+*/
 public typealias Filter = CIImage -> CIImage
+
+
 public typealias Parameters = [String: AnyObject]
 public typealias OptionalParameters = [String: AnyObject?]
 public typealias FilterAttributes = [NSObject: AnyObject]
+
+/**
+    A function whose curried value is a `Filter`.
+*/
 public typealias ImageComposer = CIImage -> Filter
+
+/**
+    There are several types of `CIFilter` that do not operate on input images, but simply produce an output image. These are not chainable using the `|>>` operator.
+*/
 public typealias ImageGenerator = OptionalParameters -> CIImage!
+
+/**
+    An array of `RGBAComponents` for modeling a 3D lookup table. @see [CIColorCube](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIColorCube)
+*/
 public typealias ColorCubeData = Array<RGBAComponents>
 public typealias FilterStack = Array<Filter>
 
@@ -24,159 +41,284 @@ public typealias FilterStack = Array<Filter>
 //MARK: enum
 
 /**
-    The names of the available Core Image filters.
+    The names of the available Core Image filters. The raw value is the name of the corresponding CIFilter.
 */
 
 public enum FilterName: String {
     
     // Blur
+    /** @name Blur filters */
+    /** */
     case GaussianBlur = "CIGaussianBlur"
+    /** */
     case MotionBlur = "CIMotionBlur"
+    /** */
     case ZoomBlur = "CIZoomBlur"
     
     // ColorAdjustment
+    /** */
     case ColorControls = "CIColorControls"
+    /** */
     case ColorMatrix = "CIColorMatrix"
+    /** */
     case ExposureAdjust = "CIExposureAdjust"
+    /** */
     case GammaAdjust = "CIGammaAdjust"
+    /** */
     case HueAdjust = "CIHueAdjust"
+    /** */
     case LinearToSRGBToneCurve = "CILinearToSRGBToneCurve"
+    /** */
     case SRGBToneCurveToLinear = "CISRGBToneCurveToLinear"
+    /** */
     case TemperatureAndTint = "CITemperatureAndTint"
+    /** */
     case ToneCurve = "CIToneCurve"
+    /** */
     case Vibrance = "CIVibrance"
+    /** */
     case WhitePointAdjust = "CIWhitePointAdjust"
     
     //ColorEffect
+    /** */
     case ColorClamp = "CIColorClamp"
+    /** */
     case ColorCrossPolynomial = "CIColorCrossPolynomial"
+    /** */
     case ColorCube = "CIColorCube"
+    /** */
     case ColorCubeWithColorSpace = "CIColorCubeWithColorSpace"
+    /** */
     case ColorInvert = "CIColorInvert"
+    /** */
     case ColorMap = "CIColorMap"
+    /** */
     case ColorMonochrome = "CIColorMonochrome"
+    /** */
     case ColorPolynomial = "CIColorPolynomial"
+    /** */
     case ColorPosterize = "CIColorPosterize"
+    /** */
     case FalseColor = "CIFalseColor"
+    /** */
     case MaskToAlpha = "CIMaskToAlpha"
+    /** */
     case MaximumComponent = "CIMaximumComponent"
+    /** */
     case MinimumComponent = "CIMinimumComponent"
+    /** */
     case PhotoEffectChrome = "CIPhotoEffectChrome"
+    /** */
     case PhotoEffectFade = "CIPhotoEffectFade"
+    /** */
     case PhotoEffectInstant = "CIPhotoEffectInstant"
+    /** */
     case PhotoEffectMono = "CIPhotoEffectMono"
+    /** */
     case PhotoEffectNoir = "CIPhotoEffectNoir"
+    /** */
     case PhotoEffectProcess = "CIPhotoEffectProcess"
+    /** */
     case PhotoEffectTonal = "CIPhotoEffectTonal"
+    /** */
     case PhotoEffectTransfer = "CIPhotoEffectTransfer"
+    /** */
     case SepiaTone = "CISepiaTone"
+    /** */
     case Vignette = "CIVignette"
+    /** */
     case VignetteEffect = "CIVignetteEffect"
     
     //CompositeOperation
+    /** */
     case AdditionCompositing = "CIAdditionCompositing"
+    /** */
     case ColorBlendMode = "CIColorBlendMode"
+    /** */
     case ColorBurnBlendMode = "CIColorBurnBlendMode"
+    /** */
     case ColorDodgeBlendMode = "CIColorDodgeBlendMode"
+    /** */
     case DarkenBlendMode = "CIDarkenBlendMode"
+    /** */
     case DifferenceBlendMode = "CIDifferenceBlendMode"
+    /** */
     case DivideBlendMode = "CIDivideBlendMode"
+    /** */
     case ExclusionBlendMode = "CIExclusionBlendMode"
+    /** */
     case HardLightBlendMode = "CIHardLightBlendMode"
+    /** */
     case HueBlendMode = "CIHueBlendMode"
+    /** */
     case LightenBlendMode = "CILightenBlendMode"
+    /** */
     case LinearBurnBlendMode = "CILinearBurnBlendMode"
+    /** */
     case LinearDodgeBlendMode = "CILinearDodgeBlendMode"
+    /** */
     case LuminosityBlendMode = "CILuminosityBlendMode"
+    /** */
     case MaximumCompositing = "CIMaximumCompositing"
+    /** */
     case MinimumCompositing = "CIMinimumCompositing"
+    /** */
     case MultiplyBlendMode = "CIMultiplyBlendMode"
+    /** */
     case MultiplyCompositing = "CIMultiplyCompositing"
+    /** */
     case OverlayBlendMode = "CIOverlayBlendMode"
+    /** */
     case PinLightBlendMode = "CIPinLightBlendMode"
+    /** */
     case SaturationBlendMode = "CISaturationBlendMode"
+    /** */
     case ScreenBlendMode = "CIScreenBlendMode"
+    /** */
     case SoftLightBlendMode = "CISoftLightBlendMode"
+    /** */
     case SourceAtopCompositing = "CISourceAtopCompositing"
+    /** */
     case SourceInCompositing = "CISourceInCompositing"
+    /** */
     case SourceOutCompositing = "CISourceOutCompositing"
+    /** */
     case SourceOverCompositing = "CISourceOverCompositing"
+    /** */
     case SubtractBlendMode = "CISubtractBlendMode"
     
     //DistortionEffect
+    /** */
     case BumpDistortion = "CIBumpDistortion"
+    /** */
     case BumpDistortionLinear = "CIBumpDistortionLinear"
+    /** */
     case CircleSplashDistortion = "CICircleSplashDistortion"
+    /** */
     case GlassDistortion = "CIGlassDistortion"
+    /** */
     case HoleDistortion = "CIHoleDistortion"
+    /** */
     case LightTunnel = "CILightTunnel"
+    /** */
     case PinchDistortion = "CIPinchDistortion"
+    /** */
     case TwirlDistortion = "CITwirlDistortion"
+    /** */
     case VortexDistortion  = "CIVortexDistortion"
     
     //Generators
+    /** */
     case AztecCodeGenerator = "CIAztecCodeGenerator"
+    /** */
     case CheckerboardGenerator = "CICheckerboardGenerator"
+    /** */
     case Code128BarcodeGenerator = "CICode128BarcodeGenerator"
+    /** */
     case ConstantColorGenerator = "CIConstantColorGenerator"
+    /** */
     case QRCodeGenerator = "CIQRCodeGenerator"
+    /** */
     case RandomGenerator = "CIRandomGenerator"
+    /** */
     case StarShineGenerator = "CIStarShineGenerator"
+    /** */
     case StripesGenerator = "CIStripesGenerator"
     
     //GeometryAdjustment
+    /** */
     case AffineTransform = "CIAffineTransform"
+    /** */
     case Crop = "CICrop"
+    /** */
     case LanczosScaleTransform = "CILanczosScaleTransform"
+    /** */
     case PerspectiveCorrection = "CIPerspectiveCorrection"
+    /** */
     case PerspectiveTile = "CIPerspectiveTile"
+    /** */
     case PerspectiveTransform = "CIPerspectiveTransform"
+    /** */
     case PerspectiveTransformWithExtent = "CIPerspectiveTransformWithExtent"
+    /** */
     case StraightenFilter = "CIStraightenFilter"
     
     //Gradients
+    /** */
     case GaussianGradient = "CIGaussianGradient"
+    /** */
     case LinearGradient = "CILinearGradient"
+    /** */
     case RadialGradient = "CIRadialGradient"
+    /** */
     case SmoothLinearGradient = "CISmoothLinearGradient"
     
     //HalftoneEffect
+    /** */
     case CircularScreen = "CICircularScreen"
+    /** */
     case DotScreen = "CIDotScreen"
+    /** */
     case HatchedScreen = "CIHatchedScreen"
+    /** */
     case LineScreen = "CILineScreen"
     
     //Reduction
+    /** */
     case AreaHistogram = "CIAreaHistogram"
+    /** */
     case HistogramDisplayFilter = "CIHistogramDisplayFilter"
     
     //Sharpen
+    /** */
     case SharpenLuminance = "CISharpenLuminance"
+    /** */
     case UnsharpMask = "CIUnsharpMask"
     
     //Stylize
+    /** */
     case BlendWithAlphaMask = "CIBlendWithAlphaMask"
+    /** */
     case BlendWithMask = "CIBlendWithMask"
+    /** */
     case Bloom = "CIBloom"
+    /** */
     case Convolution3X3 = "CIConvolution3X3"
+    /** */
     case Convolution5X5 = "CIConvolution5X5"
+    /** */
     case Convolution9Horizontal = "CIConvolution9Horizontal"
+    /** */
     case Convolution9Vertical = "CIConvolution9Vertical"
+    /** */
     case Gloom = "CIGloom"
+    /** */
     case HighlightShadowAdjust = "CIHighlightShadowAdjust"
+    /** */
     case Pixellate = "CIPixellate"
     
     //TileEffect
+    /** */
     case AffineClamp = "CIAffineClamp"
+    /** */
     case AffineTile = "CIAffineTile"
+    /** */
     case EightfoldReflectedTile = "CIEightfoldReflectedTile"
+    /** */
     case FourfoldReflectedTile = "CIFourfoldReflectedTile"
+    /** */
     case FourfoldRotatedTile = "CIFourfoldRotatedTile"
+    /** */
     case FourfoldTranslatedTile = "CIFourfoldTranslatedTile"
+    /** */
     case GlideReflectedTile = "CIGlideReflectedTile"
+    /** */
     case SixfoldReflectedTile = "CISixfoldReflectedTile"
+    /** */
     case SixfoldRotatedTile = "CISixfoldRotatedTile"
+    /** */
     case TriangleKaleidoscope = "CITriangleKaleidoscope"
+    /** */
     case TwelvefoldReflectedTile = "CITwelvefoldReflectedTile"
 }
 
@@ -214,23 +356,34 @@ public struct XYPosition {
 */
 
 public struct RGBAComponents {
+    
+    /** */
     var r: Double
-    var g: Double
-    var b: Double
-    var a: Double
+    /** */
+    public var g: Double
+    /** */
+    public var b: Double
+    /** */
+    public var a: Double
+    
+    /** */
+    
     public init(r: Double, g: Double, b: Double, a: Double){
         self.r = r
         self.g = g
         self.b = b
         self.a = a
     }
-    func vector() -> CIVector {
+    
+    /** */
+    
+    public func vector() -> CIVector {
         return CIVector(x: CGFloat(r), y: CGFloat(g), z: CGFloat(b), w: CGFloat(a))
     }
 }
 
 /**
-    The coefficients of a cubic polynomial equation of the type `y = a0*x^3 + a1*x^2 + a2*x + a3`. Used in ColorPolynomialOptions.
+    The coefficients of a cubic polynomial equation of the type `y = a3*x^3 + a2*x^2 + a1*x + a0`. Used in ColorPolynomialOptions.
 */
 
 public struct PolynomialCoefficients {
@@ -238,13 +391,19 @@ public struct PolynomialCoefficients {
     var a1: Double
     var a2: Double
     var a3: Double
+    
+    /** */
+    
     public init(a0: Double, a1: Double, a2: Double, a3: Double) {
         self.a0 = a0
         self.a1 = a1
         self.a2 = a2
         self.a3 = a3
     }
-    func vector() -> CIVector {
+    
+    /** */
+    
+    public func vector() -> CIVector {
         return CIVector(x: CGFloat(a0), y: CGFloat(a1), z: CGFloat(a2), w: CGFloat(a3))
     }
 }
@@ -276,7 +435,7 @@ public struct CrossPolynomialCoefficients {
         self.a8 = a8
         self.a9 = a9
     }
-    func vector() -> CIVector {
+    public func vector() -> CIVector {
         let str = "[\(a0) \(a1) \(a2) \(a3) \(a4) \(a5) \(a6) \(a7) \(a8) \(a9)]"
         return CIVector(string: str)
     }
@@ -293,7 +452,7 @@ public struct TempAndTint {
         self.temp = temp
         self.tint = tint
     }
-    func vector() -> CIVector {
+    public func vector() -> CIVector {
         return CIVector(x:CGFloat(temp), y: CGFloat(tint))
     }
 }
@@ -310,7 +469,7 @@ public struct XYOffset {
         self.y = y
     }
     
-    func vector() -> CIVector {
+    public func vector() -> CIVector {
         return CIVector(x:CGFloat(x), y: CGFloat(y))
     }
 }
@@ -340,7 +499,7 @@ public struct ConvolutionMatrix3X3 {
         self.w21 = w21
         self.w22 = w22
     }
-    func vector() -> CIVector {
+    public func vector() -> CIVector {
         return CIVector(string: "[\(w00) \(w01) \(w02) \(w10) \(w11) \(w12) \(w20) \(w21) \(w22)]")
     }
 }
@@ -402,7 +561,7 @@ public struct ConvolutionMatrix5X5 {
         self.w43 = w43
         self.w44 = w44
     }
-    func vector() -> CIVector {
+    public func vector() -> CIVector {
         return CIVector(string: "[\(w00) \(w01) \(w02) \(w03) \(w04) \(w10) \(w11) \(w12) \(w13) \(w14) \(w20) \(w21) \(w22) \(w23) \(w24) \(w30) \(w31) \(w32) \(w33) \(w34) \(w40) \(w41) \(w42) \(w43) \(w44)]")
     }
 }
@@ -432,7 +591,7 @@ public struct ConvolutionVector9 {
         self.w7 = w7
         self.w8 = w8
     }
-    func vector() -> CIVector {
+    public func vector() -> CIVector {
         return CIVector(string: "[\(w0) \(w1) \(w2) \(w3) \(w4) \(w5) \(w6) \(w7) \(w8)]")
     }
 
@@ -440,11 +599,15 @@ public struct ConvolutionVector9 {
 
 //MARK: extension
 
+/** Shorthand to express `CGRect` as a `CIVector` */
+
 public extension CGRect {
     func vector() -> CIVector {
         return CIVector(CGRect: self)
     }
 }
+
+/** Shorthand to express `CGAffineTransform` as an `NSValue` */
 
 public extension CGAffineTransform {
     public func value() -> NSValue {
@@ -457,17 +620,36 @@ public extension CGAffineTransform {
 
 infix operator |>> { associativity left }
 
+/**
+Infix operator for stacking multiple filters. e.g.,
+    
+    let inImg = CIImage(CGImage:someUIImage.CGImage!)
+
+    let filter1 = GaussianBlur(100.0)
+    let filter2 = PhotoEffectChrome()
+    let filter3 = ColorPosterize(50.0)
+    let stacked = filter1 |>> filter2 |>> filter3
+
+    let outImg = stacked(inImg)
+*/
+
 public func |>> (filter1: Filter, filter2: Filter) -> Filter {
     return { img in filter2(filter1(img)) }
 }
 
 //MARK: function
 
+/** 
+
+    Get the `attributes` dictionary associated with a given `Filter` in order to construct sliders, figure out min / max values, etc. The equivalent of calling `attributes()` on an instance of `CIFilter`.
+
+*/
+
 public func attributesForFilter(filterName: FilterName) -> FilterAttributes {
     return CIFilter(name: filterName.rawValue).attributes()
 }
 
-public func noParamsFilter(name:String) -> Filter {
+func noParamsFilter(name:String) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image
@@ -477,7 +659,7 @@ public func noParamsFilter(name:String) -> Filter {
     }
 }
 
-public func Composer(name: String) -> ImageComposer {
+func Composer(name: String) -> ImageComposer {
     return { bgImage in
         return { image in
             let parameters = [

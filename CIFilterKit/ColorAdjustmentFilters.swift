@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+    :param: options An instance of `ColorControlsOptions`
+    :returns: A closure of type `Filter`
+*/
+
 public func ColorControls(options: ColorControlsOptions) -> Filter {
     return { image in
         let parameters = [
@@ -20,6 +25,11 @@ public func ColorControls(options: ColorControlsOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+    :param: options An instance of `ColorMatrixOptions`
+    :returns: A closure of type `Filter`
+*/
 
 public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
     return { image in
@@ -36,6 +46,11 @@ public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
     }
 }
 
+/**
+    :param: inputEV The amount of exposure adjustment to be applied (positive or negative).
+    :returns: A closure of type `Filter`
+*/
+
 public func ExposureAdjust(inputEV: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
@@ -48,6 +63,11 @@ public func ExposureAdjust(inputEV: Double?) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+    :param: inputPower The power to apply to the gamma correction function. See [Wikipedia](https://en.wikipedia.org/wiki/Gamma_correction)
+    :returns: A closure of type `Filter`
+*/
 
 public func GammaAdjust(inputPower: Double?) -> Filter {
     return { image in
@@ -62,6 +82,11 @@ public func GammaAdjust(inputPower: Double?) -> Filter {
     }
 }
 
+/**
+    :param: inputAngle The angle by which to offset the image's hue, in radians.
+    :returns: A closure of type `Filter`
+*/
+
 public func HueAdjust(inputAngle: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
@@ -74,12 +99,27 @@ public func HueAdjust(inputAngle: Double?) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+    Used to convert from a linear gamma curve to the sRGB color space. See [CILinearToSRGBToneCurve](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CILinearToSRGBToneCurve)
+    :returns: A closure of type `Filter`
+*/
 public func LinearToSRGBToneCurve() -> Filter {
     return noParamsFilter(FilterName.LinearToSRGBToneCurve.rawValue)
 }
+
+/**
+    Used to convert from the sRGB color space to a linear gamma curve. See [CISRGBToneCurveToLinear](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CISRGBToneCurveToLinear)
+    :returns: A closure of type `Filter`
+*/
 public func SRGBToneCurveToLinear() -> Filter {
     return noParamsFilter(FilterName.SRGBToneCurveToLinear.rawValue)
 }
+
+/**
+    :param: options An instance of `TemperatureAndTintOptions`
+    :returns: A closure of type `Filter`
+*/
 
 public func TemperatureAndTint(options: TemperatureAndTintOptions) -> Filter {
     return { image in
@@ -92,6 +132,11 @@ public func TemperatureAndTint(options: TemperatureAndTintOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+    :param: options An instance of `ToneCurveOptions`
+    :returns: A closure of type `Filter`
+*/
 
 public func ToneCurve(options: ToneCurveOptions) -> Filter {
     return { image in
@@ -107,6 +152,11 @@ public func ToneCurve(options: ToneCurveOptions) -> Filter {
     }
 }
 
+/**
+    :param: inputAmount The amount by which to offset the image's vibrance.
+    :returns: A closure of type `Filter`
+*/
+
 public func Vibrance(inputAmount: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
@@ -119,6 +169,11 @@ public func Vibrance(inputAmount: Double?) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+    :param: inputColor The new white point for your image.
+    :returns: A closure of type `Filter`
+*/
 
 public func WhitePointAdjust(inputColor: CIColor?) -> Filter {
     return { image in

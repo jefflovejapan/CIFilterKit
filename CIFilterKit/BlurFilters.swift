@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+    :param: inputRadius The size of the blur to be applied. Default value is 10.0.
+    :returns: A closure of type `Filter`
+*/
+
 public func GaussianBlur(inputRadius: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
@@ -21,6 +26,11 @@ public func GaussianBlur(inputRadius: Double?) -> Filter {
     }
 }
 
+/**
+    :param: options An instance of `MotionBlurOptions`
+    :returns: A closure of type `Filter`
+*/
+
 public func MotionBlur(options: MotionBlurOptions) -> Filter {
     return { image in
         let parameters = [
@@ -33,7 +43,10 @@ public func MotionBlur(options: MotionBlurOptions) -> Filter {
     }
 }
 
-//TODO: Figure out why ZoomBlur isn't KVC-compliant for inputAmount https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIZoomBlur
+/**
+    :param: options An instance of `ZoomBlurOptions`
+    :returns: A closure of type `Filter`
+*/
 
 public func ZoomBlur(options: ZoomBlurOptions) -> Filter {
     return { image in
