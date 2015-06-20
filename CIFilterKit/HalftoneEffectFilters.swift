@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+:param: options An instance of `CircularScreenOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func CircularScreen(options: CircularScreenOptions) -> Filter {
     return { image in
         let parameters = [
@@ -20,6 +25,11 @@ public func CircularScreen(options: CircularScreenOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `DotScreenOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func DotScreen(options: DotScreenOptions) -> Filter {
     return { image in
@@ -35,6 +45,11 @@ public func DotScreen(options: DotScreenOptions) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `HatchedScreenOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
     return { image in
         let parameters = [
@@ -48,6 +63,11 @@ public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `LineScreenOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func LineScreen(options: LineScreenOptions) -> Filter {
     return { image in

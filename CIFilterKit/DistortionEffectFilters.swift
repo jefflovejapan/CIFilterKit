@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+:param: options An instance of `BumpDistortionOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func BumpDistortion(options: BumpDistortionOptions) -> Filter {
     return { image in
         let parameters = [
@@ -20,6 +25,11 @@ public func BumpDistortion(options: BumpDistortionOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `BumpDistortionLinearOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func BumpDistortionLinear(options: BumpDistortionLinearOptions) -> Filter {
     return { image in
@@ -35,6 +45,11 @@ public func BumpDistortionLinear(options: BumpDistortionLinearOptions) -> Filter
     }
 }
 
+/**
+:param: options An instance of `CircleSplashDistortionOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func CircleSplashDistortion(options: CircleSplashDistortionOptions) -> Filter {
     return { image in
         let parameters = [
@@ -46,6 +61,11 @@ public func CircleSplashDistortion(options: CircleSplashDistortionOptions) -> Fi
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `GlassDistortionOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func GlassDistortion(inputTexture:CIImage, #options: GlassDistortionOptions) -> Filter {
     return { image in
@@ -60,6 +80,11 @@ public func GlassDistortion(inputTexture:CIImage, #options: GlassDistortionOptio
     }
 }
 
+/**
+:param: options An instance of `HoleDistortionOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func HoleDistortion(options: HoleDistortionOptions) -> Filter {
     return { image in
         let parameters = [
@@ -71,6 +96,11 @@ public func HoleDistortion(options: HoleDistortionOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `LightTunnelOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func LightTunnel(options: LightTunnelOptions) -> Filter {
     return { image in
@@ -85,6 +115,11 @@ public func LightTunnel(options: LightTunnelOptions) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `PinchDistortionOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func PinchDistortion(options: PinchDistortionOptions) -> Filter {
     return { image in
         let parameters = [
@@ -98,6 +133,11 @@ public func PinchDistortion(options: PinchDistortionOptions) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `TwirlDistortionOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func TwirlDistortion(options: TwirlDistortionOptions) -> Filter {
     return { image in
         let parameters = [
@@ -110,6 +150,11 @@ public func TwirlDistortion(options: TwirlDistortionOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `VortexDistortionOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func VortexDistortion(options: VortexDistortionOptions) -> Filter {
     return { image in

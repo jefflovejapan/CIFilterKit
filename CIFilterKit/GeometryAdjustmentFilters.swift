@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+:param: inputTransform The `CGAffineTransform` to apply
+:returns: A closure of type `Filter`
+*/
+
 public func AffineTransform(inputTransform:CGAffineTransform) -> Filter {
     return { image in
         let parameters = [
@@ -18,6 +23,12 @@ public func AffineTransform(inputTransform:CGAffineTransform) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: inputRectangle The crop region to apply
+:returns: A closure of type `Filter`
+*/
+
 public func Crop(inputRectangle:CGRect) -> Filter {
     return { image in
         let parameters = [
@@ -28,6 +39,11 @@ public func Crop(inputRectangle:CGRect) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `LanczosScaleTransformOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filter {
     return { image in
@@ -40,6 +56,11 @@ public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filt
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `PerspectiveCorrectionOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
@@ -54,6 +75,12 @@ public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filt
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `PerspectiveCorrectionOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
         let parameters = [
@@ -67,6 +94,12 @@ public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `PerspectiveCorrectionOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
         let parameters = [
@@ -80,6 +113,13 @@ public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filte
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `PerspectiveCorrectionOptions`
+:param: inputExtent The extent to apply
+:returns: A closure of type `Filter`
+*/
+
 public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions, #inputExtent:CGRect?) -> Filter {
     return { image in
         var parameters = [
@@ -96,6 +136,12 @@ public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions
         return aFilter.outputImage
     }
 }
+
+/**
+:param: inputAngle The amount to rotate the input image in radians
+:returns: A closure of type `Filter`
+*/
+
 public func StraightenFilter(#inputAngle:Double?) -> Filter {
     return { image in
         var parameters: Parameters = [

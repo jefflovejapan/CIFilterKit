@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+    :param: inputBackgroundImage The bottom image in the composition
+    :param: inputMask The image to apply as a mask
+    :returns: A closure of type `Filter`
+*/
+
 public func BlendWithAlphaMask(#inputBackgroundImage:CIImage, #inputMaskImage: CIImage) -> Filter {
     return { image in
         let parameters: Parameters = [
@@ -19,6 +25,12 @@ public func BlendWithAlphaMask(#inputBackgroundImage:CIImage, #inputMaskImage: C
         return filter.outputImage
     }
 }
+
+/**
+:param: inputBackgroundImage The bottom image in the composition
+:param: inputMask The image to apply as a mask
+:returns: A closure of type `Filter`
+*/
 public func BlendWithMask(#inputBackgroundImage:CIImage, #inputMaskImage: CIImage) -> Filter {
     return { image in
         let parameters = [
@@ -30,6 +42,11 @@ public func BlendWithMask(#inputBackgroundImage:CIImage, #inputMaskImage: CIImag
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `BloomOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func Bloom(options: BloomOptions) -> Filter {
     return { image in
@@ -43,6 +60,11 @@ public func Bloom(options: BloomOptions) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `Convolution3X3Options`
+:returns: A closure of type `Filter`
+*/
+
 public func Convolution3X3(options: Convolution3X3Options) -> Filter {
     return { image in
         let parameters = [
@@ -54,6 +76,11 @@ public func Convolution3X3(options: Convolution3X3Options) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `Convolution5X5Options`
+:returns: A closure of type `Filter`
+*/
 
 public func Convolution5x5(options: Convolution5X5Options) -> Filter {
     return { image in
@@ -67,6 +94,11 @@ public func Convolution5x5(options: Convolution5X5Options) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `Convolution9Options`
+:returns: A closure of type `Filter`
+*/
+
 public func Convolution9Horizontal(options: Convolution9Options) -> Filter {
     return { image in
         let parameters = [
@@ -78,6 +110,12 @@ public func Convolution9Horizontal(options: Convolution9Options) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `Convolution9Options`
+:returns: A closure of type `Filter`
+*/
+
 public func Convolution9Vertical(options: Convolution9Options) -> Filter {
     return { image in
         let parameters = [
@@ -89,6 +127,12 @@ public func Convolution9Vertical(options: Convolution9Options) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `BloomOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func Gloom(options: BloomOptions) -> Filter {
     return { image in
         let parameters = [
@@ -100,6 +144,11 @@ public func Gloom(options: BloomOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `HighlightShadowOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func HighlightShadowAdjust(options: HighlightShadowOptions) -> Filter {
     return { image in
@@ -113,6 +162,11 @@ public func HighlightShadowAdjust(options: HighlightShadowOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `PixellateOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func Pixellate(options: PixellateOptions) -> Filter {
     return { image in

@@ -8,6 +8,12 @@
 
 import Foundation
 
+/** 
+    :param: inputMessage The message to be encoded
+    :param: options An instance of `AztecCodeGeneratorOptions`
+    :returns: The output `CIImage`
+*/
+
 public func AztecCodeGenerator(inputMessage: NSData, #options: AztecCodeGeneratorOptions) -> CIImage {
     let parameters = [
         "inputMessage": inputMessage,
@@ -18,6 +24,11 @@ public func AztecCodeGenerator(inputMessage: NSData, #options: AztecCodeGenerato
     let filter = CIFilter(name: FilterName.AztecCodeGenerator.rawValue, withInputParameters:parameters)
     return filter.outputImage
 }
+
+/**
+:param: options An instance of `CheckerboardGenerator`
+:returns: The output `CIImage`
+*/
 
 public func CheckerboardGenerator(options: CheckerboardGeneratorOptions) -> CIImage {
     let parameters: Parameters = [
@@ -31,6 +42,11 @@ public func CheckerboardGenerator(options: CheckerboardGeneratorOptions) -> CIIm
     return filter.outputImage
 }
 
+/**
+:param: inputMessage The message to be encoded
+:param: inputQuietSpace [The number of pixels of added white space on each side of the barcode](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CICode128BarcodeGenerator)
+:returns: The output `CIImage`
+*/
 
 public func Code128BarcodeGenerator(inputMessage:NSData, #inputQuietSpace:Double?) -> CIImage {
     var parameters: Parameters = [
@@ -43,6 +59,11 @@ public func Code128BarcodeGenerator(inputMessage:NSData, #inputQuietSpace:Double
     return filter.outputImage
 }
 
+/**
+:param: inputColor The color to be generated
+:returns: The output `CIImage`
+*/
+
 public func ConstantColorGenerator(inputColor:CIColor) -> CIImage {
     var parameters: Parameters = [
         "inputColor": inputColor
@@ -50,6 +71,12 @@ public func ConstantColorGenerator(inputColor:CIColor) -> CIImage {
     let filter = CIFilter(name: FilterName.ConstantColorGenerator.rawValue, withInputParameters:parameters)
     return filter.outputImage
 }
+
+/**
+:param: inputMessage The message to be encoded
+:param: inputCorrectionLevel [...The amount of additional data encoded in the output image to provide error correction](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIQRCodeGenerator)
+:returns: The output `CIImage`
+*/
 
 public func QRCodeGenerator(inputMessage:NSData, #inputCorrectionLevel:ErrorCorrectionLevel?) -> CIImage {
     var parameters: Parameters = [
@@ -62,10 +89,20 @@ public func QRCodeGenerator(inputMessage:NSData, #inputCorrectionLevel:ErrorCorr
     return aFilter.outputImage
 }
 
+/**
+Creates a `CIImage` full of random pixels.
+:returns: The output `CIImage`
+*/
+
 public func RandomGenerator() -> CIImage {
     let aFilter = CIFilter(name: FilterName.RandomGenerator.rawValue)
     return aFilter.outputImage
 }
+
+/**
+:param: options An instance of `StarShineGeneratorOptions`
+:returns: The output `CIImage`
+*/
 
 public func StarShineGenerator(options: StarShineGeneratorOptions) -> CIImage {
     let parameters = [
@@ -81,6 +118,11 @@ public func StarShineGenerator(options: StarShineGeneratorOptions) -> CIImage {
     let aFilter = CIFilter(name: FilterName.StarShineGenerator.rawValue, withInputParameters: parameters)
     return aFilter.outputImage
 }
+
+/**
+:param: options An instance of `StripesGeneratorOptions`
+:returns: The output `CIImage`
+*/
 
 public func StripesGenerator(options: StripesGeneratorOptions) -> CIImage {
     let parameters = [

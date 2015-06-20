@@ -196,41 +196,77 @@ public func FalseColor(options: FalseColorOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/** 
+:returns: A closure of type `Filter`
+*/
 public func MaskToAlpha() -> Filter {
     return noParamsFilter(FilterName.MaskToAlpha.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func MaximumComponent() -> Filter {
     return noParamsFilter(FilterName.MaximumComponent.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func MinimumComponent() -> Filter {
     return noParamsFilter(FilterName.MinimumComponent.rawValue)
 }
-
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectChrome() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectChrome.rawValue)
 }
-
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectFade() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectFade.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectInstant() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectInstant.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectMono() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectMono.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectNoir() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectNoir.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectProcess() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectProcess.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectTonal() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectTonal.rawValue)
 }
+/**
+:returns: A closure of type `Filter`
+*/
 public func PhotoEffectTransfer() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectTransfer.rawValue)
 }
+/**
+:param: inputIntensity
+:returns: A closure of type `Filter`
+*/
 public func SepiaTone(inputIntensity:Double?) -> Filter {
     return { image in
         var parameters: Parameters = [

@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+:param: inputTransform The `CGAffineTransform` to apply
+:returns: A closure of type `Filter`
+*/
+
 public func AffineClamp(#inputTransform: CGAffineTransform) -> Filter {
     return { image in
         let parameters = [
@@ -18,6 +23,12 @@ public func AffineClamp(#inputTransform: CGAffineTransform) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: inputTransform The `CGAffineTransform` to apply
+:returns: A closure of type `Filter`
+*/
+
 public func AffineTile(#inputTransform: CGAffineTransform) -> Filter {
     return { image in
         let parameters = [
@@ -28,6 +39,11 @@ public func AffineTile(#inputTransform: CGAffineTransform) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `TileOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func EightfoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
@@ -42,6 +58,11 @@ public func EightfoldReflectedTile(options: TileOptions) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `TileOptionsWithAcuteAngle`
+:returns: A closure of type `Filter`
+*/
+
 public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
         let parameters = [
@@ -55,6 +76,12 @@ public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter 
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `TileOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func FourfoldRotatedTile(options: TileOptions) -> Filter {
     return { image in
         let parameters = [
@@ -67,6 +94,12 @@ public func FourfoldRotatedTile(options: TileOptions) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `TileOptionsWithAcuteAngle`
+:returns: A closure of type `Filter`
+*/
+
 public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
         let parameters = [
@@ -80,6 +113,12 @@ public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `TileOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func GlideReflectedTile(options: TileOptions) -> Filter {
     return { image in
         let parameters = [
@@ -92,6 +131,12 @@ public func GlideReflectedTile(options: TileOptions) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `TileOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func SixfoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
         let parameters = [
@@ -104,6 +149,11 @@ public func SixfoldReflectedTile(options: TileOptions) -> Filter {
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `TileOptions`
+:returns: A closure of type `Filter`
+*/
 public func SixfoldRotatedTile(options: TileOptions) -> Filter {
     return { image in
         let parameters = [
@@ -117,6 +167,11 @@ public func SixfoldRotatedTile(options: TileOptions) -> Filter {
     }
 }
 
+/**
+:param: options An instance of `TriangleKaleidoscopeOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func TriangleKaleidoscope(options: TriangleKaleidoscopeOptions) -> Filter {
     return { image in
         let parameters = [
@@ -129,6 +184,12 @@ public func TriangleKaleidoscope(options: TriangleKaleidoscopeOptions) -> Filter
         return aFilter.outputImage
     }
 }
+
+/**
+:param: options An instance of `TileOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func TwelvefoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
         let parameters = [

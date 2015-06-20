@@ -327,9 +327,13 @@ public enum FilterName: String {
 */
 
 public enum ErrorCorrectionLevel: String {
+    /** */
     case L = "L"
+    /** */
     case M = "M"
+    /** */
     case Q = "Q"
+    /** */
     case H = "H"
 }
 
@@ -342,10 +346,12 @@ public enum ErrorCorrectionLevel: String {
 public struct XYPosition {
     var x: Double
     var y: Double
+    /** */
     public init(x: Double, y: Double) {
         self.x = x
         self.y = y
     }
+    /** */
     func vector() -> CIVector {
         return CIVector(x: CGFloat(x), y: CGFloat(y))
     }
@@ -423,6 +429,8 @@ public struct CrossPolynomialCoefficients {
     var a7: Double
     var a8: Double
     var a9: Double
+    
+    /** */
     public init(a0: Double, a1: Double, a2: Double, a3: Double, a4: Double, a5: Double, a6: Double, a7: Double, a8: Double, a9: Double) {
         self.a0 = a0
         self.a1 = a1
@@ -435,6 +443,7 @@ public struct CrossPolynomialCoefficients {
         self.a8 = a8
         self.a9 = a9
     }
+    /** */
     public func vector() -> CIVector {
         let str = "[\(a0) \(a1) \(a2) \(a3) \(a4) \(a5) \(a6) \(a7) \(a8) \(a9)]"
         return CIVector(string: str)
@@ -448,10 +457,12 @@ public struct CrossPolynomialCoefficients {
 public struct TempAndTint {
     var temp: Double
     var tint: Double
+    /** */
     public init(temp: Double, tint: Double) {
         self.temp = temp
         self.tint = tint
     }
+    /** */
     public func vector() -> CIVector {
         return CIVector(x:CGFloat(temp), y: CGFloat(tint))
     }
@@ -464,11 +475,12 @@ public struct TempAndTint {
 public struct XYOffset {
     var x: Double
     var y: Double
+    /** */
     public init(x: Double, y: Double) {
         self.x = x
         self.y = y
     }
-    
+    /** */
     public func vector() -> CIVector {
         return CIVector(x:CGFloat(x), y: CGFloat(y))
     }
@@ -488,6 +500,7 @@ public struct ConvolutionMatrix3X3 {
     var w20: Double
     var w21: Double
     var w22: Double
+    /** */
     public init(w00: Double, w01: Double, w02: Double, w10: Double, w11: Double, w12: Double, w20: Double, w21: Double, w22: Double) {
         self.w00 = w00
         self.w01 = w01
@@ -499,6 +512,7 @@ public struct ConvolutionMatrix3X3 {
         self.w21 = w21
         self.w22 = w22
     }
+    /** */
     public func vector() -> CIVector {
         return CIVector(string: "[\(w00) \(w01) \(w02) \(w10) \(w11) \(w12) \(w20) \(w21) \(w22)]")
     }
@@ -534,6 +548,7 @@ public struct ConvolutionMatrix5X5 {
     var w42: Double
     var w43: Double
     var w44: Double
+    /** */
     public init(w00: Double, w01: Double, w02: Double, w03: Double, w04: Double, w10: Double, w11: Double, w12: Double, w13: Double, w14: Double, w20: Double, w21: Double, w22: Double, w23: Double, w24: Double, w30: Double, w31: Double, w32: Double, w33: Double, w34: Double, w40: Double, w41: Double, w42: Double, w43: Double, w44: Double) {
         self.w00 = w00
         self.w01 = w01
@@ -561,6 +576,7 @@ public struct ConvolutionMatrix5X5 {
         self.w43 = w43
         self.w44 = w44
     }
+    /** */
     public func vector() -> CIVector {
         return CIVector(string: "[\(w00) \(w01) \(w02) \(w03) \(w04) \(w10) \(w11) \(w12) \(w13) \(w14) \(w20) \(w21) \(w22) \(w23) \(w24) \(w30) \(w31) \(w32) \(w33) \(w34) \(w40) \(w41) \(w42) \(w43) \(w44)]")
     }
@@ -580,6 +596,7 @@ public struct ConvolutionVector9 {
     var w6: Double
     var w7: Double
     var w8: Double
+    /** */
     public init(w0: Double, w1: Double, w2: Double, w3: Double, w4: Double, w5: Double, w6: Double, w7: Double, w8: Double) {
         self.w0 = w0
         self.w1 = w1
@@ -591,6 +608,7 @@ public struct ConvolutionVector9 {
         self.w7 = w7
         self.w8 = w8
     }
+    /** */
     public func vector() -> CIVector {
         return CIVector(string: "[\(w0) \(w1) \(w2) \(w3) \(w4) \(w5) \(w6) \(w7) \(w8)]")
     }
@@ -602,6 +620,7 @@ public struct ConvolutionVector9 {
 /** Shorthand to express `CGRect` as a `CIVector` */
 
 public extension CGRect {
+    /** */
     func vector() -> CIVector {
         return CIVector(CGRect: self)
     }
@@ -610,6 +629,7 @@ public extension CGRect {
 /** Shorthand to express `CGAffineTransform` as an `NSValue` */
 
 public extension CGAffineTransform {
+    /** */
     public func value() -> NSValue {
         return NSValue(CGAffineTransform: self)
     }
@@ -671,6 +691,11 @@ func Composer(name: String) -> ImageComposer {
         }
     }
 }
+
+/** 
+    Checks to see if an integer is a cube
+    :warning: Only to be used with natural numbers
+*/
 
 public func countIsCube(dividend: Int) -> Bool {
     return cubeRoot(dividend) != 0

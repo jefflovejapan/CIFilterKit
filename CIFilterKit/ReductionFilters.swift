@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+:param: options An instance of `AreaHistogramOptions`
+:returns: A closure of type `Filter`
+*/
+
 public func AreaHistogram(options: AreaHistogramOptions) -> Filter {
     return { image in
         let parameters = [
@@ -20,6 +25,11 @@ public func AreaHistogram(options: AreaHistogramOptions) -> Filter {
         return filter.outputImage
     }
 }
+
+/**
+:param: options An instance of `HistogramDisplayOptions`
+:returns: A closure of type `Filter`
+*/
 
 public func HistogramDisplayFilter(options: HistogramDisplayOptions) -> Filter {
     return { image in
