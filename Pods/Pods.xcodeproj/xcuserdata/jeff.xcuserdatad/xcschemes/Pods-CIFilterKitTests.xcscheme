@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5B32FD63D75C577EC57928E0"
+               BlueprintIdentifier = "B6298B86EAD0A7582836403C"
                BuildableName = "Pods_CIFilterKitTests.framework"
                BlueprintName = "Pods-CIFilterKitTests"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -1,5 +1,7 @@
 #CIFilterKit
 
+[![Build Status](https://travis-ci.org/jefflovejapan/CIFilterKit.svg?branch=master)](https://travis-ci.org/jefflovejapan/CIFilterKit)
+
 In order to use Core Image you have to create an instance of `CIFilter`, set the appropriate keys and values, then extract the filter's output image. 
 
     let inImg = CIImage(CGImage:someUIImage.CGImage!)
