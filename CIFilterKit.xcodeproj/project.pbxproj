@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F5F94891B248EC800BF3988 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F94881B248EC800BF3988 /* Options.swift */; };
+		1F78ACA41B3F4B01009D4367 /* CIFilterKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1FD8820E1B212C20000CC676 /* CIFilterKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1F7AA40B1B2855C9003CAB70 /* Oranization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7AA40A1B2855C9003CAB70 /* Oranization.swift */; };
 		1FD882141B212C20000CC676 /* CIFilterKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FD882131B212C20000CC676 /* CIFilterKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FD8821A1B212C20000CC676 /* CIFilterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8820E1B212C20000CC676 /* CIFilterKit.framework */; };
@@ -69,6 +70,19 @@
 			remoteInfo = ExampleApp;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1F78ACA31B3F4AE6009D4367 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1F78ACA41B3F4B01009D4367 /* CIFilterKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0C03FC7E0805059FA31CC69B /* Pods-ExampleAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleAppTests/Pods-ExampleAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -356,6 +370,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FD882271B212C20000CC676 /* Build configuration list for PBXNativeTarget "CIFilterKitTests" */;
 			buildPhases = (
+				1F78ACA31B3F4AE6009D4367 /* CopyFiles */,
 				F6B4E44581FAF90F904D1D72 /* Check Pods Manifest.lock */,
 				1FD882151B212C20000CC676 /* Sources */,
 				1FD882161B212C20000CC676 /* Frameworks */,
