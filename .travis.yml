@@ -1,4 +1,5 @@
 language: objective-c
+osx_image: beta-xcode6.3
 xcode_workspace: CIFilterKit.xcworkspace
 xcode_scheme: CIFilterKit
-xcode_sdk: iphonesimulator
+xcode_sdk: iphonesimulator8.3
