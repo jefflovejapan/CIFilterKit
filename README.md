@@ -1,3 +1,5 @@
+![icon](icon.png)
+
 #CIFilterKit
 
 [![Build Status](https://travis-ci.org/jefflovejapan/CIFilterKit.svg?branch=master)](https://travis-ci.org/jefflovejapan/CIFilterKit)
