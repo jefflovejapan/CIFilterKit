@@ -25,17 +25,21 @@ class ViewController: UIViewController {
         kevinBaconImg = UIImage(named: "kevin")
         kevinBaconCiImage = CIImage(CGImage: kevinBaconImg.CGImage!)
         if let filters = filters, head = filters.first {
-            let tail = Array(dropFirst(filters))
-            let cumulativeFilter = reduce(tail, head, |>>)
+            let tail = Array(filters.dropFirst())
+            let cumulativeFilter = tail.reduce(head, combine: |>>)
             let outImg = cumulativeFilter(kevinBaconCiImage)
+            guard let img = outImg else {
+                return
+            }
+            
             let context = CIContext(options: nil)
-            let cgImg = context.createCGImage(outImg, fromRect: outImg.extent())
+            let cgImg = context.createCGImage(img, fromRect: img.extent)
             let imgView = (UIImageView(image: UIImage(CGImage: cgImg)))
-            imgView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            imgView.translatesAutoresizingMaskIntoConstraints = false
             imgView.contentMode = .ScaleAspectFill
             view.addSubview(imgView)
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[kevin]|", options:.allZeros , metrics: nil, views: ["kevin": imgView]))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[kevin]|", options:.allZeros , metrics: nil, views: ["kevin": imgView]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[kevin]|", options: NSLayoutFormatOptions() , metrics: nil, views: ["kevin": imgView]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[kevin]|", options: NSLayoutFormatOptions() , metrics: nil, views: ["kevin": imgView]))
             
         }
     }
