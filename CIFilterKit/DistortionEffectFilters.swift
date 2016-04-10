@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-:param: options An instance of `BumpDistortionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `BumpDistortionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func BumpDistortion(options: BumpDistortionOptions) -> Filter {
@@ -22,13 +22,13 @@ public func BumpDistortion(options: BumpDistortionOptions) -> Filter {
             kCIInputScaleKey: options.inputScale
         ]
         let filter = CIFilter(name:FilterName.BumpDistortion.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `BumpDistortionLinearOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `BumpDistortionLinearOptions`
+- returns: A closure of type `Filter`
 */
 
 public func BumpDistortionLinear(options: BumpDistortionLinearOptions) -> Filter {
@@ -41,13 +41,13 @@ public func BumpDistortionLinear(options: BumpDistortionLinearOptions) -> Filter
             kCIInputScaleKey: options.inputScale
         ]
         let filter = CIFilter(name:FilterName.BumpDistortionLinear.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `CircleSplashDistortionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `CircleSplashDistortionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func CircleSplashDistortion(options: CircleSplashDistortionOptions) -> Filter {
@@ -58,16 +58,16 @@ public func CircleSplashDistortion(options: CircleSplashDistortionOptions) -> Fi
             kCIInputRadiusKey: options.inputRadius
         ]
         let filter = CIFilter(name:FilterName.CircleSplashDistortion.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `GlassDistortionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `GlassDistortionOptions`
+- returns: A closure of type `Filter`
 */
 
-public func GlassDistortion(inputTexture:CIImage, #options: GlassDistortionOptions) -> Filter {
+public func GlassDistortion(inputTexture:CIImage, options: GlassDistortionOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey:image,
@@ -76,13 +76,13 @@ public func GlassDistortion(inputTexture:CIImage, #options: GlassDistortionOptio
             kCIInputScaleKey: options.inputScale
         ]
         let filter = CIFilter(name:FilterName.GlassDistortion.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `HoleDistortionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `HoleDistortionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func HoleDistortion(options: HoleDistortionOptions) -> Filter {
@@ -93,13 +93,13 @@ public func HoleDistortion(options: HoleDistortionOptions) -> Filter {
             kCIInputRadiusKey:options.inputRadius
         ]
         let filter = CIFilter(name:FilterName.HoleDistortion.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `LightTunnelOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `LightTunnelOptions`
+- returns: A closure of type `Filter`
 */
 
 public func LightTunnel(options: LightTunnelOptions) -> Filter {
@@ -111,13 +111,13 @@ public func LightTunnel(options: LightTunnelOptions) -> Filter {
             kCIInputRadiusKey:options.inputRadius
         ]
         let filter = CIFilter(name:FilterName.LightTunnel.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `PinchDistortionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `PinchDistortionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func PinchDistortion(options: PinchDistortionOptions) -> Filter {
@@ -129,13 +129,13 @@ public func PinchDistortion(options: PinchDistortionOptions) -> Filter {
             kCIInputScaleKey: options.inputScale
         ]
         let filter = CIFilter(name:FilterName.PinchDistortion.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `TwirlDistortionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `TwirlDistortionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func TwirlDistortion(options: TwirlDistortionOptions) -> Filter {
@@ -147,13 +147,13 @@ public func TwirlDistortion(options: TwirlDistortionOptions) -> Filter {
             kCIInputAngleKey: options.inputAngle
         ]
         let filter = CIFilter(name:FilterName.TwirlDistortion.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `VortexDistortionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `VortexDistortionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func VortexDistortion(options: VortexDistortionOptions) -> Filter {
@@ -165,6 +165,6 @@ public func VortexDistortion(options: VortexDistortionOptions) -> Filter {
             kCIInputAngleKey: options.inputAngle
         ]
         let filter = CIFilter(name:FilterName.VortexDistortion.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }

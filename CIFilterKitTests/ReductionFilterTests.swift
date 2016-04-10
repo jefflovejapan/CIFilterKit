@@ -24,7 +24,7 @@ class ReductionFilterTests: QuickSpec {
         }
         describe("The AreaHistogram filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let options = AreaHistogramOptions(inputExtent: kevinBaconCiImage.extent(), inputCount: 256, inputScale: 0.7)
+                let options = AreaHistogramOptions(inputExtent: kevinBaconCiImage.extent, inputCount: 256, inputScale: 0.7)
                 let aFilter = AreaHistogram(options)
 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
@@ -32,7 +32,7 @@ class ReductionFilterTests: QuickSpec {
         }
         describe("The HistogramDisplayFilter filter") {
             it("should be able to filter a histogram of a picture of Kevin Bacon") {
-                let options = AreaHistogramOptions(inputExtent: kevinBaconCiImage.extent(), inputCount: 256, inputScale: 1.0)
+                let options = AreaHistogramOptions(inputExtent: kevinBaconCiImage.extent, inputCount: 256, inputScale: 1.0)
                 let histogramData = AreaHistogram(options)
                 var displayOptions = HistogramDisplayOptions()
                 displayOptions.inputHeight = 500.0

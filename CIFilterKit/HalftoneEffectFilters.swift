@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-:param: options An instance of `CircularScreenOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `CircularScreenOptions`
+- returns: A closure of type `Filter`
 */
 
 public func CircularScreen(options: CircularScreenOptions) -> Filter {
@@ -22,13 +22,13 @@ public func CircularScreen(options: CircularScreenOptions) -> Filter {
             kCIInputSharpnessKey: options.inputSharpness
         ]
         let filter = CIFilter(name: FilterName.CircularScreen.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `DotScreenOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `DotScreenOptions`
+- returns: A closure of type `Filter`
 */
 
 public func DotScreen(options: DotScreenOptions) -> Filter {
@@ -41,13 +41,13 @@ public func DotScreen(options: DotScreenOptions) -> Filter {
             kCIInputSharpnessKey: options.inputSharpness
         ]
         let filter = CIFilter(name: FilterName.DotScreen.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `HatchedScreenOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `HatchedScreenOptions`
+- returns: A closure of type `Filter`
 */
 
 public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
@@ -60,13 +60,13 @@ public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
             kCIInputSharpnessKey: options.inputSharpness
         ]
         let filter = CIFilter(name: FilterName.HatchedScreen.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `LineScreenOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `LineScreenOptions`
+- returns: A closure of type `Filter`
 */
 
 public func LineScreen(options: LineScreenOptions) -> Filter {
@@ -79,6 +79,6 @@ public func LineScreen(options: LineScreenOptions) -> Filter {
             kCIInputSharpnessKey: options.inputSharpness
         ]
         let filter = CIFilter(name: FilterName.LineScreen.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }

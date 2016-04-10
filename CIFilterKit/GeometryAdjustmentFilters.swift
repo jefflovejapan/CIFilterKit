@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-:param: inputTransform The `CGAffineTransform` to apply
-:returns: A closure of type `Filter`
+- parameter inputTransform: The `CGAffineTransform` to apply
+- returns: A closure of type `Filter`
 */
 
 public func AffineTransform(inputTransform:CGAffineTransform) -> Filter {
@@ -20,13 +20,13 @@ public func AffineTransform(inputTransform:CGAffineTransform) -> Filter {
             kCIInputTransformKey: inputTransform.value()
         ]
         let aFilter = CIFilter(name:FilterName.AffineTransform.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }
 
 /**
-:param: inputRectangle The crop region to apply
-:returns: A closure of type `Filter`
+- parameter inputRectangle: The crop region to apply
+- returns: A closure of type `Filter`
 */
 
 public func Crop(inputRectangle:CGRect) -> Filter {
@@ -36,13 +36,13 @@ public func Crop(inputRectangle:CGRect) -> Filter {
             "inputRectangle": inputRectangle.vector()
         ]
         let aFilter = CIFilter(name:FilterName.Crop.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `LanczosScaleTransformOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `LanczosScaleTransformOptions`
+- returns: A closure of type `Filter`
 */
 
 public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filter {
@@ -53,13 +53,13 @@ public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filt
             kCIInputAspectRatioKey: options.inputAspectRatio
         ]
         let aFilter = CIFilter(name:FilterName.LanczosScaleTransform.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `PerspectiveCorrectionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `PerspectiveCorrectionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filter {
@@ -72,13 +72,13 @@ public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filt
             "inputBottomRight": options.inputBottomRight.vector()
         ]
         let aFilter = CIFilter(name:FilterName.PerspectiveCorrection.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `PerspectiveCorrectionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `PerspectiveCorrectionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
@@ -91,13 +91,13 @@ public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
             "inputBottomRight": options.inputBottomRight.vector()
         ]
         let aFilter = CIFilter(name:FilterName.PerspectiveTile.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `PerspectiveCorrectionOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `PerspectiveCorrectionOptions`
+- returns: A closure of type `Filter`
 */
 
 public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filter {
@@ -110,17 +110,17 @@ public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filte
             "inputBottomRight": options.inputBottomRight.vector()
         ]
         let aFilter = CIFilter(name:FilterName.PerspectiveTransform.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `PerspectiveCorrectionOptions`
-:param: inputExtent The extent to apply
-:returns: A closure of type `Filter`
+- parameter options: An instance of `PerspectiveCorrectionOptions`
+- parameter inputExtent: The extent to apply
+- returns: A closure of type `Filter`
 */
 
-public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions, #inputExtent:CGRect?) -> Filter {
+public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions, inputExtent:CGRect?) -> Filter {
     return { image in
         var parameters = [
             kCIInputImageKey: image,
@@ -133,16 +133,16 @@ public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions
             parameters[kCIInputExtentKey] = extent.vector()
         }
         let aFilter = CIFilter(name:FilterName.PerspectiveTransformWithExtent.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }
 
 /**
-:param: inputAngle The amount to rotate the input image in radians
-:returns: A closure of type `Filter`
+- parameter inputAngle: The amount to rotate the input image in radians
+- returns: A closure of type `Filter`
 */
 
-public func StraightenFilter(#inputAngle:Double?) -> Filter {
+public func StraightenFilter(inputAngle:Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
@@ -151,6 +151,6 @@ public func StraightenFilter(#inputAngle:Double?) -> Filter {
             parameters[kCIInputAngleKey] = angle
         }
         let aFilter = CIFilter(name:FilterName.StraightenFilter.rawValue, withInputParameters:parameters)
-        return aFilter.outputImage
+        return aFilter?.outputImage
     }
 }

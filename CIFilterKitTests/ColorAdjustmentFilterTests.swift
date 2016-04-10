@@ -27,7 +27,7 @@ class ColorAdjustmentFilterTests: QuickSpec {
             it("Should be able to filter a picture of Kevin Bacon") {
                 let aFilter = ColorControls(ColorControlsOptions())
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The ColorMatrix filter") {
@@ -88,7 +88,7 @@ class ColorAdjustmentFilterTests: QuickSpec {
             it("Should be able to filter a picture of Kevin Bacon") {
                 let aFilter = WhitePointAdjust(nil)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         

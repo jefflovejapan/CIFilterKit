@@ -1,0 +1,6 @@
+framework module Pods_CIFilterKit {
+  umbrella header "Pods-CIFilterKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

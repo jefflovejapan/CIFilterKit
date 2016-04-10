@@ -8,8 +8,8 @@ target 'CIFilterKit' do
 end
 
 target 'CIFilterKitTests' do
-	pod 'Quick', '~> 0.3.1'
-	pod 'Nimble', '~> 1.0.0-rc.1'
+	pod 'Quick', '~> 0.9.1'
+	pod 'Nimble', '~> 4.0.0'
 end
 
 target 'ExampleApp' do
@@ -17,7 +17,7 @@ target 'ExampleApp' do
 end
 
 target 'ExampleAppTests' do
-	pod 'Quick', '~> 0.3.1'
-	pod 'Nimble', '~> 1.0.0-rc.1'
+	pod 'Quick', '~> 0.9.1'
+	pod 'Nimble', '~> 4.0.0'
 end
 

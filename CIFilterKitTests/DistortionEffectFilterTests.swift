@@ -41,7 +41,7 @@ class DistortionEffectFilterTests: QuickSpec {
                 let options = CircleSplashDistortionOptions(inputCenter:XYPosition(x: 400.0, y: 600.0), inputRadius: 500.0)
                 let aFilter = CircleSplashDistortion(options)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The GlassDistortion filter") {

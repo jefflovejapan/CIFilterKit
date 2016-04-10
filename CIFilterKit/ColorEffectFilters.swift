@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
-:param: options An instance of `ColorClampOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `ColorClampOptions`
+- returns: A closure of type `Filter`
 */
 public func ColorClamp(options: ColorClampOptions) -> Filter {
     return { image in
@@ -21,13 +21,13 @@ public func ColorClamp(options: ColorClampOptions) -> Filter {
             "inputMaxComponents": options.inputMaxComponents.vector()
         ]
         let filter = CIFilter(name: FilterName.ColorClamp.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `ColorCrossPolynomialOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `ColorCrossPolynomialOptions`
+- returns: A closure of type `Filter`
 */
 
 public func ColorCrossPolynomial(options: ColorCrossPolynomialOptions) -> Filter {
@@ -39,15 +39,15 @@ public func ColorCrossPolynomial(options: ColorCrossPolynomialOptions) -> Filter
             "inputBlueCoefficients": options.inputBlueCoefficients.vector()
         ]
         let filter = CIFilter(name:FilterName.ColorCrossPolynomial.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
 `ColorCube` is used to produce a 3D lookup table for transforming pixel data. See [GPU Gems 2](http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter24.html).
 
-:param: inputCube An instance of `ColorCubeData`. The size of `inputCube` must be a cube (i.e., contain 8, 27, etc. elements).
-:returns: A closure of type `Filter`
+- parameter inputCube: An instance of `ColorCubeData`. The size of `inputCube` must be a cube (i.e., contain 8, 27, etc. elements).
+- returns: A closure of type `Filter`
 */
 
 public func ColorCube(inputCube:ColorCubeData) -> Filter {
@@ -55,7 +55,8 @@ public func ColorCube(inputCube:ColorCubeData) -> Filter {
         var optionalInputCubeDimension: Int? = nil
         var optionalData: NSData? = nil
         if countIsCube(inputCube.count) {
-            let vectorArray = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }.reduce([], combine: +) as Array
+            let asVector = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }
+            let vectorArray = asVector.reduce([], combine: +) as Array
             optionalInputCubeDimension = cubeRoot(inputCube.count)
             optionalData = NSData(bytes: vectorArray, length: vectorArray.count * sizeof(Float))
         }
@@ -67,42 +68,47 @@ public func ColorCube(inputCube:ColorCubeData) -> Filter {
             parameters["inputCubeData"] = data
         }
         let filter = CIFilter(name: FilterName.ColorCube.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
 The same as `ColorCube`, but with the ability to set an input color space.
 
-:param: inputCube An instance of `ColorCubeData`.
-:param: inputColorSpace A `CGColorSpaceRef`
-:returns: A closure of type `Filter`
+- parameter inputCube: An instance of `ColorCubeData`.
+- parameter inputColorSpace: A `CGColorSpaceRef`
+- returns: A closure of type `Filter`
 */
 
-public func ColorCubeWithColorSpace(inputCube:ColorCubeData, #inputColorSpace:CGColorSpaceRef) -> Filter {
+public func ColorCubeWithColorSpace(inputCube:ColorCubeData, inputColorSpace:CGColorSpaceRef?) -> Filter {
     return { image in
         var optionalInputCubeDimension: Int? = nil
         var optionalData: NSData? = nil
         if countIsCube(inputCube.count) {
-            let vectorArray = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }.reduce([], combine: +) as Array
+            let asVector = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }
+            let vectorArray = asVector.reduce([], combine: +) as Array
             optionalInputCubeDimension = cubeRoot(inputCube.count)
             optionalData = NSData(bytes: vectorArray, length: vectorArray.count * sizeof(Float))
         }
         var parameters: Parameters = [
-            kCIInputImageKey: image,
-            "inputColorSpace": inputColorSpace
+            kCIInputImageKey: image
         ]
+        
+        if let colorSpace = inputColorSpace {
+            parameters["inputColorSpace"] = colorSpace
+        }
+        
         if let data = optionalData, dimension = optionalInputCubeDimension {
             parameters["inputCubeDimension"] = dimension
             parameters["inputCubeData"] = data
         }
         let filter = CIFilter(name: FilterName.ColorCubeWithColorSpace.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 
 public func ColorInvert() -> Filter {
@@ -110,8 +116,8 @@ public func ColorInvert() -> Filter {
 }
 
 /**
-:param: inputGradientImage A gradient image to serve as a mapping between colors in input and output images.
-:returns: A closure of type `Filter`
+- parameter inputGradientImage: A gradient image to serve as a mapping between colors in input and output images.
+- returns: A closure of type `Filter`
 */
 
 public func ColorMap(inputGradientImage:CIImage) -> Filter {
@@ -121,13 +127,13 @@ public func ColorMap(inputGradientImage:CIImage) -> Filter {
             "inputGradientImage": inputGradientImage
         ]
         let filter = CIFilter(name:FilterName.ColorMap.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `ColorMonochromeOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `ColorMonochromeOptions`
+- returns: A closure of type `Filter`
 */
 
 public func ColorMonochrome(options: ColorMonochromeOptions) -> Filter {
@@ -138,13 +144,13 @@ public func ColorMonochrome(options: ColorMonochromeOptions) -> Filter {
             kCIInputIntensityKey: options.inputIntensity
         ]
         let filter = CIFilter(name:FilterName.ColorMonochrome.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `ColorPolynomialOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `ColorPolynomialOptions`
+- returns: A closure of type `Filter`
 */
 
 public func ColorPolynomial(options: ColorPolynomialOptions) -> Filter {
@@ -157,14 +163,14 @@ public func ColorPolynomial(options: ColorPolynomialOptions) -> Filter {
             "inputAlphaCoefficients": options.inputAlphaCoefficients.vector()
         ]
         let filter = CIFilter(name:FilterName.ColorPolynomial.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
 Limit the number of tones in an image, making changes from one tone to another more pronounced. See [Wikipedia](https://en.wikipedia.org/wiki/Posterization)
-:param: inputLevels How strong the effect should be
-:returns: A closure of type `Filter`
+- parameter inputLevels: How strong the effect should be
+- returns: A closure of type `Filter`
 */
 
 public func ColorPosterize(inputLevels:Double?) -> Filter {
@@ -176,13 +182,13 @@ public func ColorPosterize(inputLevels:Double?) -> Filter {
             parameters["inputLevels"] = levels
         }
         let filter = CIFilter(name:FilterName.ColorPosterize.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `FalseColorOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `FalseColorOptions`
+- returns: A closure of type `Filter`
 */
 
 public func FalseColor(options: FalseColorOptions) -> Filter {
@@ -193,96 +199,96 @@ public func FalseColor(options: FalseColorOptions) -> Filter {
             "inputColor1": options.inputColor1
         ]
         let filter = CIFilter(name:FilterName.FalseColor.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /** 
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func MaskToAlpha() -> Filter {
     return noParamsFilter(FilterName.MaskToAlpha.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func MaximumComponent() -> Filter {
     return noParamsFilter(FilterName.MaximumComponent.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func MinimumComponent() -> Filter {
     return noParamsFilter(FilterName.MinimumComponent.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectChrome() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectChrome.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectFade() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectFade.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectInstant() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectInstant.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectMono() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectMono.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectNoir() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectNoir.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectProcess() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectProcess.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectTonal() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectTonal.rawValue)
 }
 /**
-:returns: A closure of type `Filter`
+- returns: A closure of type `Filter`
 */
 public func PhotoEffectTransfer() -> Filter {
     return noParamsFilter(FilterName.PhotoEffectTransfer.rawValue)
 }
 /**
-:param: inputIntensity
-:returns: A closure of type `Filter`
+- parameter inputIntensity:
+- returns: A closure of type `Filter`
 */
-public func SepiaTone(inputIntensity:Double?) -> Filter {
+public func SepiaTone(inputIntensity: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
         if let intensity = inputIntensity {
-            parameters["inputIntensity"] = inputIntensity
+            parameters["inputIntensity"] = intensity
         }
         let filter = CIFilter(name:FilterName.SepiaTone.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `VignetteOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `VignetteOptions`
+- returns: A closure of type `Filter`
 */
 
 public func Vignette(options: VignetteOptions) -> Filter {
@@ -293,13 +299,13 @@ public func Vignette(options: VignetteOptions) -> Filter {
             kCIInputIntensityKey: options.inputIntensity
         ]
         let filter = CIFilter(name:FilterName.Vignette.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `VignetteEffectOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `VignetteEffectOptions`
+- returns: A closure of type `Filter`
 */
 
 public func VignetteEffect(options: VignetteEffectOptions) -> Filter {
@@ -312,6 +318,6 @@ public func VignetteEffect(options: VignetteEffectOptions) -> Filter {
             "inputFalloff": options.inputFalloff
         ]
         let filter = CIFilter(name:FilterName.VignetteEffect.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }

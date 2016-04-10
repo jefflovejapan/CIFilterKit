@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-:param: inputSharpness The amount of sharpening to apply
-:returns: A closure of type `Filter`
+- parameter inputSharpness: The amount of sharpening to apply
+- returns: A closure of type `Filter`
 */
 
 public func SharpenLuminance(inputSharpness:Double?) -> Filter {
@@ -22,13 +22,13 @@ public func SharpenLuminance(inputSharpness:Double?) -> Filter {
             parameters[kCIInputSharpnessKey] = sharpness
         }
         let filter = CIFilter(name: FilterName.SharpenLuminance.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `UnsharpMaskOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `UnsharpMaskOptions`
+- returns: A closure of type `Filter`
 */
 
 public func UnsharpMask(options: UnsharpMaskOptions) -> Filter {
@@ -39,6 +39,6 @@ public func UnsharpMask(options: UnsharpMaskOptions) -> Filter {
             kCIInputIntensityKey: options.inputIntensity
         ]
         let filter = CIFilter(name: FilterName.UnsharpMask.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }

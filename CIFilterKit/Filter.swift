@@ -14,7 +14,7 @@ import Foundation
 /**
     A function that applies a CIFilter. Chainable with the `|>>` operator.
 */
-public typealias Filter = CIImage -> CIImage
+public typealias Filter = CIImage -> CIImage?
 
 
 public typealias Parameters = [String: AnyObject]
@@ -654,7 +654,7 @@ Infix operator for stacking multiple filters. e.g.,
 */
 
 public func |>> (filter1: Filter, filter2: Filter) -> Filter {
-    return { img in filter2(filter1(img)) }
+    return { img in filter1(img).flatMap{ filter2($0) } }
 }
 
 //MARK: function
@@ -666,7 +666,7 @@ public func |>> (filter1: Filter, filter2: Filter) -> Filter {
 */
 
 public func attributesForFilter(filterName: FilterName) -> FilterAttributes {
-    return CIFilter(name: filterName.rawValue).attributes()
+    return CIFilter(name: filterName.rawValue)?.attributes ?? [:]
 }
 
 func noParamsFilter(name:String) -> Filter {
@@ -675,7 +675,7 @@ func noParamsFilter(name:String) -> Filter {
             kCIInputImageKey: image
         ]
         let filter = CIFilter(name:name, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
@@ -687,7 +687,7 @@ func Composer(name: String) -> ImageComposer {
                 "inputBackgroundImage": bgImage
             ]
             let filter = CIFilter(name:name, withInputParameters: parameters)
-            return filter.outputImage
+            return filter?.outputImage
         }
     }
 }
@@ -707,16 +707,16 @@ func cubeRoot(dividend: Int) -> Int{
     }
     let ceil = 64
     let floor = 1
-    return cubeRootIter(floor, dividend, ceil)
+    return cubeRootIter(floor, target: dividend, ceil: ceil)
 }
 
 func cubeRootIter(guess: Int, target: Int, ceil: Int) -> Int {
-    if(isCubeRoot(guess, target)){
+    if(isCubeRoot(guess, target: target)){
         return guess
     } else if(guess >= ceil){
         return 0
     }
-    return (cubeRootIter(guess + 1, target, ceil))
+    return (cubeRootIter(guess + 1, target: target, ceil: ceil))
 }
 
 func isCubeRoot(possibleRoot: Int, target: Int) -> Bool{

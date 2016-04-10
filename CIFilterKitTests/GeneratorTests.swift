@@ -55,7 +55,7 @@ class GeneratorTests: QuickSpec {
         }
         describe("The StarShineGenerator filter") {
             it("should be able to generate an image") {
-                var options = StarShineGeneratorOptions()
+                let options = StarShineGeneratorOptions()
                 let outImg = StarShineGenerator(options)
                 expect(outImg).toNot(beNil())
             }

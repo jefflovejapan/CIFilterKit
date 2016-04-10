@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-:param: options An instance of `AreaHistogramOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `AreaHistogramOptions`
+- returns: A closure of type `Filter`
 */
 
 public func AreaHistogram(options: AreaHistogramOptions) -> Filter {
@@ -22,13 +22,13 @@ public func AreaHistogram(options: AreaHistogramOptions) -> Filter {
             kCIInputScaleKey: options.inputScale
         ]
         let filter = CIFilter(name:FilterName.AreaHistogram.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-:param: options An instance of `HistogramDisplayOptions`
-:returns: A closure of type `Filter`
+- parameter options: An instance of `HistogramDisplayOptions`
+- returns: A closure of type `Filter`
 */
 
 public func HistogramDisplayFilter(options: HistogramDisplayOptions) -> Filter {
@@ -40,6 +40,6 @@ public func HistogramDisplayFilter(options: HistogramDisplayOptions) -> Filter {
             "inputLowLimit": options.inputLowLimit
         ]
         let filter = CIFilter(name:FilterName.HistogramDisplayFilter.rawValue, withInputParameters: parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }

@@ -33,7 +33,7 @@ class SharpenFilterTests: QuickSpec {
                 let options = UnsharpMaskOptions(inputRadius: 50.0, inputIntensity: 75.0)
                 let aFilter = UnsharpMask(options)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
     }

@@ -25,20 +25,20 @@ class StylizeFilterTests: QuickSpec {
         describe("The BlendWithAlphaMask filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let maskImgData = NSData(contentsOfFile: NSBundle(forClass: self.classForCoder).pathForResource("wutang", ofType: "png")!)!
-                let maskCiImage = CIImage(CGImage: UIImage(data: maskImgData)!.CGImage!)!
+                let maskCiImage = CIImage(CGImage: UIImage(data: maskImgData)!.CGImage!)
                 let rhinoImgData = NSData(contentsOfFile: NSBundle(forClass: self.classForCoder).pathForResource("rhinoceros", ofType: "jpg")!)!
-                let rhinoCiImage = CIImage(CGImage: UIImage(data: rhinoImgData)!.CGImage!)!
-                let aFilter = BlendWithAlphaMask(inputBackgroundImage: rhinoCiImage, inputMaskImage: maskCiImage)
+                let rhinoCiImage = CIImage(CGImage: UIImage(data: rhinoImgData)!.CGImage!)
+                let aFilter = BlendWithAlphaMask(rhinoCiImage, inputMaskImage: maskCiImage)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The BlendWithMask filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let maskImgData = NSData(contentsOfFile: NSBundle(forClass: self.classForCoder).pathForResource("banana", ofType: "png")!)!
-                let maskCiImage = CIImage(CGImage: UIImage(data: maskImgData)!.CGImage!)!
+                let maskCiImage = CIImage(CGImage: UIImage(data: maskImgData)!.CGImage!)
                 let rhinoImgData = NSData(contentsOfFile: NSBundle(forClass: self.classForCoder).pathForResource("rhinoceros", ofType: "jpg")!)!
-                let rhinoCiImage = CIImage(CGImage: UIImage(data: rhinoImgData)!.CGImage!)!
-                let aFilter = BlendWithMask(inputBackgroundImage: rhinoCiImage, inputMaskImage: maskCiImage)
+                let rhinoCiImage = CIImage(CGImage: UIImage(data: rhinoImgData)!.CGImage!)
+                let aFilter = BlendWithMask(rhinoCiImage, inputMaskImage: maskCiImage)
                 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
@@ -56,7 +56,7 @@ class StylizeFilterTests: QuickSpec {
                 let options = Convolution3X3Options(inputWeights: weights, inputBias:0.25)
                 let aFilter = Convolution3X3(options)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The Convolution5X5 filter") {
@@ -66,8 +66,8 @@ class StylizeFilterTests: QuickSpec {
                 options.inputWeights = weights
                 let aFilter = Convolution5x5(options)
                 let outImg = aFilter(kevinBaconCiImage)
-                let anotherImg = UIImage(CIImage: outImg)!
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                let anotherImg = outImg.flatMap{ UIImage(CIImage: $0) }
+                expect(anotherImg).toNot(beNil())
             }
         }
         describe("The Convolution9Horizontal filter") {
@@ -100,13 +100,13 @@ class StylizeFilterTests: QuickSpec {
                 options.inputShadowAmount = 0.5
                 let aFilter = HighlightShadowAdjust(options)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The Pixellate filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let x = Double(kevinBaconCiImage.extent().size.width / 2.0)
-                let y = Double(kevinBaconCiImage.extent().size.height / 2.0)
+                let x = Double(kevinBaconCiImage.extent.size.width / 2.0)
+                let y = Double(kevinBaconCiImage.extent.size.height / 2.0)
                 var options = PixellateOptions()
                 options.inputCenter = XYPosition(x:x, y:y)
                 let aFilter = Pixellate(options)

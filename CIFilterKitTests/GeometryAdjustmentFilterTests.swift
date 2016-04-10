@@ -69,7 +69,7 @@ class GeometryAdjustmentFilterTests: QuickSpec {
                 let options = PerspectiveCorrectionOptions(inputTopLeft: XYPosition(x: 20.0, y: 500.0), inputTopRight: XYPosition(x: 340.0, y: 600.0), inputBottomLeft: XYPosition(x: 40.0, y: 600.0), inputBottomRight: XYPosition(x: 380.0, y: 700.0))
                 let aFilter = PerspectiveTransform(options)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The PerspectiveTransformWithExtent filter") {
@@ -78,12 +78,12 @@ class GeometryAdjustmentFilterTests: QuickSpec {
                 let extent = CGRect(x: 0.0, y: 0.0, width: 600.0, height: 600.0)
                 let aFilter = PerspectiveTransformWithExtent(options, inputExtent:extent)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The StraightenFilter filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = StraightenFilter(inputAngle:1.21)
+                let aFilter = StraightenFilter(1.21)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }

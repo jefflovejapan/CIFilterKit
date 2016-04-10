@@ -9,11 +9,11 @@
 import Foundation
 
 /**
-:param: options An instance of `GaussianGradientOptions`
-:returns: The output `CIImage`
+- parameter options: An instance of `GaussianGradientOptions`
+- returns: The output `CIImage`
 */
 
-public func GaussianGradient(options: GaussianGradientOptions) -> CIImage {
+public func GaussianGradient(options: GaussianGradientOptions) -> CIImage? {
     let parameters: Parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputColor0": options.inputColor0,
@@ -21,15 +21,15 @@ public func GaussianGradient(options: GaussianGradientOptions) -> CIImage {
         kCIInputRadiusKey: options.inputRadius
     ]
     let filter = CIFilter(name:FilterName.GaussianGradient.rawValue, withInputParameters:parameters)
-    return filter.outputImage
+    return filter?.outputImage
 }
 
 /**
-:param: options An instance of `LinearGradientOptions`
-:returns: The output `CIImage`
+- parameter options: An instance of `LinearGradientOptions`
+- returns: The output `CIImage`
 */
 
-public func LinearGradient(options: LinearGradientOptions) -> CIImage {
+public func LinearGradient(options: LinearGradientOptions) -> CIImage? {
     let parameters: Parameters = [
         "inputPoint0": options.inputPoint0.vector(),
         "inputPoint1": options.inputPoint1.vector(),
@@ -37,15 +37,15 @@ public func LinearGradient(options: LinearGradientOptions) -> CIImage {
         "inputColor1": options.inputColor1
     ]
     let filter = CIFilter(name:FilterName.LinearGradient.rawValue, withInputParameters:parameters)
-    return filter.outputImage
+    return filter?.outputImage
 }
 
 /**
-:param: options An instance of `RadialGradientOptions`
-:returns: The output `CIImage`
+- parameter options: An instance of `RadialGradientOptions`
+- returns: The output `CIImage`
 */
 
-public func RadialGradient(options: RadialGradientOptions) -> CIImage {
+public func RadialGradient(options: RadialGradientOptions) -> CIImage? {
     let parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputRadius0": options.inputRadius0,
@@ -54,15 +54,15 @@ public func RadialGradient(options: RadialGradientOptions) -> CIImage {
         "inputColor1": options.inputColor1
     ]
     let aFilter = CIFilter(name:FilterName.RadialGradient.rawValue, withInputParameters: parameters)
-    return aFilter.outputImage
+    return aFilter?.outputImage
 }
 
 /**
-:param: options An instance of `SmoothLinearGradientOptions`
-:returns: The output `CIImage`
+- parameter options: An instance of `SmoothLinearGradientOptions`
+- returns: The output `CIImage`
 */
 
-public func SmoothLinearGradient(options: SmoothLinearGradientOptions) -> CIImage {
+public func SmoothLinearGradient(options: SmoothLinearGradientOptions) -> CIImage? {
     let parameters = [
         "inputPoint0": options.inputPoint0.vector(),
         "inputPoint1": options.inputPoint1.vector(),
@@ -70,5 +70,5 @@ public func SmoothLinearGradient(options: SmoothLinearGradientOptions) -> CIImag
         "inputColor1": options.inputColor1
     ]
     let aFilter = CIFilter(name: FilterName.SmoothLinearGradient.rawValue, withInputParameters: parameters)
-    return aFilter.outputImage
+    return aFilter?.outputImage
 }

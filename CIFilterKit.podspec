@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CIFilterKit"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "A functional, composable wrapper for Core Image."
 
   s.description  = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/blagdon"
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/jefflovejapan/CIFilterKit.git", :tag => "0.0.3" }
+  s.source       = { :git => "https://github.com/jefflovejapan/CIFilterKit.git", :tag => s.version.to_s }
   s.source_files  = "CIFilterKit", "CIFilterKit/*"
   s.requires_arc = true
 

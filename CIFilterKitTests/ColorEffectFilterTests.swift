@@ -76,9 +76,9 @@ class ColorEffectFilterTests: QuickSpec {
         describe("The ColorMap filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let gradientOptions = GaussianGradientOptions(inputCenter:XYPosition(x:150.0, y:150.0), inputColor0:CIColor(red: 0.5, green: 0.25, blue: 0.75, alpha: 1.0), inputColor1:CIColor(red: 1.0, green: 0.55, blue: 0.25, alpha: 1.0), inputRadius:300.0)
-                let inputGradientImage: CIImage = GaussianGradient(gradientOptions)
-                let gradient = inputGradientImage.imageByCroppingToRect(kevinBaconCiImage.extent())
-                let aFilter = ColorMap(gradient)
+                let inputGradientImage: CIImage? = GaussianGradient(gradientOptions)
+                let gradient = inputGradientImage?.imageByCroppingToRect(kevinBaconCiImage.extent)
+                let aFilter = ColorMap(gradient!)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -118,28 +118,28 @@ class ColorEffectFilterTests: QuickSpec {
             it("should be able to filter a picture of Kevin Bacon") {
                 let aFilter = MaskToAlpha()
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The MaximumComponent filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let aFilter = MaximumComponent()
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The MinimumComponent filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let aFilter = MinimumComponent()
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The PhotoEffectChrome filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let aFilter = PhotoEffectChrome()
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The PhotoEffectFade filter") {
@@ -195,7 +195,7 @@ class ColorEffectFilterTests: QuickSpec {
                 let options = VignetteOptions(inputRadius:500.0, inputIntensity:0.8)
                 let aFilter = Vignette(options)
                 let outImg = aFilter(kevinBaconCiImage)
-                expect(aFilter(kevinBaconCiImage)).toNot(beNil())
+                expect(outImg).toNot(beNil())
             }
         }
         describe("The VignetteEffect filter") {

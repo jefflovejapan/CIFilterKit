@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-    :param: options An instance of `ColorControlsOptions`
-    :returns: A closure of type `Filter`
+    - parameter options: An instance of `ColorControlsOptions`
+    - returns: A closure of type `Filter`
 */
 
 public func ColorControls(options: ColorControlsOptions) -> Filter {
@@ -22,13 +22,13 @@ public func ColorControls(options: ColorControlsOptions) -> Filter {
             kCIInputContrastKey: options.inputContrast
             ]
         let filter = CIFilter(name:FilterName.ColorControls.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-    :param: options An instance of `ColorMatrixOptions`
-    :returns: A closure of type `Filter`
+    - parameter options: An instance of `ColorMatrixOptions`
+    - returns: A closure of type `Filter`
 */
 
 public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
@@ -42,13 +42,13 @@ public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
             "inputBiasVector": options.inputBiasVector.vector()
         ]
         let filter = CIFilter(name:FilterName.ColorMatrix.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-    :param: inputEV The amount of exposure adjustment to be applied (positive or negative).
-    :returns: A closure of type `Filter`
+    - parameter inputEV: The amount of exposure adjustment to be applied (positive or negative).
+    - returns: A closure of type `Filter`
 */
 
 public func ExposureAdjust(inputEV: Double?) -> Filter {
@@ -60,13 +60,13 @@ public func ExposureAdjust(inputEV: Double?) -> Filter {
             parameters[kCIInputEVKey] = ev
         }
         let filter = CIFilter(name:FilterName.ExposureAdjust.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-    :param: inputPower The power to apply to the gamma correction function. See [Wikipedia](https://en.wikipedia.org/wiki/Gamma_correction)
-    :returns: A closure of type `Filter`
+    - parameter inputPower: The power to apply to the gamma correction function. See [Wikipedia](https://en.wikipedia.org/wiki/Gamma_correction)
+    - returns: A closure of type `Filter`
 */
 
 public func GammaAdjust(inputPower: Double?) -> Filter {
@@ -78,13 +78,13 @@ public func GammaAdjust(inputPower: Double?) -> Filter {
             parameters["inputPower"] = power
         }
         let filter = CIFilter(name:FilterName.GammaAdjust.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-    :param: inputAngle The angle by which to offset the image's hue, in radians.
-    :returns: A closure of type `Filter`
+    - parameter inputAngle: The angle by which to offset the image's hue, in radians.
+    - returns: A closure of type `Filter`
 */
 
 public func HueAdjust(inputAngle: Double?) -> Filter {
@@ -96,13 +96,13 @@ public func HueAdjust(inputAngle: Double?) -> Filter {
             parameters[kCIInputAngleKey] = angle
         }
         let filter = CIFilter(name:FilterName.HueAdjust.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
     Used to convert from a linear gamma curve to the sRGB color space. See [CILinearToSRGBToneCurve](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CILinearToSRGBToneCurve)
-    :returns: A closure of type `Filter`
+    - returns: A closure of type `Filter`
 */
 public func LinearToSRGBToneCurve() -> Filter {
     return noParamsFilter(FilterName.LinearToSRGBToneCurve.rawValue)
@@ -110,15 +110,15 @@ public func LinearToSRGBToneCurve() -> Filter {
 
 /**
     Used to convert from the sRGB color space to a linear gamma curve. See [CISRGBToneCurveToLinear](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CISRGBToneCurveToLinear)
-    :returns: A closure of type `Filter`
+    - returns: A closure of type `Filter`
 */
 public func SRGBToneCurveToLinear() -> Filter {
     return noParamsFilter(FilterName.SRGBToneCurveToLinear.rawValue)
 }
 
 /**
-    :param: options An instance of `TemperatureAndTintOptions`
-    :returns: A closure of type `Filter`
+    - parameter options: An instance of `TemperatureAndTintOptions`
+    - returns: A closure of type `Filter`
 */
 
 public func TemperatureAndTint(options: TemperatureAndTintOptions) -> Filter {
@@ -129,13 +129,13 @@ public func TemperatureAndTint(options: TemperatureAndTintOptions) -> Filter {
             "inputTargetNeutral": options.targetInputNeutral.vector()
         ]
         let filter = CIFilter(name:FilterName.TemperatureAndTint.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-    :param: options An instance of `ToneCurveOptions`
-    :returns: A closure of type `Filter`
+    - parameter options: An instance of `ToneCurveOptions`
+    - returns: A closure of type `Filter`
 */
 
 public func ToneCurve(options: ToneCurveOptions) -> Filter {
@@ -148,13 +148,13 @@ public func ToneCurve(options: ToneCurveOptions) -> Filter {
             "inputPoint4": options.inputPoint4.vector()
         ]
         let filter = CIFilter(name:FilterName.ToneCurve.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-    :param: inputAmount The amount by which to offset the image's vibrance.
-    :returns: A closure of type `Filter`
+    - parameter inputAmount: The amount by which to offset the image's vibrance.
+    - returns: A closure of type `Filter`
 */
 
 public func Vibrance(inputAmount: Double?) -> Filter {
@@ -166,13 +166,13 @@ public func Vibrance(inputAmount: Double?) -> Filter {
             parameters["inputAmount"] = amount
         }
         let filter = CIFilter(name:FilterName.Vibrance.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }
 
 /**
-    :param: inputColor The new white point for your image.
-    :returns: A closure of type `Filter`
+    - parameter inputColor: The new white point for your image.
+    - returns: A closure of type `Filter`
 */
 
 public func WhitePointAdjust(inputColor: CIColor?) -> Filter {
@@ -184,6 +184,6 @@ public func WhitePointAdjust(inputColor: CIColor?) -> Filter {
             parameters[kCIInputColorKey] = color
         }
         let filter = CIFilter(name:FilterName.WhitePointAdjust.rawValue, withInputParameters:parameters)
-        return filter.outputImage
+        return filter?.outputImage
     }
 }

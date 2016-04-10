@@ -24,14 +24,14 @@ class TileEffectFilterTests: QuickSpec {
         }
         describe("The AffineClamp filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = AffineClamp(inputTransform: CGAffineTransformMakeRotation(0.81))
+                let aFilter = AffineClamp(CGAffineTransformMakeRotation(0.81))
                 
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The AffineTile filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = AffineTile(inputTransform: CGAffineTransformMakeRotation(0.81))
+                let aFilter = AffineTile(CGAffineTransformMakeRotation(0.81))
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
