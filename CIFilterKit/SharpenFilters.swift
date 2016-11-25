@@ -13,13 +13,13 @@ import Foundation
 - returns: A closure of type `Filter`
 */
 
-public func SharpenLuminance(inputSharpness:Double?) -> Filter {
+public func SharpenLuminance(_ inputSharpness:Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
         if let sharpness = inputSharpness {
-            parameters[kCIInputSharpnessKey] = sharpness
+            parameters[kCIInputSharpnessKey] = sharpness as AnyObject?
         }
         let filter = CIFilter(name: FilterName.SharpenLuminance.rawValue, withInputParameters: parameters)
         return filter?.outputImage
@@ -31,13 +31,13 @@ public func SharpenLuminance(inputSharpness:Double?) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func UnsharpMask(options: UnsharpMaskOptions) -> Filter {
+public func UnsharpMask(_ options: UnsharpMaskOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputIntensityKey: options.inputIntensity
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name: FilterName.UnsharpMask.rawValue, withInputParameters: parameters)
         return filter?.outputImage
     }

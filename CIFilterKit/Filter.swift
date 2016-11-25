@@ -14,22 +14,22 @@ import Foundation
 /**
     A function that applies a CIFilter. Chainable with the `|>>` operator.
 */
-public typealias Filter = CIImage -> CIImage?
+public typealias Filter = (CIImage) -> CIImage?
 
 
 public typealias Parameters = [String: AnyObject]
 public typealias OptionalParameters = [String: AnyObject?]
-public typealias FilterAttributes = [NSObject: AnyObject]
+public typealias FilterAttributes = [AnyHashable: Any]
 
 /**
     A function whose curried value is a `Filter`.
 */
-public typealias ImageComposer = CIImage -> Filter
+public typealias ImageComposer = (CIImage) -> Filter
 
 /**
     There are several types of `CIFilter` that do not operate on input images, but simply produce an output image. These are not chainable using the `|>>` operator.
 */
-public typealias ImageGenerator = OptionalParameters -> CIImage!
+public typealias ImageGenerator = (OptionalParameters) -> CIImage!
 
 /**
     An array of `RGBAComponents` for modeling a 3D lookup table. @see [CIColorCube](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIColorCube)
@@ -622,7 +622,7 @@ public struct ConvolutionVector9 {
 public extension CGRect {
     /** */
     func vector() -> CIVector {
-        return CIVector(CGRect: self)
+        return CIVector(cgRect: self)
     }
 }
 
@@ -631,14 +631,14 @@ public extension CGRect {
 public extension CGAffineTransform {
     /** */
     public func value() -> NSValue {
-        return NSValue(CGAffineTransform: self)
+        return NSValue(cgAffineTransform: self)
     }
 }
 
 
 //MARK: operator
 
-infix operator |>> { associativity left }
+infix operator |>> : AdditionPrecedence
 
 /**
 Infix operator for stacking multiple filters. e.g.,
@@ -653,7 +653,7 @@ Infix operator for stacking multiple filters. e.g.,
     let outImg = stacked(inImg)
 */
 
-public func |>> (filter1: Filter, filter2: Filter) -> Filter {
+public func |>> (filter1: @escaping Filter, filter2: @escaping Filter) -> Filter {
     return { img in filter1(img).flatMap{ filter2($0) } }
 }
 
@@ -665,11 +665,11 @@ public func |>> (filter1: Filter, filter2: Filter) -> Filter {
 
 */
 
-public func attributesForFilter(filterName: FilterName) -> FilterAttributes {
+public func attributesForFilter(_ filterName: FilterName) -> FilterAttributes {
     return CIFilter(name: filterName.rawValue)?.attributes ?? [:]
 }
 
-func noParamsFilter(name:String) -> Filter {
+func noParamsFilter(_ name:String) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image
@@ -679,7 +679,7 @@ func noParamsFilter(name:String) -> Filter {
     }
 }
 
-func Composer(name: String) -> ImageComposer {
+func Composer(_ name: String) -> ImageComposer {
     return { bgImage in
         return { image in
             let parameters = [
@@ -697,11 +697,11 @@ func Composer(name: String) -> ImageComposer {
     :warning: Only to be used with natural numbers
 */
 
-public func countIsCube(dividend: Int) -> Bool {
+public func countIsCube(_ dividend: Int) -> Bool {
     return cubeRoot(dividend) != 0
 }
 
-func cubeRoot(dividend: Int) -> Int{
+func cubeRoot(_ dividend: Int) -> Int{
     if(dividend <= 0) {
         return 0
     }
@@ -710,7 +710,7 @@ func cubeRoot(dividend: Int) -> Int{
     return cubeRootIter(floor, target: dividend, ceil: ceil)
 }
 
-func cubeRootIter(guess: Int, target: Int, ceil: Int) -> Int {
+func cubeRootIter(_ guess: Int, target: Int, ceil: Int) -> Int {
     if(isCubeRoot(guess, target: target)){
         return guess
     } else if(guess >= ceil){
@@ -719,11 +719,11 @@ func cubeRootIter(guess: Int, target: Int, ceil: Int) -> Int {
     return (cubeRootIter(guess + 1, target: target, ceil: ceil))
 }
 
-func isCubeRoot(possibleRoot: Int, target: Int) -> Bool{
+func isCubeRoot(_ possibleRoot: Int, target: Int) -> Bool{
     return cube(possibleRoot) == target
 }
 
-func cube(x: Int) -> Int {
+func cube(_ x: Int) -> Int {
     return x * x * x
 }
 

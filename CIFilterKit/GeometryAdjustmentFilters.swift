@@ -13,7 +13,7 @@ import Foundation
 - returns: A closure of type `Filter`
 */
 
-public func AffineTransform(inputTransform:CGAffineTransform) -> Filter {
+public func AffineTransform(_ inputTransform:CGAffineTransform) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -29,7 +29,7 @@ public func AffineTransform(inputTransform:CGAffineTransform) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func Crop(inputRectangle:CGRect) -> Filter {
+public func Crop(_ inputRectangle:CGRect) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -45,13 +45,13 @@ public func Crop(inputRectangle:CGRect) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filter {
+public func LanczosScaleTransform(_ options: LanczosScaleTransformOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputScaleKey: options.inputScale,
             kCIInputAspectRatioKey: options.inputAspectRatio
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name:FilterName.LanczosScaleTransform.rawValue, withInputParameters:parameters)
         return aFilter?.outputImage
     }
@@ -62,7 +62,7 @@ public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filt
 - returns: A closure of type `Filter`
 */
 
-public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filter {
+public func PerspectiveCorrection(_ options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -81,7 +81,7 @@ public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filt
 - returns: A closure of type `Filter`
 */
 
-public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
+public func PerspectiveTile(_ options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -100,7 +100,7 @@ public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filter {
+public func PerspectiveTransform(_ options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -120,7 +120,7 @@ public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filte
 - returns: A closure of type `Filter`
 */
 
-public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions, inputExtent:CGRect?) -> Filter {
+public func PerspectiveTransformWithExtent(_ options: PerspectiveCorrectionOptions, inputExtent:CGRect?) -> Filter {
     return { image in
         var parameters = [
             kCIInputImageKey: image,
@@ -142,13 +142,13 @@ public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions
 - returns: A closure of type `Filter`
 */
 
-public func StraightenFilter(inputAngle:Double?) -> Filter {
+public func StraightenFilter(_ inputAngle:Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
         if let angle = inputAngle {
-            parameters[kCIInputAngleKey] = angle
+            parameters[kCIInputAngleKey] = angle as AnyObject?
         }
         let aFilter = CIFilter(name:FilterName.StraightenFilter.rawValue, withInputParameters:parameters)
         return aFilter?.outputImage

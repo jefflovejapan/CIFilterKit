@@ -13,14 +13,14 @@ import Foundation
 - returns: A closure of type `Filter`
 */
 
-public func CircularScreen(options: CircularScreenOptions) -> Filter {
+public func CircularScreen(_ options: CircularScreenOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputWidthKey: options.inputWidth,
             kCIInputSharpnessKey: options.inputSharpness
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name: FilterName.CircularScreen.rawValue, withInputParameters: parameters)
         return filter?.outputImage
     }
@@ -31,7 +31,7 @@ public func CircularScreen(options: CircularScreenOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func DotScreen(options: DotScreenOptions) -> Filter {
+public func DotScreen(_ options: DotScreenOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -39,7 +39,7 @@ public func DotScreen(options: DotScreenOptions) -> Filter {
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth,
             kCIInputSharpnessKey: options.inputSharpness
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name: FilterName.DotScreen.rawValue, withInputParameters: parameters)
         return filter?.outputImage
     }
@@ -50,7 +50,7 @@ public func DotScreen(options: DotScreenOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
+public func HatchedScreen(_ options: HatchedScreenOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -58,7 +58,7 @@ public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth,
             kCIInputSharpnessKey: options.inputSharpness
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name: FilterName.HatchedScreen.rawValue, withInputParameters: parameters)
         return filter?.outputImage
     }
@@ -69,7 +69,7 @@ public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func LineScreen(options: LineScreenOptions) -> Filter {
+public func LineScreen(_ options: LineScreenOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -77,7 +77,7 @@ public func LineScreen(options: LineScreenOptions) -> Filter {
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth,
             kCIInputSharpnessKey: options.inputSharpness
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name: FilterName.LineScreen.rawValue, withInputParameters: parameters)
         return filter?.outputImage
     }
