@@ -14,13 +14,13 @@ import Foundation
     - returns: The output `CIImage`
 */
 
-public func AztecCodeGenerator(inputMessage: NSData, options: AztecCodeGeneratorOptions) -> CIImage? {
+public func AztecCodeGenerator(_ inputMessage: Data, options: AztecCodeGeneratorOptions) -> CIImage? {
     let parameters = [
         "inputMessage": inputMessage,
         "inputCorrectionLevel": options.inputCorrectionLevel,
         "inputLayers": options.inputLayers,
         "inputCompactStyle": options.inputCompactStyle
-    ]
+    ] as [String : Any]
     let filter = CIFilter(name: FilterName.AztecCodeGenerator.rawValue, withInputParameters:parameters)
     return filter?.outputImage
 }
@@ -30,13 +30,13 @@ public func AztecCodeGenerator(inputMessage: NSData, options: AztecCodeGenerator
 - returns: The output `CIImage`
 */
 
-public func CheckerboardGenerator(options: CheckerboardGeneratorOptions) -> CIImage? {
+public func CheckerboardGenerator(_ options: CheckerboardGeneratorOptions) -> CIImage? {
     let parameters: Parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputColor0": options.inputColor0,
         "inputColor1": options.inputColor1,
-        kCIInputWidthKey: options.inputWidth,
-        kCIInputSharpnessKey: options.inputSharpness
+        kCIInputWidthKey: options.inputWidth as AnyObject,
+        kCIInputSharpnessKey: options.inputSharpness as AnyObject
     ]
     let filter = CIFilter(name: FilterName.CheckerboardGenerator.rawValue, withInputParameters: parameters)
     return filter?.outputImage
@@ -48,12 +48,12 @@ public func CheckerboardGenerator(options: CheckerboardGeneratorOptions) -> CIIm
 - returns: The output `CIImage`
 */
 
-public func Code128BarcodeGenerator(inputMessage:NSData, inputQuietSpace:Double?) -> CIImage? {
+public func Code128BarcodeGenerator(_ inputMessage:Data, inputQuietSpace:Double?) -> CIImage? {
     var parameters: Parameters = [
-        "inputMessage": inputMessage
+        "inputMessage": inputMessage as AnyObject
     ]
     if let quietSpace = inputQuietSpace {
-        parameters["inputQuietSpace"] = quietSpace
+        parameters["inputQuietSpace"] = quietSpace as AnyObject?
     }
     let filter = CIFilter(name: FilterName.Code128BarcodeGenerator.rawValue, withInputParameters:parameters)
     return filter?.outputImage
@@ -64,7 +64,7 @@ public func Code128BarcodeGenerator(inputMessage:NSData, inputQuietSpace:Double?
 - returns: The output `CIImage`
 */
 
-public func ConstantColorGenerator(inputColor:CIColor) -> CIImage? {
+public func ConstantColorGenerator(_ inputColor:CIColor) -> CIImage? {
     let parameters: Parameters = [
         "inputColor": inputColor
     ]
@@ -78,12 +78,12 @@ public func ConstantColorGenerator(inputColor:CIColor) -> CIImage? {
 - returns: The output `CIImage`
 */
 
-public func QRCodeGenerator(inputMessage:NSData, inputCorrectionLevel:ErrorCorrectionLevel?) -> CIImage? {
+public func QRCodeGenerator(_ inputMessage:Data, inputCorrectionLevel:ErrorCorrectionLevel?) -> CIImage? {
     var parameters: Parameters = [
-        "inputMessage": inputMessage,
+        "inputMessage": inputMessage as AnyObject,
     ]
     if let correctionLevel = inputCorrectionLevel {
-        parameters["inputCorrectionLevel"] = correctionLevel.rawValue
+        parameters["inputCorrectionLevel"] = correctionLevel.rawValue as AnyObject?
     }
     let aFilter = CIFilter(name: FilterName.QRCodeGenerator.rawValue, withInputParameters: parameters)
     return aFilter?.outputImage
@@ -104,7 +104,7 @@ public func RandomGenerator() -> CIImage? {
 - returns: The output `CIImage`
 */
 
-public func StarShineGenerator(options: StarShineGeneratorOptions) -> CIImage? {
+public func StarShineGenerator(_ options: StarShineGeneratorOptions) -> CIImage? {
     let parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         kCIInputColorKey: options.inputColor,
@@ -114,7 +114,7 @@ public func StarShineGenerator(options: StarShineGeneratorOptions) -> CIImage? {
         "inputCrossOpacity": options.inputCrossOpacity,
         "inputCrossWidth": options.inputCrossWidth,
         "inputEpsilon": options.inputEpsilon
-    ]
+    ] as [String : Any]
     let aFilter = CIFilter(name: FilterName.StarShineGenerator.rawValue, withInputParameters: parameters)
     return aFilter?.outputImage
 }
@@ -124,14 +124,14 @@ public func StarShineGenerator(options: StarShineGeneratorOptions) -> CIImage? {
 - returns: The output `CIImage`
 */
 
-public func StripesGenerator(options: StripesGeneratorOptions) -> CIImage? {
+public func StripesGenerator(_ options: StripesGeneratorOptions) -> CIImage? {
     let parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputColor0": options.inputColor0,
         "inputColor1": options.inputColor1,
         kCIInputWidthKey: options.inputWidth,
         kCIInputSharpnessKey: options.inputSharpness
-    ]
+    ] as [String : Any]
     let aFilter = CIFilter(name: FilterName.StripesGenerator.rawValue, withInputParameters: parameters)
     return aFilter?.outputImage
 }

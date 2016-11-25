@@ -13,7 +13,7 @@ import Foundation
 - parameter options: An instance of `ColorClampOptions`
 - returns: A closure of type `Filter`
 */
-public func ColorClamp(options: ColorClampOptions) -> Filter {
+public func ColorClamp(_ options: ColorClampOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -30,7 +30,7 @@ public func ColorClamp(options: ColorClampOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func ColorCrossPolynomial(options: ColorCrossPolynomialOptions) -> Filter {
+public func ColorCrossPolynomial(_ options: ColorCrossPolynomialOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -50,22 +50,23 @@ public func ColorCrossPolynomial(options: ColorCrossPolynomialOptions) -> Filter
 - returns: A closure of type `Filter`
 */
 
-public func ColorCube(inputCube:ColorCubeData) -> Filter {
+public func ColorCube(_ inputCube:ColorCubeData) -> Filter {
     return { image in
         var optionalInputCubeDimension: Int? = nil
-        var optionalData: NSData? = nil
+        var optionalData: Data? = nil
         if countIsCube(inputCube.count) {
             let asVector = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }
-            let vectorArray = asVector.reduce([], combine: +) as Array
+            let vectorArray = asVector.reduce([], +) as Array
             optionalInputCubeDimension = cubeRoot(inputCube.count)
-            optionalData = NSData(bytes: vectorArray, length: vectorArray.count * sizeof(Float))
+            optionalData = Data(bytes: UnsafePointer(vectorArray), count: vectorArray.count * MemoryLayout<Float>.size)
+            
         }
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
-        if let data = optionalData, dimension = optionalInputCubeDimension {
-            parameters["inputCubeDimension"] = dimension
-            parameters["inputCubeData"] = data
+        if let data = optionalData, let dimension = optionalInputCubeDimension {
+            parameters["inputCubeDimension"] = dimension as AnyObject?
+            parameters["inputCubeData"] = data as AnyObject?
         }
         let filter = CIFilter(name: FilterName.ColorCube.rawValue, withInputParameters: parameters)
         return filter?.outputImage
@@ -80,15 +81,15 @@ The same as `ColorCube`, but with the ability to set an input color space.
 - returns: A closure of type `Filter`
 */
 
-public func ColorCubeWithColorSpace(inputCube:ColorCubeData, inputColorSpace:CGColorSpaceRef?) -> Filter {
+public func ColorCubeWithColorSpace(_ inputCube:ColorCubeData, inputColorSpace:CGColorSpace?) -> Filter {
     return { image in
         var optionalInputCubeDimension: Int? = nil
-        var optionalData: NSData? = nil
+        var optionalData: Data? = nil
         if countIsCube(inputCube.count) {
             let asVector = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }
-            let vectorArray = asVector.reduce([], combine: +) as Array
+            let vectorArray = asVector.reduce([], +) as Array
             optionalInputCubeDimension = cubeRoot(inputCube.count)
-            optionalData = NSData(bytes: vectorArray, length: vectorArray.count * sizeof(Float))
+            optionalData = Data(bytes: UnsafePointer(vectorArray), count: vectorArray.count * MemoryLayout<Float>.size)
         }
         var parameters: Parameters = [
             kCIInputImageKey: image
@@ -98,9 +99,9 @@ public func ColorCubeWithColorSpace(inputCube:ColorCubeData, inputColorSpace:CGC
             parameters["inputColorSpace"] = colorSpace
         }
         
-        if let data = optionalData, dimension = optionalInputCubeDimension {
-            parameters["inputCubeDimension"] = dimension
-            parameters["inputCubeData"] = data
+        if let data = optionalData, let dimension = optionalInputCubeDimension {
+            parameters["inputCubeDimension"] = dimension as AnyObject?
+            parameters["inputCubeData"] = data as AnyObject?
         }
         let filter = CIFilter(name: FilterName.ColorCubeWithColorSpace.rawValue, withInputParameters: parameters)
         return filter?.outputImage
@@ -120,7 +121,7 @@ public func ColorInvert() -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func ColorMap(inputGradientImage:CIImage) -> Filter {
+public func ColorMap(_ inputGradientImage:CIImage) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey :image,
@@ -136,13 +137,13 @@ public func ColorMap(inputGradientImage:CIImage) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func ColorMonochrome(options: ColorMonochromeOptions) -> Filter {
+public func ColorMonochrome(_ options: ColorMonochromeOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey :image,
             kCIInputColorKey: options.inputColor,
             kCIInputIntensityKey: options.inputIntensity
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name:FilterName.ColorMonochrome.rawValue, withInputParameters:parameters)
         return filter?.outputImage
     }
@@ -153,7 +154,7 @@ public func ColorMonochrome(options: ColorMonochromeOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func ColorPolynomial(options: ColorPolynomialOptions) -> Filter {
+public func ColorPolynomial(_ options: ColorPolynomialOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey :image,
@@ -173,13 +174,13 @@ Limit the number of tones in an image, making changes from one tone to another m
 - returns: A closure of type `Filter`
 */
 
-public func ColorPosterize(inputLevels:Double?) -> Filter {
+public func ColorPosterize(_ inputLevels:Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey :image,
         ]
         if let levels = inputLevels {
-            parameters["inputLevels"] = levels
+            parameters["inputLevels"] = levels as AnyObject?
         }
         let filter = CIFilter(name:FilterName.ColorPosterize.rawValue, withInputParameters:parameters)
         return filter?.outputImage
@@ -191,7 +192,7 @@ public func ColorPosterize(inputLevels:Double?) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func FalseColor(options: FalseColorOptions) -> Filter {
+public func FalseColor(_ options: FalseColorOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey :image,
@@ -273,13 +274,13 @@ public func PhotoEffectTransfer() -> Filter {
 - parameter inputIntensity:
 - returns: A closure of type `Filter`
 */
-public func SepiaTone(inputIntensity: Double?) -> Filter {
+public func SepiaTone(_ inputIntensity: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
         if let intensity = inputIntensity {
-            parameters["inputIntensity"] = intensity
+            parameters["inputIntensity"] = intensity as AnyObject?
         }
         let filter = CIFilter(name:FilterName.SepiaTone.rawValue, withInputParameters:parameters)
         return filter?.outputImage
@@ -291,13 +292,13 @@ public func SepiaTone(inputIntensity: Double?) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func Vignette(options: VignetteOptions) -> Filter {
+public func Vignette(_ options: VignetteOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputIntensityKey: options.inputIntensity
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name:FilterName.Vignette.rawValue, withInputParameters:parameters)
         return filter?.outputImage
     }
@@ -308,7 +309,7 @@ public func Vignette(options: VignetteOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func VignetteEffect(options: VignetteEffectOptions) -> Filter {
+public func VignetteEffect(_ options: VignetteEffectOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -316,7 +317,7 @@ public func VignetteEffect(options: VignetteEffectOptions) -> Filter {
             kCIInputIntensityKey: options.inputIntensity,
             kCIInputRadiusKey: options.inputRadius,
             "inputFalloff": options.inputFalloff
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name:FilterName.VignetteEffect.rawValue, withInputParameters:parameters)
         return filter?.outputImage
     }

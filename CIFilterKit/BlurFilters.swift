@@ -13,13 +13,13 @@ import Foundation
     - returns: A closure of type `Filter`
 */
 
-public func GaussianBlur(inputRadius: Double?) -> Filter {
+public func GaussianBlur(_ inputRadius: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
             ]
         if let radius = inputRadius {
-            parameters[kCIInputRadiusKey] = radius
+            parameters[kCIInputRadiusKey] = radius as AnyObject?
         }
         let filter = CIFilter(name: FilterName.GaussianBlur.rawValue, withInputParameters: parameters)
         return filter?.outputImage
@@ -31,13 +31,13 @@ public func GaussianBlur(inputRadius: Double?) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func MotionBlur(options: MotionBlurOptions) -> Filter {
+public func MotionBlur(_ options: MotionBlurOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputAngleKey: options.inputAngle
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name: FilterName.MotionBlur.rawValue, withInputParameters: parameters)
         return filter?.outputImage
     }
@@ -48,13 +48,13 @@ public func MotionBlur(options: MotionBlurOptions) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func ZoomBlur(options: ZoomBlurOptions) -> Filter {
+public func ZoomBlur(_ options: ZoomBlurOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius,
-        ]
+        ] as [String : Any]
         let filter = CIFilter(name: FilterName.ZoomBlur.rawValue, withInputParameters: parameters)
         return filter?.outputImage
     }

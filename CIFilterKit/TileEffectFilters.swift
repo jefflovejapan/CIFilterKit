@@ -13,7 +13,7 @@ import Foundation
 - returns: A closure of type `Filter`
 */
 
-public func AffineClamp(inputTransform: CGAffineTransform) -> Filter {
+public func AffineClamp(_ inputTransform: CGAffineTransform) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -29,7 +29,7 @@ public func AffineClamp(inputTransform: CGAffineTransform) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func AffineTile(inputTransform: CGAffineTransform) -> Filter {
+public func AffineTile(_ inputTransform: CGAffineTransform) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -45,14 +45,14 @@ public func AffineTile(inputTransform: CGAffineTransform) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func EightfoldReflectedTile(options: TileOptions) -> Filter {
+public func EightfoldReflectedTile(_ options: TileOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.EightfoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -63,7 +63,7 @@ public func EightfoldReflectedTile(options: TileOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter {
+public func FourfoldReflectedTile(_ options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -71,7 +71,7 @@ public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter 
             kCIInputAngleKey: options.inputAngle,
             "inputAcuteAngle": options.inputAcuteAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.FourfoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -82,14 +82,14 @@ public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter 
 - returns: A closure of type `Filter`
 */
 
-public func FourfoldRotatedTile(options: TileOptions) -> Filter {
+public func FourfoldRotatedTile(_ options: TileOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.FourfoldRotatedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -100,7 +100,7 @@ public func FourfoldRotatedTile(options: TileOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter {
+public func FourfoldTranslatedTile(_ options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -108,7 +108,7 @@ public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter
             kCIInputAngleKey: options.inputAngle,
             "inputAcuteAngle": options.inputAcuteAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.FourfoldTranslatedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -119,14 +119,14 @@ public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter
 - returns: A closure of type `Filter`
 */
 
-public func GlideReflectedTile(options: TileOptions) -> Filter {
+public func GlideReflectedTile(_ options: TileOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.GlideReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -137,14 +137,14 @@ public func GlideReflectedTile(options: TileOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func SixfoldReflectedTile(options: TileOptions) -> Filter {
+public func SixfoldReflectedTile(_ options: TileOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.SixfoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -154,14 +154,14 @@ public func SixfoldReflectedTile(options: TileOptions) -> Filter {
 - parameter options: An instance of `TileOptions`
 - returns: A closure of type `Filter`
 */
-public func SixfoldRotatedTile(options: TileOptions) -> Filter {
+public func SixfoldRotatedTile(_ options: TileOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.SixfoldRotatedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -172,14 +172,14 @@ public func SixfoldRotatedTile(options: TileOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 
-public func TriangleKaleidoscope(options: TriangleKaleidoscopeOptions) -> Filter {
+public func TriangleKaleidoscope(_ options: TriangleKaleidoscopeOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             "inputSize": options.inputSize,
             "inputRotation": options.inputRotation,
             "inputDecay": options.inputDecay
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.TriangleKaleidoscope.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }
@@ -190,14 +190,14 @@ public func TriangleKaleidoscope(options: TriangleKaleidoscopeOptions) -> Filter
 - returns: A closure of type `Filter`
 */
 
-public func TwelvefoldReflectedTile(options: TileOptions) -> Filter {
+public func TwelvefoldReflectedTile(_ options: TileOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
             kCIInputWidthKey: options.inputWidth
-        ]
+        ] as [String : Any]
         let aFilter = CIFilter(name: FilterName.TwelvefoldReflectedTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
     }

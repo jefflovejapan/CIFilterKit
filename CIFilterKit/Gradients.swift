@@ -13,12 +13,12 @@ import Foundation
 - returns: The output `CIImage`
 */
 
-public func GaussianGradient(options: GaussianGradientOptions) -> CIImage? {
+public func GaussianGradient(_ options: GaussianGradientOptions) -> CIImage? {
     let parameters: Parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputColor0": options.inputColor0,
         "inputColor1": options.inputColor1,
-        kCIInputRadiusKey: options.inputRadius
+        kCIInputRadiusKey: options.inputRadius as AnyObject
     ]
     let filter = CIFilter(name:FilterName.GaussianGradient.rawValue, withInputParameters:parameters)
     return filter?.outputImage
@@ -29,7 +29,7 @@ public func GaussianGradient(options: GaussianGradientOptions) -> CIImage? {
 - returns: The output `CIImage`
 */
 
-public func LinearGradient(options: LinearGradientOptions) -> CIImage? {
+public func LinearGradient(_ options: LinearGradientOptions) -> CIImage? {
     let parameters: Parameters = [
         "inputPoint0": options.inputPoint0.vector(),
         "inputPoint1": options.inputPoint1.vector(),
@@ -45,14 +45,14 @@ public func LinearGradient(options: LinearGradientOptions) -> CIImage? {
 - returns: The output `CIImage`
 */
 
-public func RadialGradient(options: RadialGradientOptions) -> CIImage? {
+public func RadialGradient(_ options: RadialGradientOptions) -> CIImage? {
     let parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputRadius0": options.inputRadius0,
         "inputRadius1": options.inputRadius1,
         "inputColor0": options.inputColor0,
         "inputColor1": options.inputColor1
-    ]
+    ] as [String : Any]
     let aFilter = CIFilter(name:FilterName.RadialGradient.rawValue, withInputParameters: parameters)
     return aFilter?.outputImage
 }
@@ -62,7 +62,7 @@ public func RadialGradient(options: RadialGradientOptions) -> CIImage? {
 - returns: The output `CIImage`
 */
 
-public func SmoothLinearGradient(options: SmoothLinearGradientOptions) -> CIImage? {
+public func SmoothLinearGradient(_ options: SmoothLinearGradientOptions) -> CIImage? {
     let parameters = [
         "inputPoint0": options.inputPoint0.vector(),
         "inputPoint1": options.inputPoint1.vector(),

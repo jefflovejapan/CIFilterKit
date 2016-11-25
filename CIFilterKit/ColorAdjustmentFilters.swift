@@ -13,14 +13,14 @@ import Foundation
     - returns: A closure of type `Filter`
 */
 
-public func ColorControls(options: ColorControlsOptions) -> Filter {
+public func ColorControls(_ options: ColorControlsOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
             kCIInputSaturationKey: options.inputSaturation,
             kCIInputBrightnessKey: options.inputBrightness,
             kCIInputContrastKey: options.inputContrast
-            ]
+            ] as [String : Any]
         let filter = CIFilter(name:FilterName.ColorControls.rawValue, withInputParameters:parameters)
         return filter?.outputImage
     }
@@ -31,7 +31,7 @@ public func ColorControls(options: ColorControlsOptions) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
+public func ColorMatrix(_ options: ColorMatrixOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -51,13 +51,13 @@ public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func ExposureAdjust(inputEV: Double?) -> Filter {
+public func ExposureAdjust(_ inputEV: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image,
         ]
         if let ev = inputEV {
-            parameters[kCIInputEVKey] = ev
+            parameters[kCIInputEVKey] = ev as AnyObject?
         }
         let filter = CIFilter(name:FilterName.ExposureAdjust.rawValue, withInputParameters:parameters)
         return filter?.outputImage
@@ -69,13 +69,13 @@ public func ExposureAdjust(inputEV: Double?) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func GammaAdjust(inputPower: Double?) -> Filter {
+public func GammaAdjust(_ inputPower: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
         if let power = inputPower {
-            parameters["inputPower"] = power
+            parameters["inputPower"] = power as AnyObject?
         }
         let filter = CIFilter(name:FilterName.GammaAdjust.rawValue, withInputParameters:parameters)
         return filter?.outputImage
@@ -87,13 +87,13 @@ public func GammaAdjust(inputPower: Double?) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func HueAdjust(inputAngle: Double?) -> Filter {
+public func HueAdjust(_ inputAngle: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
         if let angle = inputAngle {
-            parameters[kCIInputAngleKey] = angle
+            parameters[kCIInputAngleKey] = angle as AnyObject?
         }
         let filter = CIFilter(name:FilterName.HueAdjust.rawValue, withInputParameters:parameters)
         return filter?.outputImage
@@ -121,7 +121,7 @@ public func SRGBToneCurveToLinear() -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func TemperatureAndTint(options: TemperatureAndTintOptions) -> Filter {
+public func TemperatureAndTint(_ options: TemperatureAndTintOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -138,7 +138,7 @@ public func TemperatureAndTint(options: TemperatureAndTintOptions) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func ToneCurve(options: ToneCurveOptions) -> Filter {
+public func ToneCurve(_ options: ToneCurveOptions) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
@@ -157,13 +157,13 @@ public func ToneCurve(options: ToneCurveOptions) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func Vibrance(inputAmount: Double?) -> Filter {
+public func Vibrance(_ inputAmount: Double?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
         if let amount = inputAmount {
-            parameters["inputAmount"] = amount
+            parameters["inputAmount"] = amount as AnyObject?
         }
         let filter = CIFilter(name:FilterName.Vibrance.rawValue, withInputParameters:parameters)
         return filter?.outputImage
@@ -175,7 +175,7 @@ public func Vibrance(inputAmount: Double?) -> Filter {
     - returns: A closure of type `Filter`
 */
 
-public func WhitePointAdjust(inputColor: CIColor?) -> Filter {
+public func WhitePointAdjust(_ inputColor: CIColor?) -> Filter {
     return { image in
         var parameters: Parameters = [
             kCIInputImageKey: image
