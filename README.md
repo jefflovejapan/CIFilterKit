@@ -1,6 +1,6 @@
 ![icon](https://raw.githubusercontent.com/jefflovejapan/CIFilterKit/master/filter.png)
 
-#CIFilterKit
+# CIFilterKit
 
 [![Build Status](https://travis-ci.org/jefflovejapan/CIFilterKit.svg?branch=master)](https://travis-ci.org/jefflovejapan/CIFilterKit)
 
@@ -14,7 +14,7 @@ let outImg = filter.outputImage
 
 That's a lot of work to essentially call a single function, and it gets more cumbersome the more filters you chain together. CIFilterKit provides a functional, composable wrapper that can make Core Image easier to work with.
 
-###Installation
+### Installation
 
 The easiest way to install CIFilterKit is with [CocoaPods](cocoapods.org). Just add the following to your Podfile:
 
@@ -24,7 +24,7 @@ pod 'CIFilterKit'
 
 Note that you'll also need to [add `use_frameworks!` to your Podfile](http://blog.cocoapods.org/CocoaPods-0.36/) if you haven't already.
 
-###Usage
+### Usage
 
 A `Filter` is a function of type `CIImage -> CIImage`. You can create an instance of any of the available Core Image filters by calling the respective function, the name of the equivalent `CIFilter` minus the "CI". For example, the code from the introduction becomes:
 
@@ -40,7 +40,7 @@ var options2 = DotScreenOptions()
 options2.inputAngle = 1.6
 ```
 
-###Chaining
+### Chaining
 
 Filters can be chained together using the `|>>` operator.
 
@@ -53,7 +53,7 @@ let stacked: Filter = filter1 |>> filter2 |>> filter3
 let outImg = stacked(inImg)
 ```
 
-###Attributes
+### Attributes
 
 And we can get the filter's associated `attributes` dictionary by calling `attributesForFilter`
 
@@ -61,7 +61,7 @@ And we can get the filter's associated `attributes` dictionary by calling `attri
 let dotScreenAttributes: FilterAttributes = attributesForFilter(FilterName.DotScreen)
 ```
 
-###Generators
+### Generators
 
 Lastly, CIFilters that are members of `CICategoryGenerator` or `CICategoryGradient` don't take input images as arguments, and so their respective functions simply return the output `CIImage` rather than a `Filter` closure.
 
@@ -69,6 +69,6 @@ Lastly, CIFilters that are members of `CICategoryGenerator` or `CICategoryGradie
 let aGradient: CIImage = GaussianGradient(GaussianGradientOptions())
 ```
 
-###Thanks
+### Thanks
 
 Inspired by the "Wrapping Core Image" chapter of [*Functional Programming in Swift*](http://www.objc.io/books/) by Chris Eidhof, Florian Kugler, and Wouter Swierstra.
