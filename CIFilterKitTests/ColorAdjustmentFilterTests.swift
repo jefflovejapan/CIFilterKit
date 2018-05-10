@@ -16,41 +16,41 @@ class ColorAdjustmentFilterTests: QuickSpec {
         var kevinBaconImg : UIImage!
         var kevinBaconCiImage: CIImage!
         beforeEach {
-            let filePath = NSBundle(forClass: self.classForCoder).pathForResource("bacon", ofType: "jpg")!
-            let imgData = NSData(contentsOfFile: filePath)!
+            let filePath = Bundle(for: self.classForCoder).path(forResource: "bacon", ofType: "jpg")!
+            let imgData = FileManager.default.contents(atPath: filePath)!
             kevinBaconImg = UIImage(data: imgData)!
             expect(kevinBaconImg).toNot(beNil())
-            kevinBaconCiImage = CIImage(CGImage: kevinBaconImg.CGImage!)
+            kevinBaconCiImage = CIImage(cgImage: kevinBaconImg.cgImage!)
             expect(kevinBaconCiImage).toNot(beNil())
         }
         describe("The ColorControls filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorControls(ColorControlsOptions())
+                let aFilter = ColorControls(options: ColorControlsOptions())
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(outImg).toNot(beNil())
             }
         }
         describe("The ColorMatrix filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorMatrix(ColorMatrixOptions())
+                let aFilter = ColorMatrix(options: ColorMatrixOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ExposureAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ExposureAdjust(-0.2)
+                let aFilter = ExposureAdjust(inputEV: -0.2)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The GammaAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = GammaAdjust(0.5)
+                let aFilter = GammaAdjust(inputPower: 0.5)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The HueAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = HueAdjust(-0.5)
+                let aFilter = HueAdjust(inputAngle: -0.5)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -68,25 +68,25 @@ class ColorAdjustmentFilterTests: QuickSpec {
         }
         describe("The TemperatureAndTint filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = TemperatureAndTint(TemperatureAndTintOptions())
+                let aFilter = TemperatureAndTint(options: TemperatureAndTintOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ToneCurve filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ToneCurve(ToneCurveOptions())
+                let aFilter = ToneCurve(options: ToneCurveOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The Vibrance filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = Vibrance(0.5)
+                let aFilter = Vibrance(inputAmount: 0.5)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The WhitePointAdjust filter") {
             it("Should be able to filter a picture of Kevin Bacon") {
-                let aFilter = WhitePointAdjust(nil)
+                let aFilter = WhitePointAdjust(inputColor: nil)
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(outImg).toNot(beNil())
             }

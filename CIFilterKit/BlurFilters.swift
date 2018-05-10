@@ -33,7 +33,7 @@ public func GaussianBlur(inputRadius: Double?) -> Filter {
 
 public func MotionBlur(options: MotionBlurOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputAngleKey: options.inputAngle
@@ -50,7 +50,7 @@ public func MotionBlur(options: MotionBlurOptions) -> Filter {
 
 public func ZoomBlur(options: ZoomBlurOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius,

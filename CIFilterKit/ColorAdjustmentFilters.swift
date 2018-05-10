@@ -15,7 +15,7 @@ import Foundation
 
 public func ColorControls(options: ColorControlsOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputSaturationKey: options.inputSaturation,
             kCIInputBrightnessKey: options.inputBrightness,
@@ -33,7 +33,7 @@ public func ColorControls(options: ColorControlsOptions) -> Filter {
 
 public func ColorMatrix(options: ColorMatrixOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputRVector": options.inputRVector.vector(),
             "inputGVector": options.inputGVector.vector(),
@@ -105,7 +105,7 @@ public func HueAdjust(inputAngle: Double?) -> Filter {
     - returns: A closure of type `Filter`
 */
 public func LinearToSRGBToneCurve() -> Filter {
-    return noParamsFilter(FilterName.LinearToSRGBToneCurve.rawValue)
+    return noParamsFilter(name: FilterName.LinearToSRGBToneCurve.rawValue)
 }
 
 /**
@@ -113,7 +113,7 @@ public func LinearToSRGBToneCurve() -> Filter {
     - returns: A closure of type `Filter`
 */
 public func SRGBToneCurveToLinear() -> Filter {
-    return noParamsFilter(FilterName.SRGBToneCurveToLinear.rawValue)
+    return noParamsFilter(name: FilterName.SRGBToneCurveToLinear.rawValue)
 }
 
 /**

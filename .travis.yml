@@ -1,5 +1,6 @@
 language: swift
-osx_image: xcode7.2
+osx_image: xcode9.3
 xcode_workspace: CIFilterKit.xcworkspace
 xcode_scheme: CIFilterKit
-xcode_sdk: iphonesimulator9.3
+xcode_sdk: iphonesimulator10.0
+script: xcodebuild clean && xcodebuild test -workspace CIFilterKit.xcworkspace -scheme CIFilterKit -sdk iphonesimulator11.3 -destination 'platform=iOS Simulator,name=iPhone X,OS=11.3'

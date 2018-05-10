@@ -15,9 +15,9 @@ import Foundation
 
 public func AreaHistogram(options: AreaHistogramOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
-            kCIInputExtentKey: options.inputExtent.vector(),
+            kCIInputExtentKey: options.inputExtent.vector,
             "inputCount": options.inputCount,
             kCIInputScaleKey: options.inputScale
         ]
@@ -33,7 +33,7 @@ public func AreaHistogram(options: AreaHistogramOptions) -> Filter {
 
 public func HistogramDisplayFilter(options: HistogramDisplayOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputHeight": options.inputHeight,
             "inputHighLimit": options.inputHighLimit,

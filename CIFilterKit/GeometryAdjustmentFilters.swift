@@ -17,7 +17,7 @@ public func AffineTransform(inputTransform:CGAffineTransform) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
-            kCIInputTransformKey: inputTransform.value()
+            kCIInputTransformKey: inputTransform.value
         ]
         let aFilter = CIFilter(name:FilterName.AffineTransform.rawValue, withInputParameters:parameters)
         return aFilter?.outputImage
@@ -33,7 +33,7 @@ public func Crop(inputRectangle:CGRect) -> Filter {
     return { image in
         let parameters = [
             kCIInputImageKey: image,
-            "inputRectangle": inputRectangle.vector()
+            "inputRectangle": inputRectangle.vector
         ]
         let aFilter = CIFilter(name:FilterName.Crop.rawValue, withInputParameters:parameters)
         return aFilter?.outputImage
@@ -47,7 +47,7 @@ public func Crop(inputRectangle:CGRect) -> Filter {
 
 public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputScaleKey: options.inputScale,
             kCIInputAspectRatioKey: options.inputAspectRatio
@@ -64,7 +64,7 @@ public func LanczosScaleTransform(options: LanczosScaleTransformOptions) -> Filt
 
 public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputTopLeft": options.inputTopLeft.vector(),
             "inputTopRight": options.inputTopRight.vector(),
@@ -83,7 +83,7 @@ public func PerspectiveCorrection(options: PerspectiveCorrectionOptions) -> Filt
 
 public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputTopLeft": options.inputTopLeft.vector(),
             "inputTopRight": options.inputTopRight.vector(),
@@ -102,7 +102,7 @@ public func PerspectiveTile(options: PerspectiveCorrectionOptions) -> Filter {
 
 public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputTopLeft": options.inputTopLeft.vector(),
             "inputTopRight": options.inputTopRight.vector(),
@@ -122,7 +122,7 @@ public func PerspectiveTransform(options: PerspectiveCorrectionOptions) -> Filte
 
 public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions, inputExtent:CGRect?) -> Filter {
     return { image in
-        var parameters = [
+        var parameters: Parameters = [
             kCIInputImageKey: image,
             "inputTopLeft": options.inputTopLeft.vector(),
             "inputTopRight": options.inputTopRight.vector(),
@@ -130,7 +130,7 @@ public func PerspectiveTransformWithExtent(options: PerspectiveCorrectionOptions
             "inputBottomRight": options.inputBottomRight.vector()
         ]
         if let extent = inputExtent {
-            parameters[kCIInputExtentKey] = extent.vector()
+            parameters[kCIInputExtentKey] = extent.vector
         }
         let aFilter = CIFilter(name:FilterName.PerspectiveTransformWithExtent.rawValue, withInputParameters:parameters)
         return aFilter?.outputImage

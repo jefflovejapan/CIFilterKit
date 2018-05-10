@@ -17,186 +17,186 @@ class CompositeOperationFilterTests: QuickSpec {
         var rhinocerosImg : UIImage!
         var rhinocerosCiImg: CIImage!
         beforeEach {
-            let filePath = NSBundle(forClass: self.classForCoder).pathForResource("bacon", ofType: "jpg")!
-            let imgData = NSData(contentsOfFile: filePath)!
+            let filePath = Bundle(for: self.classForCoder).path(forResource: "bacon", ofType: "jpg")!
+            let imgData = FileManager.default.contents(atPath: filePath)!
             kevinBaconImg = UIImage(data: imgData)!
             expect(kevinBaconImg).toNot(beNil())
-            kevinBaconCiImage = CIImage(CGImage: kevinBaconImg.CGImage!)
+            kevinBaconCiImage = CIImage(cgImage: kevinBaconImg.cgImage!)
             expect(kevinBaconCiImage).toNot(beNil())
             
-            let rhinoFilePath = NSBundle(forClass: self.classForCoder).pathForResource("rhinoceros", ofType: "jpg")!
-            let rhinoImgData = NSData(contentsOfFile: rhinoFilePath)!
+            let rhinoFilePath = Bundle(for: self.classForCoder).path(forResource: "rhinoceros", ofType: "jpg")!
+            let rhinoImgData = FileManager.default.contents(atPath: rhinoFilePath)!
             rhinocerosImg = UIImage(data: rhinoImgData)!
             expect(rhinocerosImg).toNot(beNil())
-            rhinocerosCiImg = CIImage(CGImage: rhinocerosImg.CGImage!)
+            rhinocerosCiImg = CIImage(cgImage: rhinocerosImg.cgImage!)
             expect(rhinocerosCiImg).toNot(beNil())
             
         }
         describe("The AdditionCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = AdditionCompositing(rhinocerosCiImg)
+                let aFilter = AdditionCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ColorBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = ColorBlendMode(rhinocerosCiImg)
+                let aFilter = ColorBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ColorBurnBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = ColorBurnBlendMode(rhinocerosCiImg)
+                let aFilter = ColorBurnBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ColorDodgeBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = ColorDodgeBlendMode(rhinocerosCiImg)
+                let aFilter = ColorDodgeBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The DarkenBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = DarkenBlendMode(rhinocerosCiImg)
+                let aFilter = DarkenBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The DifferenceBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = DifferenceBlendMode(rhinocerosCiImg)
+                let aFilter = DifferenceBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The DivideBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = DivideBlendMode(rhinocerosCiImg)
+                let aFilter = DivideBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ExclusionBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = ExclusionBlendMode(rhinocerosCiImg)
+                let aFilter = ExclusionBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The HardLightBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = HardLightBlendMode(rhinocerosCiImg)
+                let aFilter = HardLightBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The HueLightBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = HueBlendMode(rhinocerosCiImg)
+                let aFilter = HueBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The LightenBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = LightenBlendMode(rhinocerosCiImg)
+                let aFilter = LightenBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The LinearBurnBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = LinearBurnBlendMode(rhinocerosCiImg)
+                let aFilter = LinearBurnBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The LinearDodgeBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = LinearDodgeBlendMode(rhinocerosCiImg)
+                let aFilter = LinearDodgeBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The LuminosityBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = LuminosityBlendMode(rhinocerosCiImg)
+                let aFilter = LuminosityBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The MaximumCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = MaximumCompositing(rhinocerosCiImg)
+                let aFilter = MaximumCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The MinimumCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = MinimumCompositing(rhinocerosCiImg)
+                let aFilter = MinimumCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The MultiplyBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = MultiplyBlendMode(rhinocerosCiImg)
+                let aFilter = MultiplyBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The MultiplyCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = MultiplyCompositing(rhinocerosCiImg)
+                let aFilter = MultiplyCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The OverlayBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = OverlayBlendMode(rhinocerosCiImg)
+                let aFilter = OverlayBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The PinLightBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = PinLightBlendMode(rhinocerosCiImg)
+                let aFilter = PinLightBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SaturationBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = SaturationBlendMode(rhinocerosCiImg)
+                let aFilter = SaturationBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ScreenBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = ScreenBlendMode(rhinocerosCiImg)
+                let aFilter = ScreenBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SoftLightBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = SoftLightBlendMode(rhinocerosCiImg)
+                let aFilter = SoftLightBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SourceAtopCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = SourceAtopCompositing(rhinocerosCiImg)
+                let aFilter = SourceAtopCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SourceInCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = SourceInCompositing(rhinocerosCiImg)
+                let aFilter = SourceInCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SourceOutCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = SourceOutCompositing(rhinocerosCiImg)
+                let aFilter = SourceOutCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SourceOverCompositing filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = SourceOverCompositing(rhinocerosCiImg)
+                let aFilter = SourceOverCompositing(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The SubtractBlendMode filter") {
             it("should be able to compose a picture of Kevin Bacon with a picture of a rhinoceros") {
-                let aFilter = SubtractBlendMode(rhinocerosCiImg)
+                let aFilter = SubtractBlendMode(inputBackgroundImage: rhinocerosCiImg)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }

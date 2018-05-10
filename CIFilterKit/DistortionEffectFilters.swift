@@ -15,7 +15,7 @@ import Foundation
 
 public func BumpDistortion(options: BumpDistortionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius,
@@ -33,7 +33,7 @@ public func BumpDistortion(options: BumpDistortionOptions) -> Filter {
 
 public func BumpDistortionLinear(options: BumpDistortionLinearOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius,
@@ -52,7 +52,7 @@ public func BumpDistortionLinear(options: BumpDistortionLinearOptions) -> Filter
 
 public func CircleSplashDistortion(options: CircleSplashDistortionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             kCIInputCenterKey:options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius
@@ -69,7 +69,7 @@ public func CircleSplashDistortion(options: CircleSplashDistortionOptions) -> Fi
 
 public func GlassDistortion(inputTexture:CIImage, options: GlassDistortionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             "inputTexture": inputTexture,
             kCIInputCenterKey: options.inputCenter.vector(),
@@ -87,7 +87,7 @@ public func GlassDistortion(inputTexture:CIImage, options: GlassDistortionOption
 
 public func HoleDistortion(options: HoleDistortionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             kCIInputCenterKey:options.inputCenter.vector(),
             kCIInputRadiusKey:options.inputRadius
@@ -104,7 +104,7 @@ public func HoleDistortion(options: HoleDistortionOptions) -> Filter {
 
 public func LightTunnel(options: LightTunnelOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             kCIInputCenterKey:options.inputCenter.vector(),
             "inputRotation":options.inputRotation,
@@ -122,7 +122,7 @@ public func LightTunnel(options: LightTunnelOptions) -> Filter {
 
 public func PinchDistortion(options: PinchDistortionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius,
@@ -140,7 +140,7 @@ public func PinchDistortion(options: PinchDistortionOptions) -> Filter {
 
 public func TwirlDistortion(options: TwirlDistortionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius,
@@ -158,7 +158,7 @@ public func TwirlDistortion(options: TwirlDistortionOptions) -> Filter {
 
 public func VortexDistortion(options: VortexDistortionOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey:image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputRadiusKey: options.inputRadius,

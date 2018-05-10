@@ -33,7 +33,7 @@ public func BlendWithAlphaMask(inputBackgroundImage:CIImage, inputMaskImage: CII
 */
 public func BlendWithMask(inputBackgroundImage:CIImage, inputMaskImage: CIImage) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputBackgroundImageKey: inputBackgroundImage,
             kCIInputMaskImageKey: inputMaskImage
@@ -50,7 +50,7 @@ public func BlendWithMask(inputBackgroundImage:CIImage, inputMaskImage: CIImage)
 
 public func Bloom(options: BloomOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputIntensityKey: options.inputIntensity
@@ -67,7 +67,7 @@ public func Bloom(options: BloomOptions) -> Filter {
 
 public func Convolution3X3(options: Convolution3X3Options) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputWeights": options.inputWeights.vector(),
             "inputBias": options.inputBias
@@ -84,7 +84,7 @@ public func Convolution3X3(options: Convolution3X3Options) -> Filter {
 
 public func Convolution5x5(options: Convolution5X5Options) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputWeights": options.inputWeights.vector(),
             "inputBias": options.inputBias
@@ -101,7 +101,7 @@ public func Convolution5x5(options: Convolution5X5Options) -> Filter {
 
 public func Convolution9Horizontal(options: Convolution9Options) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputWeights": options.inputWeights.vector(),
             "inputBias": options.inputBias
@@ -118,7 +118,7 @@ public func Convolution9Horizontal(options: Convolution9Options) -> Filter {
 
 public func Convolution9Vertical(options: Convolution9Options) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputWeights": options.inputWeights.vector(),
             "inputBias": options.inputBias
@@ -135,7 +135,7 @@ public func Convolution9Vertical(options: Convolution9Options) -> Filter {
 
 public func Gloom(options: BloomOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputIntensityKey: options.inputIntensity
@@ -152,7 +152,7 @@ public func Gloom(options: BloomOptions) -> Filter {
 
 public func HighlightShadowAdjust(options: HighlightShadowOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputHighlightAmount": options.inputHighlightAmount,
             "inputShadowAmount": options.inputShadowAmount,
@@ -170,7 +170,7 @@ public func HighlightShadowAdjust(options: HighlightShadowOptions) -> Filter {
 
 public func Pixellate(options: PixellateOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputScaleKey: options.inputScale

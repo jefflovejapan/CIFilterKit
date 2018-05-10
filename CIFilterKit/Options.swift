@@ -525,7 +525,7 @@ public struct TwirlDistortionOptions {
     public init() {
         self.inputCenter = XYPosition(x: 150.0, y: 150.0)
         self.inputRadius = 300.0
-        self.inputAngle = M_PI
+        self.inputAngle = Double.pi
     }
 }
 
@@ -550,7 +550,7 @@ public struct VortexDistortionOptions {
     public init() {
         self.inputCenter = XYPosition(x:150.0, y:150.0)
         self.inputRadius = 300.0
-        self.inputAngle = M_PI * 8.0
+        self.inputAngle = Double.pi * 8.0
     }
 }
 
@@ -1241,7 +1241,7 @@ public struct TileOptionsWithAcuteAngle {
     public init() {
         self.inputCenter = XYPosition(x: 150.0, y: 150.0)
         self.inputAngle = 0.0
-        self.inputAcuteAngle = M_PI_2
+        self.inputAcuteAngle = Double.pi / 2
         self.inputWidth = 100.0
     }
 }

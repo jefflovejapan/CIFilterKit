@@ -33,7 +33,7 @@ public func SharpenLuminance(inputSharpness:Double?) -> Filter {
 
 public func UnsharpMask(options: UnsharpMaskOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputIntensityKey: options.inputIntensity

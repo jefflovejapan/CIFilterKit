@@ -15,22 +15,22 @@ class ColorEffectFilterTests: QuickSpec {
         var kevinBaconImg : UIImage!
         var kevinBaconCiImage: CIImage!
         beforeEach {
-            let filePath = NSBundle(forClass: self.classForCoder).pathForResource("bacon", ofType: "jpg")!
-            let imgData = NSData(contentsOfFile: filePath)!
+            let filePath = Bundle(for: self.classForCoder).path(forResource: "bacon", ofType: "jpg")!
+            let imgData = FileManager.default.contents(atPath: filePath)!
             kevinBaconImg = UIImage(data: imgData)!
             expect(kevinBaconImg).toNot(beNil())
-            kevinBaconCiImage = CIImage(CGImage: kevinBaconImg.CGImage!)
+            kevinBaconCiImage = CIImage(cgImage: kevinBaconImg.cgImage!)
             expect(kevinBaconCiImage).toNot(beNil())
         }
         describe("The ColorClamp filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorClamp(ColorClampOptions())
+                let aFilter = ColorClamp(options: ColorClampOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ColorCrossPolynomial filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorCrossPolynomial(ColorCrossPolynomialOptions())
+                let aFilter = ColorCrossPolynomial(options: ColorCrossPolynomialOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -46,7 +46,7 @@ class ColorEffectFilterTests: QuickSpec {
                     RGBAComponents(r:15.0, g:10.0, b:5.0, a:0.5),
                     RGBAComponents(r:15.0, g:10.0, b:5.0, a:0.5)
                 ]
-                let aFilter = ColorCube(colorCubeData)
+                let aFilter = ColorCube(inputCube: colorCubeData)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -63,7 +63,7 @@ class ColorEffectFilterTests: QuickSpec {
                     RGBAComponents(r:15.0, g:10.0, b:5.0, a:0.5)
                 ]
                 let colorSpace = CGColorSpaceCreateDeviceRGB()
-                let aFilter = ColorCubeWithColorSpace(colorCubeData, inputColorSpace: colorSpace)
+                let aFilter = ColorCubeWithColorSpace(inputCube: colorCubeData, inputColorSpace: colorSpace)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -76,15 +76,15 @@ class ColorEffectFilterTests: QuickSpec {
         describe("The ColorMap filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let gradientOptions = GaussianGradientOptions(inputCenter:XYPosition(x:150.0, y:150.0), inputColor0:CIColor(red: 0.5, green: 0.25, blue: 0.75, alpha: 1.0), inputColor1:CIColor(red: 1.0, green: 0.55, blue: 0.25, alpha: 1.0), inputRadius:300.0)
-                let inputGradientImage: CIImage? = GaussianGradient(gradientOptions)
-                let gradient = inputGradientImage?.imageByCroppingToRect(kevinBaconCiImage.extent)
-                let aFilter = ColorMap(gradient!)
+                let inputGradientImage: CIImage? = GaussianGradient(options: gradientOptions)
+                let gradient = inputGradientImage?.cropped(to: kevinBaconCiImage.extent)
+                let aFilter = ColorMap(inputGradientImage: gradient!)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ColorMonochrome filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorMonochrome(ColorMonochromeOptions())
+                let aFilter = ColorMonochrome(options: ColorMonochromeOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -95,13 +95,13 @@ class ColorEffectFilterTests: QuickSpec {
                 let blueVector = PolynomialCoefficients(a0: 0.0, a1: 0.0, a2: 0.5, a3: 1.0)
                 let alphaVector = PolynomialCoefficients(a0: 0.0, a1: 1.0, a2: 1.0, a3: 1.0)
                 let options = ColorPolynomialOptions(inputRedCoefficients: redVector, inputGreenCoefficients: greenVector, inputBlueCoefficients: blueVector, inputAlphaCoefficients: alphaVector)
-                let aFilter = ColorPolynomial(options)
+                let aFilter = ColorPolynomial(options: options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ColorPosterize filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ColorPosterize(nil)
+                let aFilter = ColorPosterize(inputLevels: nil)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -110,7 +110,7 @@ class ColorEffectFilterTests: QuickSpec {
                 let inputColor0 = CIColor(red:0.5, green: 0.75, blue: 0.0, alpha: 0.75)
                 let inputColor1 = CIColor(red:1.0, green:0.1, blue: 0.2, alpha: 1.0)
                 let options = FalseColorOptions(inputColor0: inputColor0, inputColor1: inputColor1)
-                let aFilter = FalseColor(options)
+                let aFilter = FalseColor(options: options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
@@ -186,14 +186,14 @@ class ColorEffectFilterTests: QuickSpec {
         }
         describe("The SepiaTone filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = SepiaTone(0.75)
+                let aFilter = SepiaTone(inputIntensity: 0.75)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The Vignette filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let options = VignetteOptions(inputRadius:500.0, inputIntensity:0.8)
-                let aFilter = Vignette(options)
+                let aFilter = Vignette(options: options)
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(outImg).toNot(beNil())
             }
@@ -201,7 +201,7 @@ class ColorEffectFilterTests: QuickSpec {
         describe("The VignetteEffect filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let options = VignetteEffectOptions(inputCenter:XYPosition(x:150.0, y:150.0), inputIntensity:0.75, inputRadius:500.0, inputFalloff: 0.1)
-                let aFilter = VignetteEffect(options)
+                let aFilter = VignetteEffect(options: options)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }

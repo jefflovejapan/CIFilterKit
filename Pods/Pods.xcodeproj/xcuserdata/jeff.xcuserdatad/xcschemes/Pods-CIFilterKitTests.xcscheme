@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A8D2D46350F9F0D99C8BDCDA54210441"
+               BlueprintIdentifier = "023003D0B7B182073014A8CB70C9A99F"
                BuildableName = "Pods_CIFilterKitTests.framework"
                BlueprintName = "Pods-CIFilterKitTests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A8D2D46350F9F0D99C8BDCDA54210441"
+            BlueprintIdentifier = "023003D0B7B182073014A8CB70C9A99F"
             BuildableName = "Pods_CIFilterKitTests.framework"
             BlueprintName = "Pods-CIFilterKitTests"
             ReferencedContainer = "container:Pods.xcodeproj">

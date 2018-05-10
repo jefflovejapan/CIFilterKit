@@ -15,7 +15,7 @@ import Foundation
 
 public func CircularScreen(options: CircularScreenOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputWidthKey: options.inputWidth,
@@ -33,7 +33,7 @@ public func CircularScreen(options: CircularScreenOptions) -> Filter {
 
 public func DotScreen(options: DotScreenOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -52,7 +52,7 @@ public func DotScreen(options: DotScreenOptions) -> Filter {
 
 public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -71,7 +71,7 @@ public func HatchedScreen(options: HatchedScreenOptions) -> Filter {
 
 public func LineScreen(options: LineScreenOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,

@@ -15,23 +15,23 @@ class SharpenFilterTests: QuickSpec {
         var kevinBaconImg : UIImage!
         var kevinBaconCiImage: CIImage!
         beforeEach {
-            let filePath = NSBundle(forClass: self.classForCoder).pathForResource("bacon", ofType: "jpg")!
-            let imgData = NSData(contentsOfFile: filePath)!
+            let filePath = Bundle(for: self.classForCoder).path(forResource: "bacon", ofType: "jpg")!
+            let imgData = FileManager.default.contents(atPath: filePath)!
             kevinBaconImg = UIImage(data: imgData)!
             expect(kevinBaconImg).toNot(beNil())
-            kevinBaconCiImage = CIImage(CGImage: kevinBaconImg.CGImage!)
+            kevinBaconCiImage = CIImage(cgImage: kevinBaconImg.cgImage!)
             expect(kevinBaconCiImage).toNot(beNil())
         }
         describe("The SharpenLuminance filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = SharpenLuminance(15.0)
+                let aFilter = SharpenLuminance(inputSharpness: 15.0)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The UnsharpMask filter") {
             it("should be able to filter a picture of Kevin Bacon") {
                 let options = UnsharpMaskOptions(inputRadius: 50.0, inputIntensity: 75.0)
-                let aFilter = UnsharpMask(options)
+                let aFilter = UnsharpMask(options: options)
                 let outImg = aFilter(kevinBaconCiImage)
                 expect(outImg).toNot(beNil())
             }

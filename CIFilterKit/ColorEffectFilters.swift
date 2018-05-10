@@ -53,17 +53,18 @@ public func ColorCrossPolynomial(options: ColorCrossPolynomialOptions) -> Filter
 public func ColorCube(inputCube:ColorCubeData) -> Filter {
     return { image in
         var optionalInputCubeDimension: Int? = nil
-        var optionalData: NSData? = nil
+        var optionalData: Data? = nil
         if countIsCube(inputCube.count) {
             let asVector = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }
-            let vectorArray = asVector.reduce([], combine: +) as Array
+            let vectorArray = asVector.reduce([], +)
             optionalInputCubeDimension = cubeRoot(inputCube.count)
-            optionalData = NSData(bytes: vectorArray, length: vectorArray.count * sizeof(Float))
+
+            optionalData = Data(bytes: vectorArray, count: vectorArray.count * MemoryLayout<Float>.stride)
         }
         var parameters: Parameters = [
             kCIInputImageKey: image
         ]
-        if let data = optionalData, dimension = optionalInputCubeDimension {
+        if let data = optionalData, let dimension = optionalInputCubeDimension {
             parameters["inputCubeDimension"] = dimension
             parameters["inputCubeData"] = data
         }
@@ -80,15 +81,15 @@ The same as `ColorCube`, but with the ability to set an input color space.
 - returns: A closure of type `Filter`
 */
 
-public func ColorCubeWithColorSpace(inputCube:ColorCubeData, inputColorSpace:CGColorSpaceRef?) -> Filter {
+public func ColorCubeWithColorSpace(inputCube:ColorCubeData, inputColorSpace:CGColorSpace?) -> Filter {
     return { image in
         var optionalInputCubeDimension: Int? = nil
-        var optionalData: NSData? = nil
+        var optionalData: Data? = nil
         if countIsCube(inputCube.count) {
             let asVector = inputCube.map { [Float($0.r), Float($0.g), Float($0.b), Float($0.a)] }
-            let vectorArray = asVector.reduce([], combine: +) as Array
+            let vectorArray = asVector.reduce([], +)
             optionalInputCubeDimension = cubeRoot(inputCube.count)
-            optionalData = NSData(bytes: vectorArray, length: vectorArray.count * sizeof(Float))
+            optionalData = Data(bytes: vectorArray, count: vectorArray.count * MemoryLayout<Float>.stride)
         }
         var parameters: Parameters = [
             kCIInputImageKey: image
@@ -98,7 +99,7 @@ public func ColorCubeWithColorSpace(inputCube:ColorCubeData, inputColorSpace:CGC
             parameters["inputColorSpace"] = colorSpace
         }
         
-        if let data = optionalData, dimension = optionalInputCubeDimension {
+        if let data = optionalData, let dimension = optionalInputCubeDimension {
             parameters["inputCubeDimension"] = dimension
             parameters["inputCubeData"] = data
         }
@@ -112,7 +113,7 @@ public func ColorCubeWithColorSpace(inputCube:ColorCubeData, inputColorSpace:CGC
 */
 
 public func ColorInvert() -> Filter {
-    return noParamsFilter(FilterName.ColorInvert.rawValue)
+    return noParamsFilter(name: FilterName.ColorInvert.rawValue)
 }
 
 /**
@@ -138,7 +139,7 @@ public func ColorMap(inputGradientImage:CIImage) -> Filter {
 
 public func ColorMonochrome(options: ColorMonochromeOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey :image,
             kCIInputColorKey: options.inputColor,
             kCIInputIntensityKey: options.inputIntensity
@@ -207,67 +208,67 @@ public func FalseColor(options: FalseColorOptions) -> Filter {
 - returns: A closure of type `Filter`
 */
 public func MaskToAlpha() -> Filter {
-    return noParamsFilter(FilterName.MaskToAlpha.rawValue)
+    return noParamsFilter(name: FilterName.MaskToAlpha.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func MaximumComponent() -> Filter {
-    return noParamsFilter(FilterName.MaximumComponent.rawValue)
+    return noParamsFilter(name: FilterName.MaximumComponent.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func MinimumComponent() -> Filter {
-    return noParamsFilter(FilterName.MinimumComponent.rawValue)
+    return noParamsFilter(name: FilterName.MinimumComponent.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectChrome() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectChrome.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectChrome.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectFade() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectFade.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectFade.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectInstant() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectInstant.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectInstant.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectMono() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectMono.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectMono.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectNoir() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectNoir.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectNoir.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectProcess() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectProcess.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectProcess.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectTonal() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectTonal.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectTonal.rawValue)
 }
 /**
 - returns: A closure of type `Filter`
 */
 public func PhotoEffectTransfer() -> Filter {
-    return noParamsFilter(FilterName.PhotoEffectTransfer.rawValue)
+    return noParamsFilter(name: FilterName.PhotoEffectTransfer.rawValue)
 }
 /**
 - parameter inputIntensity:
@@ -293,7 +294,7 @@ public func SepiaTone(inputIntensity: Double?) -> Filter {
 
 public func Vignette(options: VignetteOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputRadiusKey: options.inputRadius,
             kCIInputIntensityKey: options.inputIntensity
@@ -310,7 +311,7 @@ public func Vignette(options: VignetteOptions) -> Filter {
 
 public func VignetteEffect(options: VignetteEffectOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputIntensityKey: options.inputIntensity,

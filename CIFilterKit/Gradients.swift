@@ -46,7 +46,7 @@ public func LinearGradient(options: LinearGradientOptions) -> CIImage? {
 */
 
 public func RadialGradient(options: RadialGradientOptions) -> CIImage? {
-    let parameters = [
+    let parameters: Parameters = [
         kCIInputCenterKey: options.inputCenter.vector(),
         "inputRadius0": options.inputRadius0,
         "inputRadius1": options.inputRadius1,
@@ -63,7 +63,7 @@ public func RadialGradient(options: RadialGradientOptions) -> CIImage? {
 */
 
 public func SmoothLinearGradient(options: SmoothLinearGradientOptions) -> CIImage? {
-    let parameters = [
+    let parameters: Parameters = [
         "inputPoint0": options.inputPoint0.vector(),
         "inputPoint1": options.inputPoint1.vector(),
         "inputColor0": options.inputColor0,

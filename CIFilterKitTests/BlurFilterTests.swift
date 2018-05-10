@@ -15,28 +15,28 @@ class BlurFilterTests: QuickSpec {
         var kevinBaconImg : UIImage!
         var kevinBaconCiImage: CIImage!
         beforeEach {
-            let filePath = NSBundle(forClass: self.classForCoder).pathForResource("bacon", ofType: "jpg")!
-            let imgData = NSData(contentsOfFile: filePath)!
+            let filePath = Bundle(for: self.classForCoder).path(forResource: "bacon", ofType: "jpg")!
+            let imgData = FileManager.default.contents(atPath: filePath)!
             kevinBaconImg = UIImage(data: imgData)!
             expect(kevinBaconImg).toNot(beNil())
-            kevinBaconCiImage = CIImage(CGImage: kevinBaconImg.CGImage!)
+            kevinBaconCiImage = CIImage(cgImage: kevinBaconImg.cgImage!)
             expect(kevinBaconCiImage).toNot(beNil())
         }
         describe("The GaussianBlur filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = GaussianBlur(0.5)
+                let aFilter = GaussianBlur(inputRadius: 0.5)
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The MotionBlur filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = MotionBlur(MotionBlurOptions())
+                let aFilter = MotionBlur(options: MotionBlurOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }
         describe("The ZoomBlur filter") {
             it("should be able to filter a picture of Kevin Bacon") {
-                let aFilter = ZoomBlur(ZoomBlurOptions())
+                let aFilter = ZoomBlur(options: ZoomBlurOptions())
                 expect(aFilter(kevinBaconCiImage)).toNot(beNil())
             }
         }

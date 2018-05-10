@@ -15,9 +15,9 @@ import Foundation
 
 public func AffineClamp(inputTransform: CGAffineTransform) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
-            kCIInputTransformKey: inputTransform.value()
+            kCIInputTransformKey: inputTransform.value
         ]
         let aFilter = CIFilter(name: FilterName.AffineClamp.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
@@ -31,9 +31,9 @@ public func AffineClamp(inputTransform: CGAffineTransform) -> Filter {
 
 public func AffineTile(inputTransform: CGAffineTransform) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
-            kCIInputTransformKey: inputTransform.value()
+            kCIInputTransformKey: inputTransform.value
         ]
         let aFilter = CIFilter(name: FilterName.AffineTile.rawValue, withInputParameters: parameters)
         return aFilter?.outputImage
@@ -47,7 +47,7 @@ public func AffineTile(inputTransform: CGAffineTransform) -> Filter {
 
 public func EightfoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -65,7 +65,7 @@ public func EightfoldReflectedTile(options: TileOptions) -> Filter {
 
 public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -84,7 +84,7 @@ public func FourfoldReflectedTile(options: TileOptionsWithAcuteAngle) -> Filter 
 
 public func FourfoldRotatedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -102,7 +102,7 @@ public func FourfoldRotatedTile(options: TileOptions) -> Filter {
 
 public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -121,7 +121,7 @@ public func FourfoldTranslatedTile(options: TileOptionsWithAcuteAngle) -> Filter
 
 public func GlideReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -139,7 +139,7 @@ public func GlideReflectedTile(options: TileOptions) -> Filter {
 
 public func SixfoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -156,7 +156,7 @@ public func SixfoldReflectedTile(options: TileOptions) -> Filter {
 */
 public func SixfoldRotatedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
@@ -174,7 +174,7 @@ public func SixfoldRotatedTile(options: TileOptions) -> Filter {
 
 public func TriangleKaleidoscope(options: TriangleKaleidoscopeOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             "inputSize": options.inputSize,
             "inputRotation": options.inputRotation,
@@ -192,7 +192,7 @@ public func TriangleKaleidoscope(options: TriangleKaleidoscopeOptions) -> Filter
 
 public func TwelvefoldReflectedTile(options: TileOptions) -> Filter {
     return { image in
-        let parameters = [
+        let parameters: Parameters = [
             kCIInputImageKey: image,
             kCIInputCenterKey: options.inputCenter.vector(),
             kCIInputAngleKey: options.inputAngle,
